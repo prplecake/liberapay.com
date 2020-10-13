@@ -104,7 +104,7 @@ title = _("Adding Money")
         % endif
     </p>
 
-    % for e in pending_payins[currency]
+    % for e in pending_payins.get(currency, ())
         <p class="alert alert-info">{{ _(
             "You have a pending {payment_method} payment for {money_amount}. "
             "{link_open}Details{link_close}",

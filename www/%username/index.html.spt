@@ -16,9 +16,8 @@ if lang:
     if lang in website.subdomains and request.hostname.split('.', 1)[0] != lang:
         raise response.redirect(website.subdomains[lang] + request.path.raw)
 else:
-    statement, lang = participant.get_statement(request.accept_langs)
-    if not statement:
-        lang = locale.language
+    statement = participant.get_statement(request.accept_langs)
+    lang = statement.lang if statement else locale.language
 statement = markdown.render(statement) if statement else None
 summary = participant.get_statement(lang, 'summary')
 
@@ -85,7 +84,6 @@ show_income = not participant.hide_receiving and participant.accepts_tips
     <p><a href="{{ participant.path('edit') }}" class="btn btn-primary btn-lg">{{ _("Edit") }}</a></p>
 % endif
 % if user.is_admin
-    % set status = 'success' if not overrides else 'warning' if len(overrides) == 1 else 'danger'
     <p><a class="btn btn-default btn-lg" href="{{ participant.path('admin') }}">Admin</a></p>
     <p>Current isolation level: {{ len(participant.get_active_overrides()) }}</p>
 % endif
