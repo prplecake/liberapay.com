@@ -4,7 +4,7 @@ if not user.ANON:
     response.redirect(request.qs.get('back_to', '/'), trusted_url=False)
 
 title = _("Sign In")
-no_navbar_sign_in = True
+response.navbar_sign_in = False
 
 [---] text/html
 % extends "templates/layouts/base-thin.html"
@@ -12,7 +12,7 @@ no_navbar_sign_in = True
 {% block heading %}{% endblock %}
 
 % block thin_content
-    % if state.get('log-in.email-sent-to') or state.get('log-in.carry-on')
+    % if state.get('log-in.email-sent-to') or state.get('log-in.carry-on') or state.get('log-in.password-or-email') or state.get('log-in.email')
     % include "templates/log-in-form.html"
     % else
 

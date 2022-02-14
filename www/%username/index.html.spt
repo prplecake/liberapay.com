@@ -27,9 +27,8 @@ if lang:
     if lang in website.subdomains and request.hostname.split('.', 1)[0] != lang:
         raise response.redirect(website.subdomains[lang] + request.path.raw)
 else:
-    statement, lang = participant.get_statement(request.accept_langs)
-    if not statement:
-        lang = locale.language
+    statement = participant.get_statement(request.accept_langs)
+    lang = statement.lang if statement else locale.language
 statement = markdown.render(statement) if statement else None
 summary = participant.get_statement(lang, 'summary')
 
@@ -37,6 +36,53 @@ teams = participant.get_teams_data_for_display(locale)
 communities = participant.get_communities()
 
 langs = participant.get_statement_langs()
+
+patron_visibilities = participant.recipient_settings.patron_visibilities
+if patron_visibilities > 1:
+    public_patrons = website.db.all("""
+        SELECT tipper_p.id
+             , tipper_p.avatar_url
+             , coalesce(tipper_p.public_name, tipper_p.username) AS name
+             , tipper_p.hide_giving
+             , tip.amount AS weekly_amount
+          FROM current_tips tip
+          JOIN participants tipper_p ON tipper_p.id = tip.tipper
+         WHERE tip.tippee = %s
+           AND tip.visibility = 3
+           AND tip.paid_in_advance > 0
+           AND tip.renewal_mode > 0
+           AND NOT tipper_p.hide_giving
+           AND tipper_p.hide_from_lists = 0
+      ORDER BY (convert(tip.amount, 'EUR')).amount DESC
+         LIMIT 11
+    """, (participant.id,), max_age=5)
+    n_public_patrons = len(public_patrons)
+    if n_public_patrons == 11:
+        public_patrons.pop()
+        n_public_patrons = website.db.one("""
+            SELECT count(*)
+              FROM current_tips tip
+             WHERE tip.tippee = %s
+               AND tip.visibility = 3
+               AND tip.paid_in_advance > 0
+               AND tip.renewal_mode > 0
+        """, (participant.id,), max_age=5)
+
+public_donees = website.db.all("""
+    SELECT tippee_p.id
+         , tippee_p.avatar_url
+         , coalesce(tippee_p.username, tippee_p.public_name) AS name
+         , tippee_p.hide_receiving
+         , tip.amount AS weekly_amount
+      FROM current_tips tip
+      JOIN participants tippee_p ON tippee_p.id = tip.tippee
+     WHERE tip.tipper = %s
+       AND tip.visibility = 3
+       AND tip.paid_in_advance > 0
+       AND tip.renewal_mode > 0
+  ORDER BY name
+""", (participant.id,), max_age=5)
+n_public_donees = len(public_donees)
 
 show_income = not participant.hide_receiving and participant.accepts_tips
 
@@ -167,6 +213,86 @@ show_income = not participant.hide_receiving and participant.accepts_tips
                 % endfor
             </ul>
         % endif
+    % endif
+
+    % if patron_visibilities > 1 and n_public_patrons
+    <h3>{{ _("Patrons") }}
+        &nbsp;
+        <small><a href="{{ participant.path('patrons/public.csv') }}">{{ fontawesome('download', _("Export as CSV")) }}</a></small>
+    </h3>
+
+    <p>{{ ngettext(
+        "{username} has {n} public patron.",
+        "{username} has {n} public patrons.",
+        username=participant.username,
+        n=n_public_patrons,
+    ) }}</p>
+
+    % if n_public_patrons > len(public_patrons)
+    <p>{{ ngettext("", "The top {n} patrons are:", len(public_patrons)) }}</p>
+    % endif
+
+    <div class="paragraph">
+    % for p in public_patrons
+        <div class="mini-user">
+            <a href="/~{{ p.id }}/">
+                {{ avatar_img(p) }}
+                <div class="name">{{ p.name }}</div>
+            </a>
+            % if participant.hide_receiving
+            % elif p.hide_giving
+                <div class="text-muted">{{ fontawesome('eye-slash', _(
+                    "{username} doesn't publish how much they give.",
+                    username=p.name
+                )) }}</div>
+            % else
+                <div class="amount">{{ _(
+                    "{money_amount}{small}/week{end_small}",
+                    money_amount=p.weekly_amount,
+                    small='<small>'|safe, end_small='</small>'|safe
+                ) }}</div>
+            % endif
+        </div>
+    % endfor
+    </div>
+    % endif
+
+    % if n_public_donees
+    <h3>{{ _("Donees") }}
+        &nbsp;
+        <small><a href="{{ participant.path('giving/public.csv') }}">{{ fontawesome('download', _("Export as CSV")) }}</a></small>
+    </h3>
+
+    <p>{{ ngettext(
+        "{username} donates publicly to {n} creator.",
+        "{username} donates publicly to {n} creators.",
+        username=participant.username,
+        n=n_public_donees,
+    ) }}</p>
+
+    <div class="paragraph">
+    % for p in public_donees
+        <div class="mini-user">
+            <a href="/~{{ p.id }}/">
+                {{ avatar_img(p) }}
+                <div class="name">{{ p.name }}</div>
+            </a>
+            % if participant.hide_giving
+            % elif p.hide_receiving
+                <div class="text-muted">{{ fontawesome('eye-slash', _(
+                    "{username} does not disclose how much they receive through Liberapay.",
+                    username=p.name
+                )) }}</div>
+            % else
+                <div class="amount">{{ _(
+                    "{money_amount}{small}/week{end_small}",
+                    money_amount=p.weekly_amount,
+                    small='<small>'|safe, end_small='</small>'|safe
+                ) }}</div>
+            % endif
+        </div>
+    % endfor
+    </div>
     % endif
 
     <h3>{{ _("History") }}</h3>

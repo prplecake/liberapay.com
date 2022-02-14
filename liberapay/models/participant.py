@@ -17,7 +17,6 @@ import aspen_jinja2_renderer
 from cached_property import cached_property
 from dateutil.parser import parse as parse_date
 from html2text import html2text
-import mangopay
 from markupsafe import escape as htmlescape
 from pando import json, Response
 from pando.utils import utcnow
@@ -36,6 +35,7 @@ from liberapay.constants import (
     USERNAME_MAX_SIZE, USERNAME_SUFFIX_BLACKLIST,
 )
 from liberapay.exceptions import (
+    AccountIsPasswordless,
     BadAmount,
     BadDonationCurrency,
     BadPasswordSize,
@@ -56,7 +56,6 @@ from liberapay.exceptions import (
     TooManyPasswordLogins,
     TooManyRequests,
     TooManyUsernameChanges,
-    UnableToDistributeBalance,
     UnableToSendEmail,
     UnexpectedCurrency,
     UsernameAlreadyTaken,
@@ -71,12 +70,12 @@ from liberapay.exceptions import (
     VerificationEmailAlreadySent,
 )
 from liberapay.i18n import base as i18n
-from liberapay.i18n.currencies import Money, MoneyBasket
+from liberapay.i18n.currencies import Money
 from liberapay.models._mixin_team import MixinTeam
 from liberapay.models.account_elsewhere import AccountElsewhere
 from liberapay.models.community import Community
 from liberapay.models.tip import Tip
-from liberapay.payin.common import resolve_amounts, resolve_take_amounts
+from liberapay.payin.common import resolve_amounts
 from liberapay.payin.prospect import PayinProspect
 from liberapay.security.crypto import constant_time_compare
 from liberapay.utils import (
@@ -87,7 +86,7 @@ from liberapay.utils.emails import (
     NormalizedEmailAddress, EmailVerificationResult, check_email_blacklist,
     normalize_email_address,
 )
-from liberapay.utils.types import Object
+from liberapay.utils.types import LocalizedString, Object
 from liberapay.website import website
 
 
@@ -221,15 +220,6 @@ class Participant(Model, MixinTeam):
         """.format('p.id' if id_only else 'p'), (email.lower(),))
 
     @classmethod
-    def from_mangopay_user_id(cls, mangopay_user_id):
-        return cls.db.one("""
-            SELECT p
-              FROM mangopay_users u
-              JOIN participants p ON p.id = u.participant
-             WHERE u.id = %s
-        """, (mangopay_user_id,))
-
-    @classmethod
     def check_id(cls, p_id):
         try:
             p_id = int(p_id)
@@ -240,34 +230,6 @@ class Participant(Model, MixinTeam):
     @classmethod
     def get_id_for(cls, type_of_id, id_value):
         return getattr(cls, 'from_' + type_of_id)(id_value, id_only=True)
-
-    @classmethod
-    def get_chargebacks_account(cls, currency):
-        p = cls.db.one("""
-            SELECT p
-              FROM participants p
-             WHERE mangopay_user_id = 'CREDIT'
-        """)
-        if not p:
-            p = cls.make_stub(
-                goal=Money(-1, currency),
-                hide_from_search=3,
-                hide_from_lists=3,
-                join_time=utcnow(),
-                kind='organization',
-                mangopay_user_id='CREDIT',
-                status='active',
-                username='_chargebacks_',
-            )
-        wallet = cls.db.one("""
-            INSERT INTO wallets
-                        (remote_id, balance, owner, remote_owner_id)
-                 VALUES (%s, %s, %s, 'CREDIT')
-            ON CONFLICT (remote_id) DO UPDATE
-                    SET remote_owner_id = 'CREDIT'  -- dummy update
-              RETURNING *
-        """, ('CREDIT_' + currency, Money.ZEROS[currency], p.id))
-        return p, wallet
 
     def refetch(self):
         r = self.db.one("SELECT p FROM participants p WHERE id = %s", (self.id,))
@@ -288,9 +250,10 @@ class Participant(Model, MixinTeam):
             context (str): the operation that this authentication is part of
 
         Return type: `Participant | None`
+
+        Raises:
+            AccountIsPasswordless if the account doesn't have a password
         """
-        if not password:
-            return None
         r = cls.db.one("""
             SELECT p, s.secret
               FROM user_secrets s
@@ -299,6 +262,8 @@ class Participant(Model, MixinTeam):
                AND s.id = 0
         """, (p_id,))
         if not r:
+            raise AccountIsPasswordless()
+        if not password:
             return None
         p, stored_secret = r
         if context == 'log-in':
@@ -672,29 +637,28 @@ class Participant(Model, MixinTeam):
     def get_statement(self, langs, type='profile'):
         """Get the participant's statement in the language that best matches
         the list provided, or the participant's "primary" statement if there
-        are no matches. Returns a tuple `(content, lang)`.
-
-        If langs isn't a list but a string, then it's assumed to be a language
-        code and the corresponding statement content will be returned, or None.
+        are no matches. Returns a `LocalizedString` object.
         """
         p_id = self.id
-        if not isinstance(langs, list):
-            return self.db.one("""
-                SELECT content
+        if isinstance(langs, str):
+            row = self.db.one("""
+                SELECT content, lang
                   FROM statements
                  WHERE participant = %(p_id)s
                    AND type = %(type)s
                    AND lang = %(langs)s
             """, locals())
-        return self.db.one("""
-            SELECT content, lang
-              FROM statements
-         LEFT JOIN enumerate(%(langs)s::text[]) langs ON langs.value = statements.lang
-             WHERE participant = %(p_id)s
-               AND type = %(type)s
-          ORDER BY langs.rank NULLS LAST, statements.id
-             LIMIT 1
-        """, locals(), default=(None, None))
+        else:
+            row = self.db.one("""
+                SELECT content, lang
+                  FROM statements
+             LEFT JOIN enumerate(%(langs)s::text[]) langs ON langs.value = statements.lang
+                 WHERE participant = %(p_id)s
+                   AND type = %(type)s
+              ORDER BY langs.rank NULLS LAST, statements.id
+                 LIMIT 1
+            """, locals())
+        return LocalizedString(*row) if row else None
 
     def get_statement_langs(self, type='profile'):
         return self.db.all("""
@@ -742,239 +706,16 @@ class Participant(Model, MixinTeam):
     # Closing
     # =======
 
-    class AccountNotEmpty(Exception): pass
-
-    def final_check(self, cursor):
-        """Sanity-check that balance has been dealt with.
-        """
-        if self.balance != 0:
-            raise self.AccountNotEmpty
-
-    class UnknownDisbursementStrategy(Exception): pass
-
-    def close(self, disbursement_strategy=None):
+    def close(self):
         """Close the participant's account.
         """
-
-        if disbursement_strategy is None:
-            pass  # No balance, supposedly. final_check will make sure.
-        elif disbursement_strategy == 'downstream':
-            # This in particular needs to come before clear_tips_giving.
-            self.distribute_balances_to_donees()
-        else:
-            raise self.UnknownDisbursementStrategy
-
         with self.db.get_cursor() as cursor:
             self.clear_tips_giving(cursor)
             self.clear_takes(cursor)
             if self.kind == 'group':
                 self.remove_all_members(cursor)
             self.clear_subscriptions(cursor)
-            self.final_check(cursor)
             self.update_status('closed', cursor)
-
-    def distribute_balances_to_donees(self, arrears_only=False):
-        """Distribute the user's balance(s) downstream.
-        """
-        if self.balance == 0:
-            return
-
-        tips = self.db.all("""
-            SELECT tip.amount, tip.tippee, tip.ctime, tip.periodic_amount
-                 , tip.paid_in_advance, tip.renewal_mode
-                 , tippee_p
-                 , compute_arrears(tip) AS arrears_due
-              FROM current_tips tip
-              JOIN participants tippee_p ON tippee_p.id = tip.tippee
-             WHERE tip.tipper = %s
-               AND tippee_p.status = 'active'
-               AND (tippee_p.mangopay_user_id IS NOT NULL OR tippee_p.kind = 'group')
-               AND tippee_p.is_suspended IS NOT TRUE
-        """, (self.id,))
-        if arrears_only:
-            tips = [tip for tip in tips if tip.arrears_due > 0]
-        for tip in tips:
-            if tip.tippee_p.kind == 'group':
-                currency = tip.amount.currency
-                tip.team = Participant.from_id(tip.tippee)
-                unfiltered_takes = tip.team.get_current_takes_for_payment(
-                    currency, tip.amount
-                )
-                tip.takes = [
-                    t for t in unfiltered_takes
-                    if t.mangopay_user_id and not t.is_suspended and t.member != self.id
-                ]
-                if len(unfiltered_takes) == 1 and tip.takes and tip.takes[0].amount == 0:
-                    # Team of one with a zero take
-                    tip.takes[0].amount.amount = Decimal('1')
-                tip.total_takes = MoneyBasket(t.amount for t in tip.takes)
-        tips = [t for t in tips if getattr(t, 'total_takes', -1) != 0]
-        if not tips:
-            raise UnableToDistributeBalance(self.balance)
-
-        transfers = []
-        for wallet in self.get_current_wallets():
-            if wallet.balance == 0:
-                continue
-            currency = wallet.balance.currency
-            tips_in_this_currency = sorted(
-                [t for t in tips if t.amount.currency == currency],
-                key=lambda t: (t.amount, t.ctime), reverse=True
-            )
-            if not tips_in_this_currency:
-                continue
-            zero = Money.ZEROS[currency]
-            for_arrears = {
-                tip.tippee: max(tip.arrears_due, zero) for tip in tips_in_this_currency
-            }
-            for_arrears_sum = Money.sum(for_arrears.values(), currency)
-            if wallet.balance < for_arrears_sum:
-                for_arrears = resolve_amounts(wallet.balance, for_arrears)
-                for_arrears_sum = wallet.balance
-            renewable_tips = [
-                tip for tip in tips_in_this_currency
-                if tip.renewal_mode > 0 and tip.tippee_p.accepts_tips
-            ]
-            if renewable_tips and not arrears_only and wallet.balance > for_arrears_sum:
-                for tip in renewable_tips:
-                    if tip.paid_in_advance is None:
-                        tip.paid_in_advance = zero
-                max_advance_weeks = max(
-                    t.paid_in_advance / t.amount for t in renewable_tips
-                )
-                if max_advance_weeks < 1:
-                    max_advance_weeks = 1
-                for tip in renewable_tips:
-                    tip.convergence_amount = max((
-                        tip.amount * max_advance_weeks - tip.paid_in_advance
-                    ), zero)
-                for_advances = resolve_amounts(
-                    wallet.balance - for_arrears_sum,
-                    {tip.tippee: tip.amount for tip in renewable_tips},
-                    {tip.tippee: tip.convergence_amount for tip in renewable_tips},
-                )
-            else:
-                for_advances = {}
-            for tip in tips_in_this_currency:
-                arrears = for_arrears.get(tip.tippee, zero)
-                advance = for_advances.get(tip.tippee, zero)
-                if tip.tippee_p.kind == 'group':
-                    team_id = tip.tippee
-                    if arrears:
-                        resolved_takes = resolve_amounts(
-                            arrears,
-                            {take.member: take.amount for take in tip.takes},
-                        )
-                        n_weeks = arrears / tip.amount
-                        for take in tip.takes:
-                            resolved_amount = resolved_takes.get(take.member, zero)
-                            if resolved_amount > 0:
-                                unit_amount = (resolved_amount / n_weeks).round(allow_zero=False)
-                                transfers.append(
-                                    [take.member, None, resolved_amount, team_id, wallet, unit_amount]
-                                )
-                    if advance:
-                        resolve_take_amounts(advance, tip.takes)
-                        n_weeks = advance / tip.periodic_amount
-                        for take in tip.takes:
-                            resolved_amount = take.resolved_amount
-                            if resolved_amount > 0:
-                                unit_amount = (resolved_amount / n_weeks).round(allow_zero=False)
-                                transfers.append(
-                                    [take.member, resolved_amount, None, team_id, wallet, unit_amount]
-                                )
-                            del take.resolved_amount
-                else:
-                    transfers.append(
-                        [tip.tippee, advance, arrears, None, wallet, tip.amount]
-                    )
-
-        if not transfers:
-            raise UnableToDistributeBalance(self.balance)
-
-        from liberapay.billing.transactions import transfer
-        db = self.db
-        tipper = self.id
-        for tippee, advance, arrears, team, wallet, unit_amount in transfers:
-            if arrears:
-                context = 'take-in-arrears' if team else 'tip-in-arrears'
-                balance = transfer(
-                    db, tipper, tippee, arrears, context,
-                    team=team, unit_amount=unit_amount,
-                    tipper_mango_id=self.mangopay_user_id,
-                    tipper_wallet_id=wallet.remote_id
-                )[0]
-            if advance:
-                assert not arrears_only
-                context = 'take-in-advance' if team else 'tip-in-advance'
-                balance = transfer(
-                    db, tipper, tippee, advance, context,
-                    team=team, unit_amount=unit_amount,
-                    tipper_mango_id=self.mangopay_user_id,
-                    tipper_wallet_id=wallet.remote_id
-                )[0]
-
-        self.set_attributes(balance=balance)
-        self.schedule_renewals()
-
-        if self.balance != 0:
-            raise UnableToDistributeBalance(self.balance)
-
-    def donate_remaining_balances_to_liberapay(self):
-        """Donate what's left in the user's wallets to Liberapay.
-        """
-        self.transfer_remaining_balances_to_liberapay(donate=True)
-
-    def transfer_remaining_balances_to_liberapay(self, donate=False):
-        LiberapayOrg = self.from_username('LiberapayOrg')
-        Liberapay = self.from_username('Liberapay')
-        tip = self.get_tip_to(LiberapayOrg)
-        if not tip.amount:
-            tip = self.get_tip_to(Liberapay)
-        context, team = None, None
-        if donate:
-            if tip.amount:
-                if tip.tippee == Liberapay.id:
-                    team = Liberapay.id
-            else:
-                context = 'final-gift'
-        else:
-            context = 'indirect-payout'
-        from liberapay.billing.transactions import transfer
-        for wallet in self.get_current_wallets():
-            if wallet.balance == 0:
-                continue
-            if context:
-                balance = transfer(
-                    self.db, self.id, LiberapayOrg.id, wallet.balance, context,
-                    team=team, unit_amount=tip.amount.convert(wallet.balance.currency) or None,
-                    tipper_mango_id=self.mangopay_user_id, tipper_wallet_id=wallet.remote_id
-                )[0]
-            else:
-                arrears_due = self.db.one("""
-                    SELECT compute_arrears(tip)
-                      FROM tips tip
-                     WHERE tip.id = %s
-                """, (tip.id,)).convert(wallet.balance.currency)
-                arrears = min(max(arrears_due, 0), wallet.balance)
-                advance = wallet.balance - arrears
-                assert arrears > 0 or advance > 0
-                assert (arrears + advance) == wallet.balance
-                if arrears:
-                    context = 'take-in-arrears' if team else 'tip-in-arrears'
-                    balance = transfer(
-                        self.db, self.id, LiberapayOrg.id, arrears, context,
-                        team=team, unit_amount=tip.amount.convert(wallet.balance.currency) or None,
-                        tipper_mango_id=self.mangopay_user_id, tipper_wallet_id=wallet.remote_id
-                    )[0]
-                if advance:
-                    context = 'take-in-advance' if team else 'tip-in-advance'
-                    balance = transfer(
-                        self.db, self.id, LiberapayOrg.id, advance, context,
-                        team=team, unit_amount=tip.amount.convert(wallet.balance.currency) or None,
-                        tipper_mango_id=self.mangopay_user_id, tipper_wallet_id=wallet.remote_id
-                    )[0]
-        self.set_attributes(balance=balance)
 
     def clear_tips_giving(self, cursor):
         """Turn off the renewal of all tips from a given user.
@@ -982,9 +723,9 @@ class Participant(Model, MixinTeam):
         tippees = cursor.all("""
             INSERT INTO tips
                       ( ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, renewal_mode )
+                      , paid_in_advance, is_funded, renewal_mode, visibility )
                  SELECT ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, 0
+                      , paid_in_advance, is_funded, 0, visibility
                    FROM current_tips
                   WHERE tipper = %s
                     AND renewal_mode > 0
@@ -1506,32 +1247,34 @@ class Participant(Model, MixinTeam):
         # If email_unverified_address is on, allow sending to an unverified email address.
         if email_unverified_address and not self.email:
             context['email'] = self.get_email_address()
-        # Check that this notification isn't a duplicate
-        context = serialize(context)
-        n = self.db.one("""
-            SELECT count(*)
-              FROM notifications
-             WHERE participant = %(p_id)s
-               AND event = %(event)s
-               AND ( idem_key = %(idem_key)s OR
-                     ts::date = current_date AND context = %(context)s )
-        """, locals())
-        if n > 0:
-            raise DuplicateNotification(p_id, event, idem_key)
         # Check that the participant is active
         if self.status != 'active':
             website.warning(
                 f"A {event!r} notification is being inserted for inactive participant ~{self.id}"
             )
             email = False
-        # Okay, add the notification to the queue
-        email_status = 'queued' if email else None
-        n_id = self.db.one("""
-            INSERT INTO notifications
-                        (participant, event, context, web, email, email_status, idem_key)
-                 VALUES (%(p_id)s, %(event)s, %(context)s, %(web)s, %(email)s, %(email_status)s, %(idem_key)s)
-              RETURNING id;
-        """, locals())
+        context = serialize(context)
+        with self.db.get_cursor() as cursor:
+            # Check that this notification isn't a duplicate
+            n = cursor.one("""
+                LOCK TABLE notifications IN SHARE ROW EXCLUSIVE MODE;
+                SELECT count(*)
+                  FROM notifications
+                 WHERE participant = %(p_id)s
+                   AND event = %(event)s
+                   AND ( idem_key = %(idem_key)s OR
+                         ts::date = current_date AND context = %(context)s )
+            """, locals())
+            if n > 0:
+                raise DuplicateNotification(p_id, event, idem_key)
+            # Okay, add the notification to the queue
+            email_status = 'queued' if email else None
+            n_id = cursor.one("""
+                INSERT INTO notifications
+                            (participant, event, context, web, email, email_status, idem_key)
+                     VALUES (%(p_id)s, %(event)s, %(context)s, %(web)s, %(email)s, %(email_status)s, %(idem_key)s)
+                  RETURNING id;
+            """, locals())
         if not web:
             return n_id
         self.set_attributes(pending_notifs=self.pending_notifs + 1)
@@ -1749,62 +1492,6 @@ class Participant(Model, MixinTeam):
                 """, (sp.id,))
 
 
-    # Wallets and balances
-    # ====================
-
-    def get_withdrawable_amount(self, currency):
-        return self.db.one("""
-            SELECT sum(amount)
-              FROM cash_bundles
-             WHERE owner = %s
-               AND disputed IS NOT TRUE
-               AND locked_for IS NULL
-               AND (amount).currency = %s
-        """, (self.id, currency)) or Money.ZEROS[currency]
-
-    def can_withdraw(self, amount):
-        return self.get_withdrawable_amount(amount.currency) >= amount
-
-    def get_current_wallet(self, currency=None, create=False):
-        currency = currency or self.main_currency
-        w = self.db.one("""
-            SELECT *
-              FROM wallets
-             WHERE owner = %s
-               AND balance::currency = %s
-               AND is_current
-        """, (self.id, currency))
-        if w or not create:
-            return w
-        from liberapay.billing.transactions import create_wallet
-        return create_wallet(self.db, self, currency)
-
-    def get_current_wallets(self, cursor=None):
-        return (cursor or self.db).all("""
-            SELECT *
-              FROM wallets
-             WHERE owner = %s
-               AND is_current
-        """, (self.id,))
-
-    def get_balance_in(self, currency):
-        return self.db.one("""
-            SELECT balance
-              FROM wallets
-             WHERE owner = %s
-               AND balance::currency = %s
-               AND is_current
-        """, (self.id, currency)) or Money.ZEROS[currency]
-
-    def get_balances(self):
-        return self.db.one("""
-            SELECT basket_sum(balance)
-              FROM wallets
-             WHERE owner = %s
-               AND is_current
-        """, (self.id,)) or MoneyBasket()
-
-
     # Events
     # ======
 
@@ -1915,6 +1602,38 @@ class Participant(Model, MixinTeam):
                 sleep(1)
 
 
+    # Recipient settings
+    # ==================
+
+    @cached_property
+    def recipient_settings(self):
+        return self.db.one("""
+            SELECT *
+              FROM recipient_settings
+             WHERE participant = %s
+        """, (self.id,), default=Object(
+            participant=self.id,
+            patron_visibilities=(7 if self.status == 'stub' else 0),
+        ))
+
+    def update_recipient_settings(self, **kw):
+        cols, vals = zip(*kw.items())
+        updates = ','.join('{0}=excluded.{0}'.format(col) for col in cols)
+        cols = ', '.join(cols)
+        placeholders = ', '.join(['%s']*len(vals))
+        with self.db.get_cursor() as cursor:
+            settings = cursor.one("""
+                INSERT INTO recipient_settings
+                            (participant, {0})
+                     VALUES (%s, {1})
+                ON CONFLICT (participant) DO UPDATE
+                        SET {2}
+                  RETURNING *
+            """.format(cols, placeholders, updates), (self.id,) + vals)
+            self.add_event(cursor, 'recipient_settings', kw)
+        self.recipient_settings = settings
+
+
     # Random Stuff
     # ============
 
@@ -1991,13 +1710,9 @@ class Participant(Model, MixinTeam):
         """Return a list of teams this user is a member of.
         """
         return self.db.all("""
-            SELECT take.team AS id, team.username AS name, team.avatar_url
-                 , ( SELECT count(*)
-                       FROM current_takes take2
-                      WHERE take2.team = take.team
-                   ) AS nmembers
+            SELECT team_p
               FROM current_takes take
-              JOIN participants team ON team.id = take.team
+              JOIN participants team_p ON team_p.id = take.team
              WHERE take.member = %s
         """, (self.id,))
 
@@ -2040,12 +1755,12 @@ class Participant(Model, MixinTeam):
     # ===========
 
     def create_community(self, name, **kw):
-        return Community.create(name, self.id, **kw)
+        return Community.create(name, self, **kw)
 
-    def upsert_community_membership(self, on, c_id):
+    def upsert_community_membership(self, on, c_id, cursor=None):
         p_id = self.id
         if on:
-            self.db.run("""
+            (cursor or self.db).run("""
                 INSERT INTO community_memberships
                             (community, participant, is_on)
                      VALUES (%(c_id)s, %(p_id)s, %(on)s)
@@ -2054,7 +1769,7 @@ class Participant(Model, MixinTeam):
                           , mtime = current_timestamp
             """, locals())
         else:
-            self.db.run("""
+            (cursor or self.db).run("""
                 UPDATE community_memberships
                    SET is_on = %(on)s
                      , mtime = current_timestamp
@@ -2113,20 +1828,12 @@ class Participant(Model, MixinTeam):
         return True
 
     def pay_invoice(self, invoice):
-        assert self.id == invoice.addressee
-        wallet = self.get_current_wallet(invoice.amount.currency)
-        if not wallet or wallet.balance < invoice.amount:
-            return False
-        from liberapay.billing.transactions import transfer
-        balance = transfer(
-            self.db, self.id, invoice.sender, invoice.amount, invoice.nature,
-            invoice=invoice.id,
-            tipper_mango_id=self.mangopay_user_id,
-            tipper_wallet_id=wallet.remote_id,
-        )[0]
-        self.update_invoice_status(invoice.id, 'paid')
-        self.set_attributes(balance=balance)
-        return True
+        """
+        This function used to transfer money between Mangopay wallets. It needs
+        to be rewritten to implement other payment methods (e.g. PayPal, Wise,
+        Stripe).
+        """
+        return False
 
 
     # Currencies
@@ -2147,7 +1854,6 @@ class Participant(Model, MixinTeam):
             r = cursor.one("""
                 UPDATE participants
                    SET main_currency = %(new_currency)s
-                     , balance = convert(balance, %(new_currency)s)
                      , goal = convert(goal, %(new_currency)s)
                      , giving = convert(giving, %(new_currency)s)
                      , receiving = convert(receiving, %(new_currency)s)
@@ -2468,11 +2174,6 @@ class Participant(Model, MixinTeam):
               FROM current_tips t
               JOIN participants p2 ON p2.id = t.tippee
              WHERE t.tipper = %s
-          ORDER BY ( p2.status = 'active' AND
-                     (p2.goal IS NULL OR p2.goal >= 0) AND
-                     (p2.mangopay_user_id IS NOT NULL OR p2.kind = 'group')
-                   ) DESC
-                 , p2.join_time IS NULL, t.ctime ASC
         """, (self.id,))
         has_donated_recently = (cursor or self.db).one("""
             SELECT DISTINCT tr.tipper AS x
@@ -2551,7 +2252,7 @@ class Participant(Model, MixinTeam):
 
 
     def set_tip_to(self, tippee, periodic_amount, period='weekly', renewal_mode=None,
-                   update_self=True, update_tippee=True):
+                   visibility=None, update_self=True, update_tippee=True):
         """Given a Participant or username, and amount as str, returns a dict.
 
         We INSERT instead of UPDATE, so that we have history to explore. The
@@ -2599,7 +2300,8 @@ class Participant(Model, MixinTeam):
             INSERT INTO tips
                         ( ctime, tipper, tippee, amount, period, periodic_amount
                         , paid_in_advance
-                        , renewal_mode )
+                        , renewal_mode
+                        , visibility )
                  VALUES ( COALESCE((SELECT ctime FROM current_tip), CURRENT_TIMESTAMP)
                         , %(tipper)s, %(tippee)s, %(amount)s, %(period)s, %(periodic_amount)s
                         , (SELECT convert(paid_in_advance, %(currency)s) FROM current_tip)
@@ -2607,12 +2309,18 @@ class Participant(Model, MixinTeam):
                               %(renewal_mode)s,
                               (SELECT renewal_mode FROM current_tip WHERE renewal_mode > 0),
                               1
+                          )
+                        , coalesce(
+                              %(visibility)s,
+                              (SELECT abs(visibility) FROM current_tip),
+                              1
                           ) )
               RETURNING tips
 
         """, dict(
             tipper=self.id, tippee=tippee.id, amount=amount, currency=amount.currency,
             period=period, periodic_amount=periodic_amount, renewal_mode=renewal_mode,
+            visibility=visibility,
         ))
         t.tipper_p = self
         t.tippee_p = tippee
@@ -2624,7 +2332,7 @@ class Participant(Model, MixinTeam):
                 if u.id == t.id:
                     t.set_attributes(is_funded=u.is_funded)
             self.schedule_renewals()
-        if update_tippee:
+        if update_tippee and t.is_funded:
             # Update receiving amount of tippee
             tippee.update_receiving()
 
@@ -2641,6 +2349,7 @@ class Participant(Model, MixinTeam):
         return Tip(
             amount=zero, is_funded=False, tippee=tippee.id, tippee_p=tippee,
             period='weekly', periodic_amount=zero, renewal_mode=0,
+            visibility=0,
         )
 
 
@@ -2648,9 +2357,9 @@ class Participant(Model, MixinTeam):
         t = self.db.one("""
             INSERT INTO tips
                       ( ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, renewal_mode )
+                      , paid_in_advance, is_funded, renewal_mode, visibility )
                  SELECT ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, 0
+                      , paid_in_advance, is_funded, 0, visibility
                    FROM current_tips
                   WHERE tipper = %(tipper)s
                     AND tippee = %(tippee)s
@@ -2675,14 +2384,14 @@ class Participant(Model, MixinTeam):
         return self.db.one("""
             INSERT INTO tips
                       ( ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, renewal_mode, hidden )
+                      , paid_in_advance, is_funded, renewal_mode, visibility )
                  SELECT ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, renewal_mode, %(hide)s
+                      , paid_in_advance, is_funded, renewal_mode, -visibility
                    FROM current_tips
                   WHERE tipper = %(tipper)s
                     AND tippee = %(tippee)s
                     AND renewal_mode = 0
-                    AND hidden IS NOT %(hide)s
+                    AND (visibility < 0) IS NOT %(hide)s
               RETURNING tips
         """, dict(tipper=self.id, tippee=tippee_id, hide=hide))
 
@@ -3018,6 +2727,23 @@ class Participant(Model, MixinTeam):
                                 for tr in new_sp.transfers
                             ]
                         new_sp.customized = True
+                    else:
+                        preserve_the_execution_date = (
+                            # Don't change the execution date if the payment was
+                            # scheduled late.
+                            new_sp.execution_date < (
+                                cur_sp.ctime.date() + timedelta(weeks=1)
+                            ) or
+                            # Don't push back a payment by only a few weeks
+                            # if we've already notified the payer.
+                            cur_sp.notifs_count and
+                            new_sp.amount == cur_sp.amount and
+                            new_sp.execution_date <= (
+                                cur_sp.execution_date + timedelta(weeks=4)
+                            )
+                        )
+                        if preserve_the_execution_date:
+                            new_sp.execution_date = cur_sp.execution_date
                     if cur_sp.id in new_dates or cur_sp.id in new_amounts:
                         new_sp.customized = cur_sp.customized
                         new_date = new_dates.get(cur_sp.id)
@@ -3036,24 +2762,8 @@ class Participant(Model, MixinTeam):
                             for tr in new_sp.transfers:
                                 tr['amount'] = tr_amounts[tr['tippee_id']]
                             new_sp.customized = True
-                        if has_scheduled_payment_changed(cur_sp, new_sp):
-                            updates.append((cur_sp, new_sp))
-                        else:
-                            unchanged.append(cur_sp)
-                    elif has_scheduled_payment_changed(cur_sp, new_sp):
-                        is_short_delay = (
-                            new_sp.amount == cur_sp.amount and
-                            new_sp.execution_date <= (
-                                cur_sp.execution_date + timedelta(weeks=4)
-                            )
-                        )
-                        if cur_sp.notifs_count and is_short_delay:
-                            # Don't push back a payment by only a few weeks
-                            # if we've already notified the payer.
-                            new_sp.execution_date = cur_sp.execution_date
-                            unchanged.append(cur_sp)
-                        else:
-                            updates.append((cur_sp, new_sp))
+                    if has_scheduled_payment_changed(cur_sp, new_sp):
+                        updates.append((cur_sp, new_sp))
                     else:
                         unchanged.append(cur_sp)
                 else:
@@ -3076,12 +2786,10 @@ class Participant(Model, MixinTeam):
                 if new_sp.automatic:
                     if new_sp.execution_date < one_week_from_today:
                         new_sp.execution_date = one_week_from_today
-                        new_sp.customized = True
             for cur_sp, new_sp in updates:
                 if new_sp.automatic and not cur_sp.automatic:
                     if new_sp.execution_date < one_week_from_today:
                         new_sp.execution_date = one_week_from_today
-                        new_sp.customized = True
 
             # Upsert the new schedule
             notify = False
@@ -3261,15 +2969,13 @@ class Participant(Model, MixinTeam):
                      , t.is_funded
                      , t.paid_in_advance
                      , t.renewal_mode
+                     , t.visibility
                      , p.payment_providers
-                     , ( t.paid_in_advance IS NULL OR
-                         t.paid_in_advance < (t.amount * 3)
-                       ) AS awaits_payment
                   FROM current_tips t
                   JOIN participants p ON p.id = t.tippee
                  WHERE t.tipper = %s
                    AND p.status <> 'stub'
-                   AND t.hidden IS NOT true
+                   AND t.visibility > 0
               ORDER BY tippee, t.mtime DESC
 
         """, (self.id,))
@@ -3283,20 +2989,21 @@ class Participant(Model, MixinTeam):
                      , t.ctime
                      , t.mtime
                      , t.renewal_mode
+                     , t.visibility
                      , (e, p)::elsewhere_with_participant AS e_account
                   FROM current_tips t
                   JOIN participants p ON p.id = t.tippee
                   JOIN elsewhere e ON e.participant = t.tippee
                  WHERE t.tipper = %s
                    AND p.status = 'stub'
-                   AND t.hidden IS NOT true
+                   AND t.visibility > 0
               ORDER BY tippee, t.mtime DESC
 
         """, (self.id,))
 
         return tips, pledges
 
-    def get_tips_awaiting_payment(self):
+    def get_tips_awaiting_payment(self, weeks_early=3):
         """Fetch a list of the user's donations that need to be renewed, and
         determine if some of them can be grouped into a single charge.
 
@@ -3319,7 +3026,7 @@ class Participant(Model, MixinTeam):
              WHERE t.tipper = %s
                AND t.renewal_mode > 0
                AND ( t.paid_in_advance IS NULL OR
-                     t.paid_in_advance < (t.amount * 3)
+                     t.paid_in_advance < (t.amount * %s)
                    )
                AND p.status = 'active'
                AND ( p.goal IS NULL OR p.goal >= 0 )
@@ -3340,7 +3047,7 @@ class Participant(Model, MixinTeam):
                    ) NULLS FIRST
                  , (t.paid_in_advance).amount / (t.amount).amount NULLS FIRST
                  , t.ctime
-        """, (self.id,))
+        """, (self.id, weeks_early))
         return self.group_tips_into_payments(tips)
 
     def group_tips_into_payments(self, tips):
@@ -3442,17 +3149,6 @@ class Participant(Model, MixinTeam):
         return -1
 
 
-    # Payment accounts
-    # ================
-
-    def get_mangopay_account(self):
-        """Fetch the mangopay account for this participant.
-        """
-        if not self.mangopay_user_id:
-            return
-        return mangopay.resources.User.get(self.mangopay_user_id)
-
-
     # Identity (v2)
     # =============
 
@@ -3474,73 +3170,6 @@ class Participant(Model, MixinTeam):
                         (participant, info)
                  VALUES (%s, %s)
         """, (self.id, website.cryptograph.encrypt_dict(info)))
-
-    @classmethod
-    def migrate_identities(cls):
-        participants = cls.db.all("""
-            SELECT p.id
-              FROM participants p
-             WHERE p.mangopay_user_id IS NOT NULL
-               AND p.balance = 0
-               AND p.status = 'active'
-               AND NOT EXISTS (
-                       SELECT 1
-                         FROM identities i
-                        WHERE i.participant = p.id
-                   )
-               AND NOT EXISTS (
-                       SELECT 1
-                         FROM exchanges e
-                        WHERE e.participant = p.id
-                          AND e.amount < 0
-                          AND e.timestamp > (current_timestamp - interval '7 days')
-                   )
-          ORDER BY p.id
-             LIMIT 20
-        """)
-        for p_id in participants:
-            sleep(1)
-            p = cls.from_id(p_id)
-            mp_account = p.get_mangopay_account()
-            individual = mp_account.PersonType == 'NATURAL'
-            prefix = '' if individual else 'LegalRepresentative'
-            addr = getattr(
-                mp_account,
-                'Address' if individual else 'LegalRepresentativeAddress'
-            )
-            hq_addr = getattr(mp_account, 'HeadquartersAddress', None)
-            p.insert_identity({
-                'birthdate': getattr(mp_account, prefix + 'Birthday').isoformat(),
-                'name': ' '.join((
-                    getattr(mp_account, prefix + 'FirstName'),
-                    getattr(mp_account, prefix + 'LastName'),
-                )),
-                'headquarters_address': {
-                    'country': hq_addr.Country,
-                    'region': hq_addr.Region,
-                    'city': hq_addr.City,
-                    'postal_code': hq_addr.PostalCode,
-                    'local_address': '\n'.join(filter(None, (
-                        hq_addr.AddressLine1, hq_addr.AddressLine2
-                    ))),
-                } if hq_addr else None,
-                'verified_by_mangopay': mp_account.kyc_level != 'LIGHT',
-                'nationality': getattr(mp_account, prefix + 'Nationality'),
-                'occupation': mp_account.Occupation if individual else None,
-                'organization_name': '' if individual else mp_account.Name,
-                'postal_address': {
-                    'country': (
-                        addr.Country or
-                        getattr(mp_account, prefix + 'CountryOfResidence')
-                    ),
-                    'region': addr.Region,
-                    'city': addr.City,
-                    'postal_code': addr.PostalCode,
-                    'local_address': '\n'.join(filter(None, (
-                        addr.AddressLine1, addr.AddressLine2
-                    ))),
-                } if addr else None,
-            })
 
 
     # Accounts Elsewhere
@@ -3584,7 +3213,9 @@ class Participant(Model, MixinTeam):
 
         if isinstance(account, AccountElsewhere):
             platform, domain, user_id = account.platform, account.domain, account.user_id
+            assert user_id, f"user_id is {user_id!r}"
         else:
+            assert account[2], f"user_id is {account[2]!r}"
             platform, domain, user_id = map(str, account)
 
         CREATE_TEMP_TABLE_FOR_TIPS = """
@@ -3603,11 +3234,11 @@ class Participant(Model, MixinTeam):
             -- maximum allowed.
             INSERT INTO tips
                       ( ctime, tipper, tippee, amount, period
-                      , periodic_amount, is_funded, renewal_mode, hidden
+                      , periodic_amount, is_funded, renewal_mode, visibility
                       , paid_in_advance )
                  SELECT DISTINCT ON (tipper)
                         ctime, tipper, %(live)s AS tippee, amount, period
-                      , periodic_amount, is_funded, renewal_mode, hidden
+                      , periodic_amount, is_funded, renewal_mode, visibility
                       , ( SELECT sum(t2.paid_in_advance, t.amount::currency)
                             FROM temp_tips t2
                            WHERE t2.tipper = t.tipper
@@ -3624,9 +3255,9 @@ class Participant(Model, MixinTeam):
         ZERO_OUT_OLD_TIPS_RECEIVING = """
             INSERT INTO tips
                       ( ctime, tipper, tippee, amount, period, periodic_amount
-                      , paid_in_advance, is_funded, renewal_mode, hidden )
+                      , paid_in_advance, is_funded, renewal_mode, visibility )
                  SELECT ctime, tipper, tippee, amount, period, periodic_amount
-                      , NULL, false, 0, true
+                      , NULL, false, 0, -visibility
                    FROM temp_tips
                   WHERE tippee = %(dead)s
                     AND ( coalesce_currency_amount(paid_in_advance, amount::currency) > 0 OR
@@ -3788,7 +3419,7 @@ class Participant(Model, MixinTeam):
 
         # Key: receiving
         # Values:
-        #   null - user is receiving anonymously
+        #   null - user does not publish how much they receive
         #   3.00 - user receives this amount in tips
         if not self.hide_receiving:
             receiving = self.receiving
@@ -3798,7 +3429,7 @@ class Participant(Model, MixinTeam):
 
         # Key: giving
         # Values:
-        #   null - user is giving anonymously
+        #   null - user does not publish how much they give
         #   3.00 - user gives this amount in tips
         if not self.hide_giving:
             giving = self.giving
@@ -3961,3 +3592,29 @@ def send_account_disabled_notifications():
     if sent:
         print(f"Sent {sent} account_disabled notification{'' if sent == 1 else 's'}.")
     return len(participants)
+
+def generate_profile_description_missing_notifications():
+    """Notify users who receive donations but don't have a profile description.
+    """
+    participants = website.db.all("""
+        SELECT p
+          FROM participants p
+         WHERE p.status = 'active'
+           AND p.kind IN ('individual', 'organization')
+           AND p.receiving > 0
+           AND p.id NOT IN (SELECT DISTINCT participant FROM statements)
+           AND p.id NOT IN (
+                   SELECT DISTINCT n.participant
+                     FROM notifications n
+                    WHERE n.event = 'profile_description_missing'
+                      AND n.ts >= (current_timestamp - interval '6 months')
+               )
+    """)
+    for p in participants:
+        sleep(1)
+        p.notify('profile_description_missing', force_email=True)
+    n = len(participants)
+    if n:
+        s = '' if n == 1 else 's'
+        print(f"Sent {n} profile_description_missing notification{s}.")
+    return n

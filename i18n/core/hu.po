@@ -14,13 +14,13 @@ msgid "The {language} translation of this page is not yet complete."
 msgstr "Az oldal {language} fordítása még nem készült el."
 
 msgid "Your Liberapay account has been disabled"
-msgstr ""
+msgstr "Az Liberapay fiókja deaktiválásra került"
 
 msgid "Your Liberapay account has been marked as fraudulent by a staff member. You are no longer able to send and receive payments."
-msgstr ""
+msgstr "Az Liberapay fiókja csalárdként került megjelölésre a munkatársaink által. Nem küldhet és fogadhat immáron pénzt."
 
 msgid "Your Liberapay profile has been marked as spam by a staff member. It is now hidden."
-msgstr ""
+msgstr "A Liberapay profilja spamként került azonosításra. Rejtettként jelenik meg innentől."
 
 msgid "Greetings,"
 msgstr "Üdvözöljük,"
@@ -60,10 +60,10 @@ msgstr "Szerkessze az adományait"
 
 #, python-brace-format
 msgid "It's past time to renew your donation to {username} on Liberapay"
-msgstr ""
+msgstr "Túllépte a Liberapay adomány esedékességi idejét {username} részére"
 
 msgid "It's past time to renew your donations on Liberapay"
-msgstr ""
+msgstr "Túllépte a Liberapay adományok esedékességi idejét"
 
 #, python-brace-format
 msgid "Your donation of {amount} per week to {username} needs to be renewed before {date}."
@@ -75,11 +75,11 @@ msgstr "Az Ön havi {amount} összegű, {username} felhasználónak szánt adom�
 
 #, python-brace-format
 msgid "Your donation of {amount} per year to {username} needs to be renewed before {date}."
-msgstr ""
+msgstr "A(z) {amount} összegű éves adománya {username} részére megújításra vár {date} előtt."
 
 #, python-brace-format
 msgid "Your donation of {amount} per week to {username} needed to be renewed before {past_date}."
-msgstr ""
+msgstr "A(z) {amount} összegű heti adománya {username} részére megújításra vár {past_date} előtt."
 
 #, python-brace-format
 msgid "Your donation of {amount} per month to {username} needed to be renewed before {past_date}."
@@ -123,49 +123,6 @@ msgid "Manage your email addresses"
 msgstr "Az e-mail címeinek kezelése"
 
 #, python-brace-format
-msgid "You have received approximately {0} this week"
-msgstr "Ezen a héten hozzávetőlegesen {0} összegű adomány érkezett"
-
-#, python-brace-format
-msgid "You have received {0} this week"
-msgstr "Ezen a héten {0} összegű adomány érkezett"
-
-#, python-brace-format
-msgid "{0} was given to you personally."
-msgstr "{0} összeget adományoztak Önnek személyesen."
-
-msgid "You are not a member of any team, so you haven't received any money for participation in teams."
-msgstr "Ön nem tagja egyetlen csoportnak sem, ezért nem kapott pénzt csoportokban való részvételért."
-
-#, python-brace-format
-msgid "No money was given to you for your role in the {0} team."
-msgid_plural "No money was given to you for your roles in the {n} teams you are a member of."
-msgstr[0] "Nem kapott pénzt a(z) {n} csapatban betöltött szerepéért."
-
-#, python-brace-format
-msgid "{0} was given to you for your role in the {1} team."
-msgstr "{0} összeget kapott a(z) {1} csapatban betöltött szerepéért."
-
-#, python-brace-format
-msgid "{0} was given to you for your roles in the following teams:"
-msgstr "{0} összeget kapott a szerepeiért a következő csapatokban:"
-
-#, python-brace-format
-msgid "{0}: {1}"
-msgstr "{0}: {1}"
-
-#, python-brace-format
-msgid "You now have {0} in your wallet."
-msgstr "Jelenleg {0} van a tárcájában."
-
-msgid "See your account's transaction logs"
-msgstr "Számlatörténet megtekintése"
-
-#, python-brace-format
-msgid "- {0}: {1}"
-msgstr "- {0}: {1}"
-
-#, python-brace-format
 msgid "Your Liberapay income is approximately {money_amount} this week"
 msgstr "Az Ön jövedelme a Liberapay-en megközelítőleg {money_amount} ezen a héten"
 
@@ -196,23 +153,12 @@ msgid "NB: Donations through Liberapay are now paid in advance instead of being 
 msgstr "Megjegyzés: Az adományok a Liberapay-en jelenleg előre vannak fizetve heti utalás helyett. A fenti számok azt mutatják, amit a korábbi rendszer szerint kapna ezen a héten."
 
 #, python-brace-format
-msgid "You have {money_amount} in your Mangopay wallet."
-msgstr "Önnek {money_amount}-ja van a Mangopay tárcájában."
-
-msgid "Withdraw money"
-msgstr "Pénz kivétele"
-
-#, python-brace-format
 msgid "Your invoice to {0} has been accepted - Liberapay"
 msgstr "A számlája a {0}-hoz el lett fogadva - Liberapay"
 
 #, python-brace-format
 msgid "Your request for a payment of {amount} from {addressee_name} has been accepted."
 msgstr "A fizetési kérelme {amount}-ra a {addressee_name}-re el lett fogadva."
-
-#, python-brace-format
-msgid "Unfortunately the wallet of {0} does not contain enough money to pay you right now, but as soon as it does you will be paid automatically."
-msgstr "Sajnos a(z) {0} tárcában nincs elegendő pénz, hogy fizessünk Önnek, de amint lesz, akkor automatikusan fizetni fogunk."
 
 msgid "View the invoice"
 msgstr "Számla megtekintése"
@@ -222,14 +168,8 @@ msgid "Your invoice to {0} has been accepted and paid - Liberapay"
 msgstr "Az Ön számlája a(z) {0}-hoz el lett fogadva, és ki lett fizetve - Liberapay"
 
 #, python-brace-format
-msgid "Your request for a payment of {amount} from {addressee_name} has been accepted, and the money has been transferred to your wallet."
-msgstr "A fizetési kérelme {amount}-ra {addressee_name}-ról el lett fogadva, és a pénz át lett utalva az Ön tárcájába."
-
-msgid "Withdraw the money"
-msgstr "Pénz kivétele"
-
-msgid "However you cannot withdraw the money yet as it is still in quarantine."
-msgstr "A pénz jelenleg karanténban van, ezért még nem tudja kivenni."
+msgid "Your invoice of {amount} to {addressee_name} has been paid."
+msgstr ""
 
 #, python-brace-format
 msgid "Your invoice to {0} has been rejected - Liberapay"
@@ -304,51 +244,6 @@ msgstr "Leírás: {0}"
 
 msgid "Unsubscribe"
 msgstr "Leiratkozás"
-
-msgid "Liberapay is in trouble"
-msgstr "A Liberapay gondban van"
-
-#, python-brace-format
-msgid ""
-"Our payment processor (Mangopay) is throwing us out, so we recommend that you {link1_start}evacuate the money from your account{link_end} before July 26th.\n"
-"\n"
-"Clicking on the link above will bring you to a new page titled “Emptying your wallet” and ask you to choose between two options.\n"
-"\n"
-"If you use Liberapay as a donor the first choice is recommended, especially if you wish to continue using Liberapay. This first option distributes all the money from your wallet to the people who would have normally received it over time. The recipients will be able to see that this sudden burst of income corresponds to multiple weeks of donations.\n"
-"\n"
-"For example, if you’re donating $1 per week to 2 creators, and you have $40 in your wallet, then each creator will receive $20, and 20 weeks from now you’ll receive our usual email reminding you that it’s time to add money again.\n"
-"\n"
-"Please note that the disbursement may fail for various reasons. If you get an error message like “The attempt to distribute all the money in your wallet failed: XX.XX remains.”, then the problem is probably on the recipient side, for example someone who hasn’t filled the identity form or a team that hasn’t defined how the income should be split between the members.\n"
-"\n"
-"The other option is to get your money back, if possible through a refund, otherwise by withdrawing it to your bank account.\n"
-"\n"
-"If you receive donations on Liberapay, you may want to wait a week before withdrawing your income in order to give your patrons a chance to transfer the remaining of their donations from their wallets to yours.\n"
-"\n"
-"We’ll inform you as soon as the integration of a new payment processor is complete, and tell you if there’s anything you need to do to start receiving donations on Liberapay again.\n"
-"\n"
-"If you’re a member of a team, you should make sure that your take is set and up-to-date. You can do that from {link2_start}your “Receiving” page{link_end}.\n"
-"\n"
-"You can find more information in {link3_start}this blog post{link_end}, and as always you can reply to this email if you need help.\n"
-msgstr ""
-"A fizetés feldolgozónk (Mangopay) kidob minket, ezért azt javasoljuk {link1_start}menekítse a pénzt a fiókjából{link_end} Július 26 előtt.\n"
-"\n"
-"A fenti linkre kattintva egy új lapra kerül, \"Tárca ürítése\" és megkéri Önt, hogy válasszon két lehetőség közül.\n"
-"\n"
-"Amennyiben Ön adományozóként használja a Liberapay-t, az első lehetőséget ajánljuk, különöseb ha szeretné tovább használni a Liberapay-t. Ez a lehetőség szétosztja a tárjájában levő összeget az emberek számára akik egyébként idővel megkapnák azt. A fogadók látni fogják a hirtelen nagy összegű adomány érkezését, ami több heti adománynak felel meg.\n"
-"\n"
-"Például, ha Ön 1$-t adományoz 2 alkotónak hetente, és 40$ van a tárcájában, akkor mindkét alkotó kap 20$-t, és Ön 20 hét múlva megkapja a szokásos emlékeztető e-mail-ünket, hogy itt az ideje feltöltenie a tárcáját.\n"
-"\n"
-"Kérjük vegye figyelembe, hogy a kifizetés több okból meghiúsulhat. Amennyiben Ön kap egy olyasmi hibaüzenetet, hogy „A kísérlet az összes pénzének a szétosztására meghiúsult: XX.XX maradt.”, akkor a probléma valószínűleg a fogadó felek részéről áll fent, például ha valaki nem töltötte ki személyazonosságára vonatkozó űrlapot, vagy ha egy csoport nem határozta meg hogy hogyan legyen felosztva a bevételük a tagjai között.\n"
-"\n"
-"A második lehetőség hogy visszaszerezze a pénzét, visszatérítéssel, amennyiben az lehetséges, máskülönben a bankszámlájára való kivonással.\n"
-"\n"
-"Amennyiben Ön adományokat kap a Liberapay-en keresztül, várhat egy hetet a jövedelme kivonásával, hogy ezzel esélyt adjon a támogatóinak, hogy átutalják a tárcájukban maradt pénzüket az Ön számára.\n"
-"\n"
-"Értesíteni fogjuk Önt, amint egy új fizetési feldolgozó integrálását befejeztük, és közöljük, ha bármi szükséges tennivalója van, hogy újból adományokat fogadhasson a Liberapy-en.\n"
-"\n"
-"Amennyiben Ön egy csoport tagja, bizonyosodjon meg róla, hogy a részesedése be van állítva, és naprakész. Ezt megteheti {link2_start}az Ön \"Bevételei\" lapon{link_end}.\n"
-"\n"
-"További információkat találhat {link3_start}ebben a blogbejegyzésben{link_end}, és mint mindig, válaszolhat erre az üzenetre amennyiben segítségre van szüksége.\n"
 
 msgid "The password of your Liberapay account is weak"
 msgstr "Gyegne a jelszava a Liberapay fiókjának"
@@ -659,6 +554,16 @@ msgstr "Örömmel értesítjük Önt, hogy {user_name} csatkakozott a Liberapay-
 msgid "Donate to {0}"
 msgstr "{0} támogatása"
 
+msgid "Your Liberapay profile is incomplete"
+msgstr ""
+
+#, python-brace-format
+msgid "Your {link_start}public profile page{link_end} is missing a description. Without this information, we may be unable to confirm that your use of our platform is legitimate, and consequently your account may be marked as fraudulent and disabled. An incomplete profile is also less likely to attract donations, so we strongly recommend that you fill yours."
+msgstr ""
+
+msgid "Edit your profile"
+msgstr "Profil szerkesztése"
+
 msgid "Liberapay donation renewal: payment aborted"
 msgstr "Liberapay adomány megújítása: fizetés törölve"
 
@@ -770,20 +675,6 @@ msgstr "A Liberapay fiókjának módosítása folyamatban van"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Valaki társítani próbálja a(z) {0} e-mail címet ahhoz a Liberapay fiókhoz, amelynek aktuális címe {1}. Ha nem Ön kezdeményezte ezt a műveletet, akkor kattintson az alábbi linkre, és távolítsa el a problémás címet a fiókjából."
 
-msgid "Withdrawal initiated"
-msgstr "Pénzkivonás kezdeményezve"
-
-#, python-brace-format
-msgid "We have initiated a transfer of {0} from your Liberapay wallet to your bank account. Please note that it can take several business days for the transaction to complete."
-msgstr "{0} áturalását kezdeményeztük az Ön Liberapay tárcájából a bankszámlájára. Kérjük vegye figyelembe, hogy több munkanapba is telhet amíg az utalás végbemegy."
-
-msgid "Withdrawal failure"
-msgstr "Pénzkivétel meghiúsulása"
-
-#, python-brace-format
-msgid "We tried to transfer {0} from your Liberapay wallet to your bank account, but the transfer failed with this message:"
-msgstr "Megpróbáltunk átutalni {0}-t az Ön Liberapay tárcájából a bankszámlájára, de az átutalás meghiúsult ezzel az üzenettel:"
-
 msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
 msgstr "Úgy tűnik Ön felfedezett egy hibát! Elnézését kérjük a kellemetlenségért, mielőbb javítjuk!"
 
@@ -867,11 +758,11 @@ msgstr "Betéti/Hitelkártya"
 msgid "Direct Debit"
 msgstr "Csoportos Beszedés"
 
-msgid "Hide total giving from others."
-msgstr "Összes elküldött adomány elrejtése mások elől."
+msgid "Do not publish the amounts of money I send."
+msgstr ""
 
-msgid "Hide total receiving from others."
-msgstr "Összes fogadott adomány elrejtése mások elől."
+msgid "Do not publish the amounts of money I receive."
+msgstr ""
 
 msgid "Hide this profile from search results on Liberapay."
 msgstr "A profil keresési eredményekből való elrejtése a Liberapay-en."
@@ -1090,9 +981,6 @@ msgstr ""
 msgid "It seems you're trying to delete something that doesn't exist."
 msgstr "Úgy tűnik valamit törölni próbál, ami nem létezik."
 
-msgid "There isn't enough money in your wallet."
-msgstr "Nincs elegendő pénz a tárcájában."
-
 #, python-brace-format
 msgid "You can't withdraw more than {0} at this time."
 msgstr "Nem vehet ki többet {0}-nál jelenleg."
@@ -1120,10 +1008,6 @@ msgstr "A(z) \"{0}\" közösség már létezik."
 msgid "\"{0}\" is not a valid community name."
 msgstr "A(z) \"{0}\" érvénytelen közösség név."
 
-#, python-brace-format
-msgid "Transferring the money failed, sorry. Please contact support@liberapay.com if the problem persists. Error message: {0}"
-msgstr "Az átutalás meghiúsult, sajnáljuk. Kérjük írjon a support@liberapay.com e-mail címre, ha a probléma továbbra is fennáll. Hibaüzenet: {0}"
-
 msgid "You are not allowed to do this because your account is currently suspended."
 msgstr "Önnek jelenleg nincs megengedve, hogy ezt tegye, mivel a fiókja jelenleg fel van függesztve."
 
@@ -1142,10 +1026,6 @@ msgstr "Túl sok próbálkozás történt erre a műveletre nemrégiben, kérjü
 
 msgid "You're sending requests at an unusually fast pace. Please retry in a few seconds, and contact support@liberapay.com if the problem persists."
 msgstr "A kéréseket szokatlanul gyors ütemben küldi el. Kérjük, próbálkozzon néhány másodperc múlva, és ha a probléma továbbra is fennáll, lépjen kapcsolatba velünk a support@liberapay.com e-mail címen."
-
-#, python-brace-format
-msgid "The attempt to distribute all the money in your wallet failed: {money_amount} remains."
-msgstr "A pénztárcájában lévő összes pénz elosztására tett kísérlet meghiúsult: {money_amount} maradt."
 
 #, python-brace-format
 msgid "The attempt to send an email to {email_address} failed. Please check that the address is valid and retry. If the problem persists, please contact support@liberapay.com."
@@ -1285,7 +1165,7 @@ msgid "To request a new login link, input your email address:"
 msgstr "Hogy új bejelentkezési hivatkozást igényelhessen, adja meg az e-mail címét:"
 
 msgid "Email address"
-msgstr "E-mail cím"
+msgstr "E-mail-cím"
 
 msgid "Go"
 msgstr "Mehet"
@@ -1449,17 +1329,14 @@ msgstr "Fizetések Ütemezése"
 msgid "Receiving"
 msgstr "Bevétel"
 
+msgid "Patrons"
+msgstr "Támogatók"
+
 msgid "Payment Processors"
 msgstr "Fizetés Feldolgozók"
 
 msgid "Ledger"
 msgstr "Számlaelőzmények"
-
-msgid "Wallet"
-msgstr "Tárca"
-
-msgid "Emptying your wallet"
-msgstr "Pénztárcája kiürítése"
 
 msgid "Identity"
 msgstr "Azonosító"
@@ -1716,9 +1593,6 @@ msgstr "Eszközök"
 msgid "Schedule"
 msgstr "Ütemezés"
 
-msgid "Statement"
-msgstr "Kimutatás"
-
 msgid "Members"
 msgstr "Tagok"
 
@@ -1780,9 +1654,6 @@ msgstr "Irányítószám"
 msgid "Address within the city"
 msgstr ""
 
-msgid "Patrons"
-msgstr "Támogatók"
-
 msgid "Income"
 msgstr "Bevétel"
 
@@ -1834,7 +1705,7 @@ msgid "Please input your email address:"
 msgstr "Kérjük, adja meg e-mail címét:"
 
 msgid "Email"
-msgstr "E-mail cím"
+msgstr "E-mail-cím"
 
 msgid "and select your preferred currency:"
 msgstr "és válassza ki a preferált pénznemet:"
@@ -1946,126 +1817,52 @@ msgstr "Manuális megújítás"
 msgid "A reminder to renew your donation will be sent to you via email."
 msgstr "Ki lesz küldve egy emlékeztető az adomány megújításáról az Ön e-mail címére."
 
+#, python-brace-format
+msgid "{username} has chosen not to see who their patrons are, so your donation will be secret."
+msgstr ""
+
+#, python-brace-format
+msgid "This donation won't be secret, you will appear in {username}'s private list of patrons."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} discloses who their patrons are, your donation will be public."
+msgstr ""
+
+msgid "Please select a privacy level for this donation:"
+msgstr ""
+
+msgid "Secret donation"
+msgstr ""
+
+#, python-brace-format
+msgid "Only you will know that you donate to {username}."
+msgstr ""
+
+msgid "Private donation"
+msgstr ""
+
+#, python-brace-format
+msgid "You will appear in {username}'s private list of patrons."
+msgstr ""
+
+msgid "Public donation"
+msgstr ""
+
+#, python-brace-format
+msgid "Everybody will be able to see that you support {username}."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} hasn't yet specified whether they want to see who their patrons are, so your donation will be secret."
+msgstr ""
+
 #, fuzzy
 msgid "Discontinue the donation"
 msgstr "Adományozás beszűntetése"
 
 msgid "Cancel the pledge"
 msgstr ""
-
-#, python-brace-format
-msgid "You have uploaded {n} document of this type:"
-msgid_plural "You have uploaded {n} documents of this type:"
-msgstr[0] "{n} dokumentumot töltött fel ebből a típusból:"
-
-#, python-brace-format
-msgid "Document #{id} is awaiting validation."
-msgstr "A(z) {id}. dokumentum hitelesítésre vár."
-
-#, python-brace-format
-msgid "Document #{id} has been validated."
-msgstr "A(z) {id}. dokumentum hitelesítve lett."
-
-#, python-brace-format
-msgid "Document #{id} has been rejected: {refused_reason_type} - {refused_reason_message}."
-msgstr "A(z) {id}. dokumentum vissza lett utasítva: {refused_reason_type} - {refused_reason_message}."
-
-msgid "If you need assistance, you can send an email to support@liberapay.com."
-msgstr "Ha segítségre van szüksége küldhet egy e-mail-t a support@liberapay.com címre."
-
-msgid "Income Range"
-msgstr "Jövedelem Tartomány"
-
-#, python-brace-format
-msgid "Less than {0}"
-msgstr "Kevesebb mint {0}"
-
-#, python-brace-format
-msgid "More than {0}"
-msgstr "Több mint {0}"
-
-#, python-brace-format
-msgid "Between {0} and {1}"
-msgstr "{0} és {1} között"
-
-msgid "How much money you earn per year, approximately."
-msgstr "Mennyit keres egy évben körülbelül."
-
-msgid "Identity Proof"
-msgstr "Személyiség Bizonyítéka"
-
-msgid "Passport, or ID Card (front and back), or UK driving licence."
-msgstr "Útlevél, személyi igazolvány (mindkét oldala) vagy Egyesült Királyság béli vezetői engedély."
-
-msgid "Articles of Association"
-msgstr "Alapító okirat"
-
-msgid "Certified articles of association (Statute) - formal memorandum stated by the entrepreneurs, in which the following information is mentioned: business name, activity, registered address, shareholding."
-msgstr "Hitelesített alapító okirat (társasági szerződés) - hivatalos tájékoztató a vállalkozók nyilatkozata szerint, amelyben ezek szerepelnek: cégnév, tevékenység, regisztrált cím és részesedés."
-
-msgid "Registration Proof"
-msgstr "Regisztráció Igazolása"
-
-msgid "Extract from the Company Register issued within the last three months."
-msgstr "Kivonat a Társaság Nyilvántartásból az utóbbi három hónapon belülről."
-
-msgid "Proof of registration from the official authority."
-msgstr "Regisztráció bizonyítéka a hivatalos hatóságoktól."
-
-msgid "Shareholder Declaration"
-msgstr "Részvényes Nyilatkozat"
-
-#, python-brace-format
-msgid "Please download and fill the {link_start}shareholder declaration form{link_end}."
-msgstr "Kérjük töltse le és töltse ki a {link_start}részvényes nyilatkozati űrlapot{link_end}."
-
-msgid "Legal Representative Information"
-msgstr "Jogi Képviselet Információi"
-
-msgid "The following fields are about the organization's legal representative (you, probably)."
-msgstr "A következő mezők a szervezet jogi képviselőjére vonatkoznak (vélhetően Önre)."
-
-#, python-brace-format
-msgid "The following file formats are supported: {0}."
-msgstr "A következő fájlformátumok támogatottak: {0}."
-
-#, python-brace-format
-msgid "The maximum size of each file is {0}MB."
-msgstr "Az önálló fájlok maximális mérete {0}MB."
-
-msgid "We need to know who you are in order to comply with financial regulations. Only authorized personnel will be able to see this information, we will not show it to other users or anyone else unless required by law."
-msgstr "A pénzügyi szabályozások miatt tudnunk kell, hogy ki Ön. Csak az erre jogosult személyzet láthatja ezt az információt, nem jelenítjük meg más felhasználóknak vagy bárki másnak, kivéve ha törvényi kötelességünk."
-
-msgid "Given Name"
-msgstr "Keresztnév"
-
-msgid "Family Name"
-msgstr "Vezetéknév"
-
-msgid "Country (nationality)"
-msgstr "Ország (nemzetiségi)"
-
-msgid "Organization Type"
-msgstr "Szervezet Típusa"
-
-msgid "Business"
-msgstr "Vállalkozás"
-
-#, python-brace-format
-msgid "I agree to {0}MangoPay's Terms of Service{1}"
-msgstr "Elfogadom a {0}MangoPay felhasználási feltételeit{1}"
-
-msgid "Address"
-msgstr "Cím"
-
-msgid "Address (second line)"
-msgstr "Cím (második sor)"
-
-msgid "Region"
-msgstr "Régió"
-
-msgid "Postal Code"
-msgstr "irányítószám"
 
 msgid "People who contribute to the commons need you to support their work. Building free software, spreading free knowledge, these things take time and cost money, not only to do the initial work, but also to maintain it over time."
 msgstr "Az embereknek, akik hozzájárulnak a közjavakhoz, szüksége van az Ön támogatására a munkájukhoz. A szabad szoftverek építése, és az ingyenes tudás közzététele időigényes és pénzbe kerül, nem pusztán a létrehozásuk, de a további karbantartásuk is."
@@ -2509,6 +2306,21 @@ msgstr "A Liberapay immár lehetővé teszi az automatikus megújításokat, sze
 msgid "Yes, activate automatic renewals"
 msgstr "Igen, aktiválja az automatikus megújításokat"
 
+msgid "Liberapay now supports non-anonymous donations, do you want to modify the visibility of all your donations at once?"
+msgstr ""
+
+msgid "Reveal my donations to everyone"
+msgstr ""
+
+msgid "Reveal my donations to the beneficiaries only"
+msgstr ""
+
+msgid "Keep my donations as they are"
+msgstr ""
+
+msgid "Since you've chosen to make a public donation, we recommend that you complete your public profile."
+msgstr ""
+
 msgid "You have enabled automatic renewals for some or all of your donations, but you don't have any valid payment instrument that would allow us to initiate the automatic payments when the time comes."
 msgstr "Ön engedélyezte az automatikus megújításokat néhány vagy az összes adományozására, de nem áll rendelkezésére érvényes fizetési eszköz, amely lehetővé tenné számunkra, hogy megkezdjük az automatikus kifizetéseket, amikor az ideje érkezik."
 
@@ -2516,10 +2328,6 @@ msgstr "Ön engedélyezte az automatikus megújításokat néhány vagy az össz
 msgid "You have {n} donation awaiting payment."
 msgid_plural "You have {n} donations awaiting payment."
 msgstr[0] "Önnek {n} támogatása várakozik kifizetésre."
-
-#, python-brace-format
-msgid "{money_amount}{small}/week{end_small}"
-msgstr "{money_amount}{small}/hét{end_small}"
 
 #, python-brace-format
 msgid "{money_amount}{small}/month{end_small}"
@@ -2649,7 +2457,7 @@ msgstr "Nem támogatja a(z) {currency}-t"
 msgid "Doesn't support automatic renewal"
 msgstr "Nem támogatja az automatikus megújítást"
 
-msgid "Not anonymous"
+msgid "Reveals your name and email address to the recipient"
 msgstr ""
 
 msgid "Pay with PayPal"
@@ -2702,8 +2510,8 @@ msgstr "Az Ön fizetésének teljes összege azonnal {recipient_names} {payment_
 msgid "Liberapay does not store money, the entire amount of your payment will go immediately to the {payment_provider} account of {recipient_name}."
 msgstr "Az Ön fizetésének teljes összege azonnal {recipient_name} {payment_provider} fiókjába fog kerülni."
 
-msgid "PayPal payments are currently not anonymous, the recipient will see your name and email address."
-msgstr "A PayPal fizetések jelenleg nem névtelenek, a fogadó látni fogja az Ön nevét és e-mail címét."
+msgid "PayPal reveals your name and email address to the recipient."
+msgstr ""
 
 msgid "Initiate the payment"
 msgstr "A fizetés kezdeményezése"
@@ -2752,6 +2560,9 @@ msgstr ""
 msgid "Remember the card number for next time"
 msgstr ""
 
+msgid "Use this payment instrument by default for future payments"
+msgstr ""
+
 msgid "Please input your name and your IBAN (International Bank Account Number):"
 msgstr ""
 
@@ -2760,6 +2571,9 @@ msgid "By providing your IBAN and confirming this payment, you are authorizing {
 msgstr ""
 
 msgid "Remember the bank account number for future payments"
+msgstr ""
+
+msgid "Please input your postal address:"
 msgstr ""
 
 #, python-brace-format
@@ -2816,17 +2630,8 @@ msgstr[0] ""
 msgid "You currently don't have any scheduled payment."
 msgstr ""
 
-msgid "Are you sure you want to change the type of your account? For legal reasons we will have to create a new account for you in our payment partner's system, and transfer the money from your old account."
-msgstr "Biztosan meg akarja változtatni a fiókja típusát? Jogi okok miatt új fiókot kell létrehoznunk Önnek a fizetési partnerünk rendszerében, és átutalnunk a pénzt a régi fiókjából."
-
-msgid "We can't change the type of your account during payday, please try again in a few minutes."
-msgstr "Nem tudjuk megváltoztatni kifizetések közben a fiókja típusát, kérjük próbálja újra pár perc múlva."
-
-msgid "Are you sure you want to change your identity information? If you do, you may have to go through the identity verification process again."
-msgstr "Biztosan szeretné megváltoztatni az azonosító adatait? Ha igen, akkor újból át kell esnie a hitelesítési folyamaton."
-
-msgid "You haven't filled all the required fields."
-msgstr "Nem töltötte ki az összes szükséges mezőt."
+msgid "The provided postal address is incomplete."
+msgstr ""
 
 msgid "Invalid date of birth."
 msgstr "Érvénytelen születési dátum."
@@ -2834,27 +2639,8 @@ msgstr "Érvénytelen születési dátum."
 msgid "Your identity information has been updated."
 msgstr "A személyazonosító adatai frissítésre kerültek."
 
-msgid "Your identity information has been registered."
-msgstr "A személyazonosító adatai nyilvántartásba lettek véve."
-
-msgid "You have to agree to MangoPay's Terms of Service."
-msgstr "El kell fogadnia a MangoPay Szolgáltatási Feltételeit."
-
 msgid "JavaScript is required"
 msgstr "JavaScript szükséges"
-
-msgid "Level 2"
-msgstr "2. szint"
-
-msgid "You have completed the identity verification process, the amount of money you can give and receive per year is no longer limited."
-msgstr "Ön teljesítette az azonosítási folyamatot, a küldhető és fogadható összeg mostantól korlátolatlan."
-
-#, python-brace-format
-msgid "If you give more than {0} in a year, or receive more than {1} in a year, or if your account shows signs of suspicious activity, then you will have to provide additional information:"
-msgstr "Ha többet ad, mint {0} egy évben, vagy többet fogad, mint {1} egy évben, vagy a fiókja gyanús tevékenységeket mutat, akkor további információkat szükséges megadnia:"
-
-msgid "The provided postal address is incomplete."
-msgstr ""
 
 msgid "This page allows you to view and modify the identity information attached to your account. Only authorized personnel can access this information, we do not show it to other users or anyone else unless required by law or if you instruct us to."
 msgstr ""
@@ -2897,6 +2683,9 @@ msgstr ""
 msgid "Edit"
 msgstr "Szerkesztés"
 
+msgid "Statement"
+msgstr "Kimutatás"
+
 #, python-brace-format
 msgid "{0} owns the following accounts on other platforms:"
 msgstr "{0} a következő fiókokat birtokolja más helyeken:"
@@ -2910,6 +2699,35 @@ msgstr[0] ""
 msgid "with {n} other"
 msgid_plural "with {n} others"
 msgstr[0] "{n} továbbival"
+
+msgid "Export as CSV"
+msgstr "Exportálás CSV formátumban"
+
+#, python-brace-format
+msgid "{username} has {n} public patron."
+msgid_plural "{username} has {n} public patrons."
+msgstr[0] ""
+
+#, python-brace-format
+msgid "<unused singular (hash=d1c03a1d2b2a562ad40ed9bfab1b56e5)>"
+msgid_plural "The top {n} patrons are:"
+msgstr[0] ""
+
+#, python-brace-format
+msgid "{username} doesn't publish how much they give."
+msgstr "A(z) {username} nem teszi közzé, hogy mennyit adnak."
+
+msgid "Donees"
+msgstr ""
+
+#, python-brace-format
+msgid "{username} donates publicly to {n} creator."
+msgid_plural "{username} donates publicly to {n} creators."
+msgstr[0] ""
+
+#, python-brace-format
+msgid "{username} does not disclose how much they receive through Liberapay."
+msgstr ""
 
 msgid "History"
 msgstr "Előzmények"
@@ -2934,10 +2752,6 @@ msgstr ""
 
 msgid "Number of Patrons Per Week"
 msgstr "Támogatók Száma Hetente"
-
-#, python-brace-format
-msgid "{username} does not disclose how much they receive through Liberapay."
-msgstr ""
 
 msgid "Invoice documents are private."
 msgstr "A számlázási dokumentumok privátak."
@@ -2997,6 +2811,9 @@ msgstr "Küldés"
 
 msgid "Accept and Pay"
 msgstr "Elfogadás és Fizetés"
+
+msgid "Mark as paid"
+msgstr ""
 
 #, python-brace-format
 msgid "Message: {0}"
@@ -3098,6 +2915,10 @@ msgid "Total money received: {0}"
 msgstr "Összes fogadott pénz: {0}"
 
 #, python-brace-format
+msgid "{0}: {1}"
+msgstr "{0}: {1}"
+
+#, python-brace-format
 msgid "Total money sent: {0}"
 msgstr "Összes átutalt pénz: {0}"
 
@@ -3117,20 +2938,55 @@ msgstr ""
 msgid "error message: {0}"
 msgstr "hiba üzenet: {0}"
 
-msgid "anonymous donation"
-msgstr "névtelen adományozás"
+msgid "hidden"
+msgstr ""
 
 #, python-brace-format
-msgid "anonymous donation for your role in the {0} team"
-msgstr "névtelen adomány az Ön szerepéért a(z) {0} csapatban"
+msgid "public donation from {donor_name}"
+msgstr ""
 
 #, python-brace-format
-msgid "donation to {0}"
-msgstr "adomány {0}-nak"
+msgid "private donation from {donor_name}"
+msgstr ""
+
+msgid "secret donation"
+msgstr ""
 
 #, python-brace-format
-msgid "donation to {0} for their role in the {1} team"
-msgstr "adomány {0}-nak a(z) {1} csapatban betöltött szerepéért"
+msgid "public donation from {donor_name} for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation from {donor_name} for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "public donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "public donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
 
 #, python-brace-format
 msgid "This payment must be manually approved by the recipient through {provider}'s website."
@@ -3229,6 +3085,52 @@ msgid "Next Page →"
 msgstr "Következő Oldal →"
 
 #, python-brace-format
+msgid "You have {n} active patron giving you {money_amount} per week."
+msgid_plural "You have {n} active patrons giving you a total of {money_amount} per week."
+msgstr[0] ""
+
+msgid "You don't have any active patrons."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} doesn't have any active patrons."
+msgstr ""
+
+msgid "Liberapay now supports non-anonymous donations, do you want to know who your patrons are?"
+msgstr ""
+
+msgid "Enable non-anonymous donations"
+msgstr ""
+
+#, python-brace-format
+msgid "You have opted-in to see who your patrons are. If you change your mind, then {link_start}click here to disable non-anonymous donations{link_end}."
+msgstr ""
+
+#, python-brace-format
+msgid "You've chosen not to see who your patrons are. If you change your mind, then {link_start}click here to enable non-anonymous donations{link_end}."
+msgstr ""
+
+msgid "Data export"
+msgstr ""
+
+msgid "Download the list of currently active patrons"
+msgstr ""
+
+msgid "Download the record of all patrons in the last ten years"
+msgstr ""
+
+#, python-brace-format
+msgid "View the patrons of {username}"
+msgstr ""
+
+msgid "You are not a member of any team."
+msgstr "Ön nem tagja egyetlen csapatnak sem."
+
+#, python-brace-format
+msgid "{username} isn't a member of any team."
+msgstr ""
+
+#, python-brace-format
 msgid "You have to {link_open}fill your profile{link_close} before you can start to receive donations."
 msgstr ""
 
@@ -3286,56 +3188,6 @@ msgstr ""
 msgid "liberapay_receipt_{number}"
 msgstr "liberapay_nyugta_{number}"
 
-msgid "Receipt"
-msgstr "Nyugta"
-
-#, python-brace-format
-msgid "We confirm the receipt of a transfer initiated by {payer} on {date}."
-msgstr "Megerősítjük {payer} átutalásának nyugtáját, az utalás ideje: {date}."
-
-#, python-brace-format
-msgid "Of the {0} that were sent, {1} went into the account of {owner_name} ({link}), and {2} were paid in transaction fees."
-msgstr "A {0}-ból, ami el lett küldve, {1} {owner_name} tárcájába került ({link}), és {2} átutalási díjként fel lett számolva."
-
-msgid "Beneficiaries"
-msgstr "Kedvezményezettek"
-
-#, python-brace-format
-msgid "The money will fund the donations of {name} on Liberapay. The table below shows the donations as they were when the payment was initiated ({datetime}, UTC)."
-msgstr "A pénz {name} adományait fogja fedezni a Liberapay-en. Az alábbi táblázat azt mutatja, ahogy a fizetések kezdeményezve lettek ({datetime}, UTC)."
-
-msgid "Recipient"
-msgstr "Címzett"
-
-msgid "Amount per week"
-msgstr "Összeg hetente"
-
-msgid "Payment Details"
-msgstr "Fizetés Részletei"
-
-#, python-brace-format
-msgid "Payment method: {0}"
-msgstr "Fizetési mód: {0}"
-
-#, python-brace-format
-msgid "Debited card: {number} ({brand}, {country})"
-msgstr "Terhelt kártya: {number} ({brand}, {country})"
-
-#, python-brace-format
-msgid "Debited account: {0}"
-msgstr "Terhelt számla: {0}"
-
-#, python-brace-format
-msgid "Execution date: {0}"
-msgstr "Végrehajtás időpontja: {0}"
-
-#, python-brace-format
-msgid "Transaction ID: {0}"
-msgstr "Átutalás azonosító: {0}"
-
-msgid "This document is not an invoice."
-msgstr "Ez a dokumentum nem egy számla."
-
 msgid "Payment receipt"
 msgstr ""
 
@@ -3359,9 +3211,15 @@ msgstr ""
 msgid "However, {x_percent} of the payment ({refund_amount}) was refunded on {refund_date}."
 msgstr ""
 
+msgid "Beneficiaries"
+msgstr "Kedvezményezettek"
+
 msgid "The money has been donated to the following recipient:"
 msgid_plural "The money has been donated to the following recipients:"
 msgstr[0] ""
+
+msgid "Recipient"
+msgstr "Címzett"
 
 #, python-brace-format
 msgid "{recipient}, member of the {team_name} team"
@@ -3398,8 +3256,19 @@ msgid "Payment method: direct debit of bank account {partial_account_number}"
 msgstr "Fizetési mód: közvetlen terhelés a(z) {partial_account_number} bankszámlán"
 
 #, python-brace-format
+msgid "Payment method: {0}"
+msgstr "Fizetési mód: {0}"
+
+#, python-brace-format
 msgid "Settlement date: {0}"
 msgstr ""
+
+#, python-brace-format
+msgid "Transaction ID: {0}"
+msgstr "Átutalás azonosító: {0}"
+
+msgid "This document is not an invoice."
+msgstr "Ez a dokumentum nem egy számla."
 
 msgid "You can't receive new donations until you've configured payment processing."
 msgstr ""
@@ -3407,9 +3276,6 @@ msgstr ""
 #, python-brace-format
 msgid "Donations through teams make up {income_percent} of your income ({team_income} of {total_income}) and {patrons_percent} of your donors ({nteampatrons} of {npatrons})."
 msgstr ""
-
-msgid "You are not a member of any team."
-msgstr "Ön nem tagja egyetlen csapatnak sem."
 
 msgid "Details of Donations"
 msgstr "Adományok Részletei"
@@ -3492,9 +3358,6 @@ msgstr ""
 msgid "Forget this bank account number after one payment."
 msgstr ""
 
-msgid "The BIC you provided appears to be invalid."
-msgstr "A BIC kód amelyet megadott érvénytelennek tűnik."
-
 #, python-brace-format
 msgid "You have {n} connected payment instrument."
 msgid_plural "You have {n} connected payment instruments."
@@ -3543,34 +3406,8 @@ msgstr ""
 msgid "Add a bank account"
 msgstr ""
 
-msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
-msgstr "Még mindig van pénze ebben a Liberapay-fiókban, válasszon egy visszatérítési módot alább, vagy lépjen kapcsolatba az ügyfélszolgálattal."
-
 msgid "Close Account"
 msgstr "Fiók Bezárása"
-
-#, python-brace-format
-msgid "You have {0} in your wallet. What should we do with it?"
-msgstr "Önnek {0} van a tárcájában. Mit tegyünk vele?"
-
-#, python-brace-format
-msgid "Give it to the {0}people I donate to{1}"
-msgstr "Adjuk {0}az embereknek, akiket támogatok{1}"
-
-msgid "Donate it to Liberapay"
-msgstr ""
-
-msgid "This option is recommended for small amounts."
-msgstr ""
-
-msgid "Withdraw it to my bank account"
-msgstr ""
-
-msgid "If neither option works for you, please contact support@liberapay.com."
-msgstr "Ha egyik lehetőség sem felel meg Önnek, kérjük írjon a support@liberapay.com e-mail címre."
-
-msgid "You have a pending transfer to your bank account. If it fails, the money will reappear in your wallet and your account will be automatically reopened."
-msgstr "Önnek még folyamatban van egy átutalása az Ön bankfiókjába. Ha ez meghiúsul, a pénze újból megjelenik az itteni tárcájában, és a fiókja automatikusan újra meg lesz nyitva."
 
 msgid "Data retention"
 msgstr ""
@@ -3592,9 +3429,6 @@ msgstr "Készen áll?"
 
 msgid "Yes, close my Liberapay account"
 msgstr "Igen, zárják be a Liberapay fiókomat"
-
-msgid "Incorrect password"
-msgstr "Hibás jelszó"
 
 msgid "Your password has been changed."
 msgstr "A jelszó módosítása megtörtént."
@@ -3646,23 +3480,14 @@ msgstr ""
 msgid "Your donation to {0} has been stopped."
 msgstr "A következőnek küldendő adománya le lett állítva: {0}."
 
-msgid "Your wallet is empty."
+msgid "This is no longer possible."
 msgstr ""
 
 msgid "Export History"
 msgstr "Előzmények Exportálása"
 
-#, python-brace-format
-msgid "You have approximately {converted_amount} in your account (exactly: {exact_amounts})."
-msgstr "Körülbelül {converted_amount} van a fiókjában (pontosan: {exact_amounts})."
-
-#, python-brace-format
-msgid "You have {money_amount} in your account."
-msgstr "{money_amount} áll rendelkezésére."
-
-#, python-brace-format
-msgid "Their balance is {0}."
-msgstr "Az egyenlegük {0}."
+msgid "Wallet"
+msgstr "Tárca"
 
 #, python-brace-format
 msgid "This page only shows transactions processed by Mangopay, to view other payments {link_start}go to the Ledger page{link_end}."
@@ -3675,9 +3500,6 @@ msgstr "Számlakivonat"
 msgid "{money_amount} in donations to {n} person"
 msgid_plural "{money_amount} in donations to {n} people"
 msgstr[0] "{money_amount} összegű átutalás {n} embernek"
-
-msgid "Export as CSV"
-msgstr "Exportálás CSV formátumban"
 
 #, python-brace-format
 msgid "{money_amount} in expense reimbursements to {n} person"
@@ -3723,6 +3545,10 @@ msgstr "sikertelen pénzkivétel visszatérítése (hiba üzenet: {0})"
 msgid "canceled"
 msgstr "megszakítva"
 
+#, python-brace-format
+msgid "anonymous donation for your role in the {0} team"
+msgstr "névtelen adomány az Ön szerepéért a(z) {0} csapatban"
+
 msgid "in arrears"
 msgstr ""
 
@@ -3732,6 +3558,9 @@ msgstr "adomány visszatérítés"
 #, python-brace-format
 msgid "reimbursement of {link_open}expense #{invoice_id}{link_close} from {payer}"
 msgstr "{link_open}költség #{invoice_id}{link_close} visszatérítése a következőtől: {payer}"
+
+msgid "anonymous donation"
+msgstr "névtelen adományozás"
 
 msgid "one-off donation from someone closing their account"
 msgstr "egyszeri adomány valakitől, aki bezárta a fiókját"
@@ -3752,6 +3581,10 @@ msgstr ""
 msgid "final gift to {0}"
 msgstr "végső ajándék a következőnek: {0}"
 
+#, python-brace-format
+msgid "donation to {0} for their role in the {1} team"
+msgstr "adomány {0}-nak a(z) {1} csapatban betöltött szerepéért"
+
 msgid "refund of anonymous donation"
 msgstr "névtelen adomány visszafizetés"
 
@@ -3759,113 +3592,9 @@ msgstr "névtelen adomány visszafizetés"
 msgid "payment of {link_open}expense #{invoice_id}{link_close} to {payee}"
 msgstr "{link_open}költség #{invoice_id}{link_close} fizetése {payee}-nak"
 
-msgid "The amount cannot be zero."
-msgstr ""
-
 #, python-brace-format
-msgid "The transaction fee would be high: {0}% ({1}/{2}). Proceed anyway?"
-msgstr ""
-
-msgid "Withdrawing Money"
-msgstr ""
-
-#, python-brace-format
-msgid "{0} have been taken from your Liberapay wallet. If the transfer is successful, {1} will land in your bank account, and {2} will be paid in fees."
-msgstr ""
-
-#, python-brace-format
-msgid "The attempt to send {0} to your bank account has failed. Error message: {1}"
-msgstr ""
-
-#, python-brace-format
-msgid "You have {0} in your Liberapay wallet."
-msgstr "Önnek {0} van a Liberapay tárcájában."
-
-msgid "Which currency do you want to withdraw?"
-msgstr ""
-
-#, python-brace-format
-msgid "Withdrawing euros is free. Withdrawing US dollars costs {0} per transfer regardless of the destination country."
-msgstr ""
-
-msgid "There are no fees when withdrawing euros to your bank account."
-msgstr ""
-
-#, python-brace-format
-msgid "Withdrawing US dollars costs {0} per transfer, whatever the destination country is."
-msgstr ""
-
-msgid "Bank account"
-msgstr ""
-
-msgid "IBAN"
-msgstr ""
-
-msgid "Routing Number"
-msgstr ""
-
-msgid "Account Number"
-msgstr ""
-
-msgid "Bank Account Type"
-msgstr ""
-
-msgid "Bank Name"
-msgstr ""
-
-msgid "Institution Number"
-msgstr ""
-
-msgid "Branch Code"
-msgstr ""
-
-msgid "Sort Code"
-msgstr ""
-
-msgid "BIC (Bank Identifier Code)"
-msgstr "BIC (bank azonosító kód)"
-
-msgid "SEPA / IBAN"
-msgstr ""
-
-msgid "USA"
-msgstr ""
-
-msgid "Canada"
-msgstr ""
-
-msgid "UK"
-msgstr ""
-
-msgid "Other"
-msgstr ""
-
-msgid "IBAN (International Bank Account Number)"
-msgstr "IBAN (nemzetközi bankszámlaszám)"
-
-msgid "This IBAN is invalid."
-msgstr ""
-
-msgid "checking"
-msgstr ""
-
-msgid "savings"
-msgstr ""
-
-msgid "SWIFT codes are 8 or 11 characters long. The first 6 characters are letters, the rest can be letters or digits. Example: CMBRFR2BCME"
-msgstr ""
-
-msgid "only letters (a-z) and digits (0-9) are allowed"
-msgstr ""
-
-msgid "This account number is invalid."
-msgstr ""
-
-msgid "The following fields are about the legal owner of the bank account."
-msgstr ""
-
-msgid "The bank account must belong to you, sending money to third parties is not allowed."
-msgstr ""
+msgid "donation to {0}"
+msgstr "adomány {0}-nak"
 
 #, python-brace-format
 msgid "Account number: {0}"
@@ -4132,7 +3861,7 @@ msgid "Liberapay is a way to donate money recurrently to people whose work you a
 msgstr ""
 
 #, python-brace-format
-msgid "Payments come with no strings attached. You don't know exactly who is giving to you, and donations are capped at {0} per week per donor to dampen undue influence."
+msgid "Payments come with no strings attached. By default, recipients don't know who their patrons are, and donations are capped at {0} per week per donor to dampen undue influence."
 msgstr ""
 
 msgid "By default, the total amount you give and the total amount you receive are public (you can opt out of sharing this info)."
@@ -4176,10 +3905,6 @@ msgid "Terms of Service"
 msgstr ""
 
 msgid "Privacy Policy"
-msgstr ""
-
-#, python-brace-format
-msgid "{0} was Liberapay's initial payment partner, but they quit on us in 2018. Below are copies of the contract you had to accept in order to send or receive money through Liberapay prior to August 2018: "
 msgstr ""
 
 msgid "This page contains links to and information about the Liberapay logo. We hope you'll find it especially useful if you're writing an article about Liberapay or if you want to add custom links to your Liberapay profile in your website."
@@ -4336,25 +4061,6 @@ msgid "Thanks to {link_open}everyone who has sent us a report through HackerOne{
 msgstr ""
 
 #, python-brace-format
-msgid "{0} is escrowed within Liberapay."
-msgstr ""
-
-msgid "Deposits (€)"
-msgstr ""
-
-msgid "Money moved into Liberapay"
-msgstr ""
-
-msgid "weeks"
-msgstr "hét"
-
-msgid "Withdrawals (€)"
-msgstr ""
-
-msgid "Money moved out of Liberapay"
-msgstr ""
-
-#, python-brace-format
 msgid "Liberapay was launched {timespan_ago} and has {n} user."
 msgid_plural "Liberapay was launched {timespan_ago} and has {n} users."
 msgstr[0] ""
@@ -4389,6 +4095,9 @@ msgstr ""
 
 msgid "Number of open individual and organization accounts on Liberapay"
 msgstr ""
+
+msgid "weeks"
+msgstr "hét"
 
 msgid "Active Users"
 msgstr ""
@@ -4891,6 +4600,10 @@ msgstr[0] ""
 msgid "The list below is rotated pseudorandomly."
 msgstr ""
 
+#, python-brace-format
+msgid "{money_amount}{small}/week{end_small}"
+msgstr "{money_amount}{small}/hét{end_small}"
+
 msgid "Thanks"
 msgstr ""
 
@@ -5039,9 +4752,6 @@ msgstr ""
 #, python-brace-format
 msgid "The {elsewhere_platform} account \"{account_name}\" could not be linked to your Liberapay profile because it was already linked to another account."
 msgstr ""
-
-msgid "Edit your profile"
-msgstr "Profil szerkesztése"
 
 msgid "Manage this team"
 msgstr "A csapat kezelése"

@@ -80,36 +80,40 @@ def create_source_from_token(token_id, one_off, amount, owner_info, return_url):
     )
 
 
-def charge(db, payin, payer):
+def charge(db, payin, payer, route):
     """Initiate the Charge for the given payin.
 
     Returns the updated payin, or possibly a new payin.
 
     """
+    assert payin.route == route.id
     n_transfers = db.one("""
         SELECT count(*)
           FROM payin_transfers pt
          WHERE pt.payin = %(payin)s
     """, dict(payin=payin.id))
     if n_transfers == 1:
-        payin = destination_charge(
+        payin, charge = destination_charge(
             db, payin, payer, statement_descriptor=('Liberapay %i' % payin.id)
         )
         if payin.status == 'failed':
-            return try_other_destinations(db, payin, payer)
-        return payin
+            payin, charge = try_other_destinations(db, payin, payer, charge)
     else:
-        return charge_and_transfer(
+        payin, charge = charge_and_transfer(
             db, payin, payer, statement_descriptor=('Liberapay %i' % payin.id)
         )
+    if charge and charge.status == 'failed' and charge.failure_code == 'expired_card':
+        route.update_status('expired')
+    return payin
 
 
-def try_other_destinations(db, payin, payer):
+def try_other_destinations(db, payin, payer, charge):
     """Retry a failed charge with different destinations.
 
     Returns a payin.
 
     """
+    first_payin_id = payin.id
     tippee_id = db.one("""
         SELECT coalesce(team, recipient) AS tippee
           FROM payin_transfers
@@ -125,14 +129,14 @@ def try_other_destinations(db, payin, payer):
     """, (payer.id, tippee_id))
     route = ExchangeRoute.from_id(payer, payin.route, _raise=False)
     if not (tip and route):
-        return payin
+        return payin, charge
     excluded_destinations = set()
     while payin.status == 'failed':
         error = payin.error
         reroute = (
             error.startswith("As per Indian regulations, ") or
             error.startswith("For 'sepa_debit' payments, we currently require ") or
-            error.startswith("Stripe doesn't currently support destination charges with accounts in ")
+            error.startswith("Stripe doesn't currently support ")
         )
         if reroute:
             excluded_destinations.add(db.one("""
@@ -141,36 +145,38 @@ def try_other_destinations(db, payin, payer):
                  WHERE payin = %s
             """, (payin.id,)))
         else:
-            return payin
+            break
         try:
             proto_transfers = resolve_tip(
                 db, tip, tippee, 'stripe', payer, route.country, payin.amount,
                 excluded_destinations=excluded_destinations,
             )
         except (MissingPaymentAccount, NoSelfTipping):
-            return payin
-        db.run("""
-            UPDATE scheduled_payins
-               SET payin = NULL
-             WHERE payin = %s
-        """, (payin.id,))
+            break
         try:
             payin, payin_transfers = prepare_payin(
                 db, payer, payin.amount, route, proto_transfers,
                 off_session=payin.off_session,
             )
             if len(payin_transfers) == 1:
-                payin = destination_charge(
+                payin, charge = destination_charge(
                     db, payin, payer, statement_descriptor=('Liberapay %i' % payin.id)
                 )
             else:
-                payin = charge_and_transfer(
+                payin, charge = charge_and_transfer(
                     db, payin, payer, statement_descriptor=('Liberapay %i' % payin.id)
                 )
         except Exception as e:
             website.tell_sentry(e)
-            return payin
-    return payin
+            break
+    if payin.id != first_payin_id:
+        db.run("""
+            UPDATE scheduled_payins
+               SET payin = %s
+                 , mtime = current_timestamp
+             WHERE payin = %s
+        """, (payin.id, first_payin_id))
+    return payin, charge
 
 
 def charge_and_transfer(db, payin, payer, statement_descriptor, on_behalf_of=None):
@@ -217,10 +223,10 @@ def charge_and_transfer(db, payin, payer, statement_descriptor, on_behalf_of=Non
                 idempotency_key='payin_%i' % payin.id,
             )
     except stripe.error.StripeError as e:
-        return abort_payin(db, payin, repr_stripe_error(e))
+        return abort_payin(db, payin, repr_stripe_error(e)), None
     except Exception as e:
         website.tell_sentry(e)
-        return abort_payin(db, payin, str(e))
+        return abort_payin(db, payin, str(e)), None
     if intent:
         if intent.status == 'requires_action':
             update_payin(db, payin.id, None, 'awaiting_payer_action', None,
@@ -231,7 +237,7 @@ def charge_and_transfer(db, payin, payer, statement_descriptor, on_behalf_of=Non
     intent_id = getattr(intent, 'id', None)
     payin = settle_charge_and_transfers(db, payin, charge, intent_id=intent_id)
     send_payin_notification(db, payin, payer, charge, route)
-    return payin
+    return payin, charge
 
 
 def destination_charge(db, payin, payer, statement_descriptor):
@@ -286,10 +292,10 @@ def destination_charge(db, payin, payer, statement_descriptor):
                 idempotency_key='payin_%i' % payin.id,
             )
     except stripe.error.StripeError as e:
-        return abort_payin(db, payin, repr_stripe_error(e))
+        return abort_payin(db, payin, repr_stripe_error(e)), None
     except Exception as e:
         website.tell_sentry(e)
-        return abort_payin(db, payin, str(e))
+        return abort_payin(db, payin, str(e)), None
     if intent:
         if intent.status == 'requires_action':
             update_payin(db, payin.id, None, 'awaiting_payer_action', None,
@@ -300,7 +306,7 @@ def destination_charge(db, payin, payer, statement_descriptor):
     intent_id = getattr(intent, 'id', None)
     payin = settle_destination_charge(db, payin, charge, pt, intent_id=intent_id)
     send_payin_notification(db, payin, payer, charge, route)
-    return payin
+    return payin, charge
 
 
 def send_payin_notification(db, payin, payer, charge, route):
@@ -708,9 +714,13 @@ def generate_transfer_description(pt):
          WHERE id = %s
     """, (pt.team or pt.recipient,))
     if pt.team:
-        return f"anonymous donation for team {name} via Liberapay"
+        name = f"team {name}"
+    if pt.visibility == 3:
+        return f"public donation for {name} via Liberapay"
+    if pt.visibility == 2:
+        return f"private donation for {name} via Liberapay"
     else:
-        return f"anonymous donation for {name} via Liberapay"
+        return f"secret donation for {name} via Liberapay"
 
 
 def record_refunds(db, payin, charge):

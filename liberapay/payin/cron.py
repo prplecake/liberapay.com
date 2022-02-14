@@ -262,7 +262,6 @@ def execute_scheduled_payins():
                     AND r.network::text LIKE 'stripe-%%'
                     AND ( sp.amount::currency = 'EUR' OR r.network <> 'stripe-sdd' )
                ORDER BY r.is_default NULLS LAST
-                      , r.network = 'stripe-sdd' DESC
                       , r.ctime DESC
                   LIMIT 1
                ) r ON true
@@ -312,7 +311,7 @@ def execute_scheduled_payins():
                  WHERE id = %s
             """, (payin.id, sp_id))
             try:
-                payin = charge(db, payin, payer)
+                payin = charge(db, payin, payer, route)
             except NextAction:
                 payer.notify(
                     'renewal_unauthorized',
@@ -323,6 +322,18 @@ def execute_scheduled_payins():
                 )
                 counts['renewal_unauthorized'] += 1
                 return
+            if payin.status == 'failed' and route.status == 'expired':
+                can_retry = db.one("""
+                    SELECT count(*) > 0
+                      FROM exchange_routes
+                     WHERE participant = sp.payer
+                       AND status = 'chargeable'
+                       AND network::text LIKE 'stripe-%%'
+                       AND ( %s OR network <> 'stripe-sdd' )
+                """, (payin.currency == 'EUR',))
+                if can_retry:
+                    retry = True
+                    continue
             if payin.status in ('failed', 'succeeded'):
                 payer.notify(
                     'payin_' + payin.status,

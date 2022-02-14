@@ -15,19 +15,11 @@ if participant.kind not in ('individual', 'organization'):
 title = participant.username
 error = ''
 
-identity = participant.get_current_identity()
+identity = participant.get_current_identity() or {}
 
 if request.method == 'POST':
     body = request.body
-    v1_form = (
-        'CountryOfResidence' in body or 'LegalPersonType' in body or
-        'IncomeRange' in body or 'LegalRepresentativeEmail' in body
-    )
-    if v1_form:
-        raise response.redirect(participant.path('identity-v1'), code=307)
-
     new_kind = 'organization' if body.get('organization_name') else 'individual'
-
     identity = {}
     for k in constants.IDENTITY_FIELDS:
         v = body.get(k, '')
@@ -36,10 +28,6 @@ if request.method == 'POST':
             if v['city'] or v['postal_code'] or v['local_address']:
                 if not check_address_v2(v):
                     error = _("The provided postal address is incomplete.")
-                else:
-                    newlines = v['local_address'].count('\n')
-                    if newlines > 1:
-                        error = "`local_address` value contains too many newlines (%i > %i)" % (newlines, 1)
             for subkey, subvalue in v.items():
                 if len(subvalue) > 200:
                     error = "`%s` value is too long (%i > %i)" % (subkey, len(subvalue), 200)
@@ -73,8 +61,12 @@ if request.method == 'POST':
     if error and request.headers.get(b'X-Requested-With') == b'XMLHttpRequest':
         raise response.error(400, error)
 
-elif participant.mangopay_user_id and (participant.balance or not identity):
-    raise response.redirect(participant.path('identity-v1'))
+else:
+    for k in constants.IDENTITY_FIELDS:
+        if k in ('headquarters_address', 'postal_address'):
+            identity.setdefault(k, {})
+        else:
+            identity.setdefault(k, '')
 
 [---] text/html
 % from "templates/macros/identity.html" import identity_form with context

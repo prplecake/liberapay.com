@@ -14,7 +14,7 @@ COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQ
 
 -- database metadata
 CREATE TABLE db_meta (key text PRIMARY KEY, value jsonb);
-INSERT INTO db_meta (key, value) VALUES ('schema_version', '149'::jsonb);
+INSERT INTO db_meta (key, value) VALUES ('schema_version', '154'::jsonb);
 
 
 -- app configuration
@@ -40,9 +40,7 @@ CREATE TABLE participants
 , status                participant_status      NOT NULL DEFAULT 'stub'
 , join_time             timestamptz             DEFAULT NULL
 
-, balance               currency_amount         NOT NULL
 , goal                  currency_amount         DEFAULT NULL
-, mangopay_user_id      text                    DEFAULT NULL UNIQUE
 
 , hide_giving           boolean                 NOT NULL DEFAULT FALSE
 , hide_receiving        boolean                 NOT NULL DEFAULT FALSE
@@ -87,12 +85,10 @@ CREATE TABLE participants
 , marked_as             account_mark
 , is_unsettling         int                     NOT NULL DEFAULT 0
 
-, CONSTRAINT balance_chk CHECK (NOT ((status <> 'active' OR kind IN ('group', 'community')) AND balance <> 0))
 , CONSTRAINT giving_chk CHECK (NOT (kind IN ('group', 'community') AND giving <> 0))
 , CONSTRAINT goal_chk CHECK (NOT (kind IN ('group', 'community') AND status='active' AND goal IS NOT NULL AND goal <= 0))
 , CONSTRAINT join_time_chk CHECK ((status='stub') = (join_time IS NULL))
 , CONSTRAINT kind_chk CHECK ((status='stub') = (kind IS NULL))
-, CONSTRAINT mangopay_chk CHECK (NOT (mangopay_user_id IS NULL AND balance <> 0))
 , CONSTRAINT secret_team_chk CHECK (NOT (kind IN ('group', 'community') AND hide_receiving))
  );
 
@@ -127,7 +123,6 @@ CREATE FUNCTION initialize_amounts() RETURNS trigger AS $$
         NEW.giving = coalesce_currency_amount(NEW.giving, NEW.main_currency);
         NEW.receiving = coalesce_currency_amount(NEW.receiving, NEW.main_currency);
         NEW.taking = coalesce_currency_amount(NEW.taking, NEW.main_currency);
-        NEW.balance = coalesce_currency_amount(NEW.balance, NEW.main_currency);
         RETURN NEW;
     END;
 $$ LANGUAGE plpgsql;
@@ -172,6 +167,15 @@ $$ LANGUAGE plpgsql;
 CREATE TRIGGER update_profile_visibility
     BEFORE INSERT OR UPDATE ON participants
     FOR EACH ROW EXECUTE PROCEDURE update_profile_visibility();
+
+
+-- settings specific to users who want to receive donations
+
+CREATE TABLE recipient_settings
+( participant           bigint   PRIMARY KEY REFERENCES participants
+, patron_visibilities   int      NOT NULL CHECK (patron_visibilities > 0)
+-- Three bits: 1 is for "secret", 2 is for "private", 4 is for "public".
+);
 
 
 -- elsewhere -- social network accounts attached to participants
@@ -262,7 +266,8 @@ CREATE TABLE tips
 , paid_in_advance   currency_amount
 , renewal_mode      int               NOT NULL DEFAULT 1
   -- 0 means no renewal, 1 means manual renewal, 2 means automatic renewal
-, hidden            boolean
+, visibility        int               NOT NULL CHECK (visibility >= -3 AND visibility <> 0 AND visibility <= 3)
+  -- 1 means secret, 2 means private, 3 means public, negative numbers mean hidden
 , CONSTRAINT no_self_tipping CHECK (tipper <> tippee)
 , CONSTRAINT paid_in_advance_currency_chk CHECK (paid_in_advance::currency = amount::currency)
  );
@@ -321,17 +326,6 @@ CREATE TABLE wallets
 CREATE UNIQUE INDEX ON wallets (owner, (balance::currency), is_current);
 CREATE UNIQUE INDEX ON wallets (remote_owner_id, (balance::currency));
 
-CREATE FUNCTION recompute_balance(bigint) RETURNS currency_amount AS $$
-    UPDATE participants p
-       SET balance = (
-               SELECT sum(w.balance, p.main_currency)
-                 FROM wallets w
-                WHERE w.owner = p.id
-           )
-     WHERE id = $1
- RETURNING balance;
-$$ LANGUAGE SQL STRICT;
-
 
 -- transfers -- balance transfers from one user to another
 
@@ -370,6 +364,7 @@ CREATE TABLE transfers
 
 CREATE INDEX transfers_tipper_idx ON transfers (tipper);
 CREATE INDEX transfers_tippee_idx ON transfers (tippee);
+CREATE INDEX transfers_team_idx ON transfers (team) WHERE team IS NOT NULL;
 
 
 -- paydays -- payday events, stats about them
@@ -404,7 +399,8 @@ CREATE TABLE paydays
 CREATE TYPE payment_net AS ENUM
     ('mango-ba', 'mango-bw', 'mango-cc', 'stripe-card', 'paypal', 'stripe-sdd');
 
-CREATE TYPE route_status AS ENUM ('pending', 'chargeable', 'consumed', 'failed', 'canceled');
+CREATE TYPE route_status AS ENUM
+    ('pending', 'chargeable', 'consumed', 'failed', 'canceled', 'expired');
 
 CREATE TABLE exchange_routes
 ( id            serial         PRIMARY KEY
@@ -543,6 +539,8 @@ CREATE TABLE payin_transfers
 , team          bigint                   REFERENCES participants
 , fee           currency_amount
 , reversed_amount   currency_amount      CHECK (NOT (reversed_amount < 0))
+, visibility    int                      NOT NULL CHECK (visibility >= 1 AND visibility <= 3)
+  -- same meanings as for tips, but negative numbers aren't allowed
 , CONSTRAINT reversal_currency_chk CHECK (reversed_amount::currency = amount::currency)
 , CONSTRAINT self_chk CHECK (payer <> recipient)
 , CONSTRAINT team_chk CHECK ((context = 'team-donation') = (team IS NOT NULL))
@@ -924,25 +922,6 @@ CREATE TABLE balances_at
 );
 
 
--- all the money that has ever entered the system
-
-CREATE TABLE cash_bundles
-( id           bigserial         PRIMARY KEY
-, owner        bigint            REFERENCES participants
-, origin       bigint            NOT NULL REFERENCES exchanges
-, amount       currency_amount   NOT NULL CHECK (amount > 0)
-, ts           timestamptz       NOT NULL
-, withdrawal   int               REFERENCES exchanges
-, disputed     boolean
-, locked_for   int               REFERENCES transfers
-, wallet_id    text
-, CONSTRAINT in_or_out CHECK ((owner IS NULL) <> (withdrawal IS NULL))
-, CONSTRAINT wallet_chk CHECK ((wallet_id IS NULL) = (owner IS NULL))
-);
-
-CREATE INDEX cash_bundles_owner_idx ON cash_bundles (owner);
-
-
 -- whitelist (via profile_noindex) of noteworthy organizational donors
 
 CREATE OR REPLACE VIEW sponsors AS
@@ -1011,29 +990,6 @@ CREATE TABLE debts
 , settlement      int             REFERENCES transfers
 , CONSTRAINT settlement_chk CHECK ((status = 'paid') = (settlement IS NOT NULL))
 );
-
-
--- mangopay_users - links mangopay user accounts to our local participants
-
-CREATE TABLE mangopay_users
-( id            text     PRIMARY KEY
-, participant   bigint   NOT NULL REFERENCES participants
-);
-
-CREATE OR REPLACE FUNCTION upsert_mangopay_user_id() RETURNS trigger AS $$
-    BEGIN
-        INSERT INTO mangopay_users
-                    (id, participant)
-             VALUES (NEW.mangopay_user_id, NEW.id)
-        ON CONFLICT (id) DO NOTHING;
-        RETURN NULL;
-    END;
-$$ LANGUAGE plpgsql;
-
-CREATE TRIGGER upsert_mangopay_user_id
-    AFTER INSERT OR UPDATE OF mangopay_user_id ON participants
-    FOR EACH ROW WHEN (NEW.mangopay_user_id IS NOT NULL)
-    EXECUTE PROCEDURE upsert_mangopay_user_id();
 
 
 -- rate limiting

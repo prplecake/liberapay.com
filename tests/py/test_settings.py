@@ -1,5 +1,5 @@
 from liberapay.constants import PRIVACY_FIELDS, PRIVACY_FIELDS_S
-from liberapay.testing import Harness
+from liberapay.testing import EUR, Harness
 from liberapay.models.participant import Participant
 
 
@@ -39,15 +39,30 @@ class TestPrivacy(Harness):
         expected = '<meta name="robots" content="noindex,nofollow" />'
         assert expected in self.client.GET("/alice/").text
 
-    def test_team_participant_does_show_up_on_explore_teams(self):
-        alice = Participant.from_username('alice')
-        self.make_participant('A-Team', kind='group').add_member(alice)
-        assert 'A-Team' in self.client.GET("/explore/teams/").text
-
-    def test_team_participant_doesnt_show_up_on_explore_teams(self):
-        alice = Participant.from_username('alice')
-        self.make_participant('A-Team', kind='group', hide_from_lists=1).add_member(alice)
-        assert 'A-Team' not in self.client.GET("/explore/teams/").text
+    def test_explore_teams(self):
+        # Create a team
+        self.add_payment_account(self.alice, 'stripe')
+        team = self.make_participant('A-Team', kind='group')
+        team.add_member(self.alice)
+        # Check that it doesn't show up in /explore/teams because it doesn't have patrons
+        r = self.client.GET("/explore/teams/")
+        assert 'A-Team' not in r.text
+        # Add a patron
+        bob = self.make_participant('bob')
+        bob.set_tip_to(team, EUR('1.00'))
+        bob_card = self.upsert_route(bob, 'stripe-card')
+        self.make_payin_and_transfer(bob_card, team, EUR('52.00'))
+        # Check that it now appears in /explore/teams
+        r = self.client.GET("/explore/teams/")
+        assert 'A-Team' in r.text
+        # Hide the team from lists
+        self.client.PxST(
+            "/A-Team/edit/privacy", auth_as=self.alice,
+            data={"privacy": "hide_from_lists", "hide_from_lists": "on"},
+        )
+        # Check that it no longer appears in /explore/teams
+        r = self.client.GET("/explore/teams/")
+        assert 'A-Team' not in r.text
 
 
 class TestUsername(Harness):
@@ -137,3 +152,58 @@ class TestUsername(Harness):
         assert alice.pending_notifs == 0
         bob = bob.refetch()
         assert bob.pending_notifs == 1
+
+
+class TestPassword(Harness):
+
+    def test_setting_and_changing_password(self):
+        alice = self.make_participant('alice')
+        form_data = {
+            'new-password': 'password',
+            'ignore_warning': 'true',
+        }
+        r = self.client.PxST('/alice/settings/edit', form_data, auth_as=alice)
+        assert r.code == 302, r.text
+        form_data['cur-password'] = form_data['new-password']
+        form_data['new-password'] = 'correct horse battery staple'
+        r = self.client.PxST('/alice/settings/edit', form_data, auth_as=alice)
+        assert r.code == 302, r.text
+        form_data['cur-password'] = ''
+        r = self.client.PxST('/alice/settings/edit', form_data, auth_as=alice)
+        assert r.code == 403, r.text
+
+
+class TestRecipientSettings(Harness):
+
+    def test_enabling_and_disabling_non_secret_donations(self):
+        alice = self.make_participant('alice')
+        assert alice.recipient_settings.patron_visibilities == 0
+        # Check that the donation form isn't proposing the visibility options
+        r = self.client.GET('/alice/donate')
+        assert r.code == 200
+        assert 'name="visibility"' not in r.text
+        assert 'Secret donation' not in r.text
+        assert 'Private donation' not in r.text
+        assert 'Public donation' not in r.text
+        # Enable non-secret donations
+        r = self.client.PxST('/alice/patrons/', {'see_patrons': 'yes'}, auth_as=alice)
+        assert r.code == 302
+        del alice.recipient_settings
+        assert alice.recipient_settings.patron_visibilities == 7
+        r = self.client.GET('/alice/donate')
+        assert r.code == 200
+        assert 'name="visibility"' in r.text
+        assert 'Secret donation' in r.text
+        assert 'Private donation' in r.text
+        assert 'Public donation' in r.text
+        # Disable non-secret donations
+        r = self.client.PxST('/alice/patrons/', {'see_patrons': 'no'}, auth_as=alice)
+        assert r.code == 302
+        del alice.recipient_settings
+        assert alice.recipient_settings.patron_visibilities == 1
+        r = self.client.GET('/alice/donate')
+        assert r.code == 200
+        assert 'name="visibility"' not in r.text
+        assert 'Secret donation' not in r.text
+        assert 'Private donation' not in r.text
+        assert 'Public donation' not in r.text

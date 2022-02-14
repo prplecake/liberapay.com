@@ -4,9 +4,10 @@ from decimal import Decimal, ROUND_FLOOR, ROUND_HALF_UP, ROUND_UP
 import re
 
 from babel.numbers import get_currency_precision
-from mangopay.utils import Money
 from markupsafe import Markup
 from pando.utils import utc
+
+from .i18n.currencies import D_CENT, D_ZERO, D_MAX, Money  # noqa: F401
 
 
 def ordered_set(keys):
@@ -114,10 +115,6 @@ CURRENCIES = ordered_set([
     'PHP', 'PLN', 'RON', 'RUB', 'SEK', 'SGD', 'THB', 'TRY', 'ZAR'
 ])
 
-D_CENT = Decimal('0.01')
-D_MAX = Decimal('999999999999.99')
-D_ZERO = Decimal('0.00')
-
 class _DonationLimits(defaultdict):
     def __missing__(self, currency):
         minimum = Money.MINIMUMS[currency].amount
@@ -160,7 +157,7 @@ ELSEWHERE_ACTIONS = {'connect', 'lock', 'unlock'}
 
 EMAIL_VERIFICATION_TIMEOUT = timedelta(hours=24)
 EMAIL_RE = re.compile(r'''
-    # This is the regexp used by MangoPay (as of February 2017).
+    # This was the regexp used by MangoPay as of February 2017.
     # It rejects some valid but exotic addresses.
     # https://en.wikipedia.org/wiki/Email_address
     ^
@@ -191,22 +188,6 @@ check_bits([e.bit for e in EVENTS])
 EVENTS = OrderedDict((e.name, e) for e in EVENTS)
 EVENTS_S = ' '.join(EVENTS.keys())
 
-# https://www.mangopay.com/pricing/
-FEE_PAYOUT = {
-    'EUR': {
-        'domestic': (SEPA, Fees(0, 0)),
-        'foreign': Fees(0, 0),
-    },
-    'GBP': {
-        'domestic': ({'GB'}, Fees(0, Money('0.45', 'GBP'))),
-        'foreign': Fees(0, Money('1.90', 'GBP')),
-    },
-    'USD': {
-        '*': Fees(0, Money('3.00', 'USD')),
-    },
-}
-FEE_PAYOUT_WARN = Decimal('0.03')  # warn user when fee exceeds 3%
-
 HTML_A = Markup('<a href="%s">%s</a>')
 
 IDENTITY_FIELDS = set("""
@@ -230,22 +211,6 @@ INVOICE_STATUSES = {
     'paid': _("Paid"),
     'rejected': _("Rejected"),
 }
-
-# https://docs.mangopay.com/api-references/kyc-rules/
-KYC_DOC_MAX_SIZE = 7000000
-KYC_DOC_MAX_SIZE_MB = int(KYC_DOC_MAX_SIZE / 1000000)
-KYC_DOCS_EXTS = ['pdf', 'jpeg', 'jpg', 'gif', 'png']
-KYC_DOCS_EXTS_STR = ', '.join(KYC_DOCS_EXTS)
-KYC_INCOME_THRESHOLDS = [(i, Money(a, 'EUR')) for i, a in (
-    (1, 18000),
-    (2, 30000),
-    (3, 50000),
-    (4, 80000),
-    (5, 120000),
-    (6, 120000),
-)]
-KYC_PAYIN_YEARLY_THRESHOLD = Money('2500', 'EUR')
-KYC_PAYOUT_YEARLY_THRESHOLD = Money('1000', 'EUR')
 
 LAUNCH_TIME = datetime(2016, 2, 3, 12, 50, 0, 0, utc)
 
@@ -313,6 +278,8 @@ PAYIN_AMOUNTS = {
                 'EUR': Money('52000.00', 'EUR'),
                 'USD': Money('52000.00', 'USD'),
             }),
+            # Stripe has per-account limits for SEPA Direct Debits. Liberapay's
+            # account has a per-debit limit of €75k, and no weekly limit.
         },
     },
 }
@@ -372,19 +339,13 @@ PERIOD_CONVERSION_RATES = {
     'yearly': Decimal(1) / Decimal(52),
 }
 
-POSTAL_ADDRESS_KEYS = (
-    'AddressLine1', 'AddressLine2', 'City', 'Region', 'PostalCode', 'Country'
-)
 POSTAL_ADDRESS_KEYS_LIBERAPAY = (
     'country', 'region', 'city', 'postal_code', 'local_address'
 )
-POSTAL_ADDRESS_KEYS_STRIPE = (
-    'line1', 'line2', 'city', 'state', 'postal_code', 'country'
-)
 
 PRIVACY_FIELDS = OrderedDict([
-    ('hide_giving', (_("Hide total giving from others."), False)),
-    ('hide_receiving', (_("Hide total receiving from others."), False)),
+    ('hide_giving', (_("Do not publish the amounts of money I send."), False)),
+    ('hide_receiving', (_("Do not publish the amounts of money I receive."), False)),
     ('hide_from_search', (_("Hide this profile from search results on Liberapay."), True)),
     ('profile_noindex', (_("Tell web search engines not to index this profile."), True)),
     ('hide_from_lists', (_("Prevent this profile from being listed on Liberapay."), True)),

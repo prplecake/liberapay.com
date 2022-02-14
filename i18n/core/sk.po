@@ -129,51 +129,6 @@ msgid "Manage your email addresses"
 msgstr "Spravujte vaše emailové adresy"
 
 #, python-brace-format
-msgid "You have received approximately {0} this week"
-msgstr "Tento týždeň ste obdržali zhruba {0}"
-
-#, python-brace-format
-msgid "You have received {0} this week"
-msgstr "Tento týždeň ste obdržali {0}"
-
-#, python-brace-format
-msgid "{0} was given to you personally."
-msgstr "{0} bolo vám dané osobne."
-
-msgid "You are not a member of any team, so you haven't received any money for participation in teams."
-msgstr "Nie ste členom žiadneho tímu, preto ste neobdržali žiadne príspevky za účasť v tímoch."
-
-#, python-brace-format
-msgid "No money was given to you for your role in the {0} team."
-msgid_plural "No money was given to you for your roles in the {n} teams you are a member of."
-msgstr[0] "Neobdržali ste žiadne príspevky za účasť v {0} tíme."
-msgstr[1] "Neobdržali ste žiadne príspevky za účasť v {n} tímoch."
-msgstr[2] "Neobdržali ste žiadne príspevky za účasť v {n} tímoch."
-
-#, python-brace-format
-msgid "{0} was given to you for your role in the {1} team."
-msgstr "{0} ste obdržali za vašu účasť v tíme {1}."
-
-#, python-brace-format
-msgid "{0} was given to you for your roles in the following teams:"
-msgstr "{0} ste obdržali za vaše členstvo v nasledujúcich tímoch:"
-
-#, python-brace-format
-msgid "{0}: {1}"
-msgstr "{0}: {1}"
-
-#, python-brace-format
-msgid "You now have {0} in your wallet."
-msgstr "Teraz máte v peňaženke {0}."
-
-msgid "See your account's transaction logs"
-msgstr "Zobraziť záznam prevodov na Vašom účte"
-
-#, python-brace-format
-msgid "- {0}: {1}"
-msgstr "- {0}: {1}"
-
-#, python-brace-format
 msgid "Your Liberapay income is approximately {money_amount} this week"
 msgstr "Váš zárobok v Liberapay tento týždeň je zhruba {money_amount}"
 
@@ -208,23 +163,12 @@ msgid "NB: Donations through Liberapay are now paid in advance instead of being 
 msgstr "Pozn.: Príspevky cez Liberapay sú teraz platené predom narozdiel od toho aby boli prenášané týždenne. Čísla sú rovnaké ako tie ktoré by ste dostali v starom systéme."
 
 #, python-brace-format
-msgid "You have {money_amount} in your Mangopay wallet."
-msgstr "Vlastníte {money_amount} vo Vašom Mangopay účte."
-
-msgid "Withdraw money"
-msgstr "Vybrať peniaze"
-
-#, python-brace-format
 msgid "Your invoice to {0} has been accepted - Liberapay"
 msgstr "Vaša faktúra pre {0} bola prijatá - Liberapay"
 
 #, python-brace-format
 msgid "Your request for a payment of {amount} from {addressee_name} has been accepted."
 msgstr "Vaša požiadavka na vyplatenie {amount} od {addressee_name} bola prijatá."
-
-#, python-brace-format
-msgid "Unfortunately the wallet of {0} does not contain enough money to pay you right now, but as soon as it does you will be paid automatically."
-msgstr "Bohužiaľ, peňaženka {0} momentálne neobsahuje dostatočné prostriedky, akonáhle to bude možné, peniaze vám pošleme automaticky."
 
 msgid "View the invoice"
 msgstr "Zobraziť faktúru"
@@ -234,14 +178,8 @@ msgid "Your invoice to {0} has been accepted and paid - Liberapay"
 msgstr "Vaša faktúra pre {0} bola prijatá a zaplatená - Liberapay"
 
 #, python-brace-format
-msgid "Your request for a payment of {amount} from {addressee_name} has been accepted, and the money has been transferred to your wallet."
-msgstr "Vaša žiadosť o platbu {amount} od {addressee_name} bola prijatá a peniaze boli prevedené do vašej peňaženky."
-
-msgid "Withdraw the money"
-msgstr "Vybrať peniaze"
-
-msgid "However you cannot withdraw the money yet as it is still in quarantine."
-msgstr "Peniaze ešte nemôžete vybrať, pretože sú v ochrannej lehote."
+msgid "Your invoice of {amount} to {addressee_name} has been paid."
+msgstr ""
 
 #, python-brace-format
 msgid "Your invoice to {0} has been rejected - Liberapay"
@@ -318,51 +256,6 @@ msgstr "Popis: {0}"
 
 msgid "Unsubscribe"
 msgstr "Odhlásiť sa"
-
-msgid "Liberapay is in trouble"
-msgstr "Liberapay má problémy"
-
-#, python-brace-format
-msgid ""
-"Our payment processor (Mangopay) is throwing us out, so we recommend that you {link1_start}evacuate the money from your account{link_end} before July 26th.\n"
-"\n"
-"Clicking on the link above will bring you to a new page titled “Emptying your wallet” and ask you to choose between two options.\n"
-"\n"
-"If you use Liberapay as a donor the first choice is recommended, especially if you wish to continue using Liberapay. This first option distributes all the money from your wallet to the people who would have normally received it over time. The recipients will be able to see that this sudden burst of income corresponds to multiple weeks of donations.\n"
-"\n"
-"For example, if you’re donating $1 per week to 2 creators, and you have $40 in your wallet, then each creator will receive $20, and 20 weeks from now you’ll receive our usual email reminding you that it’s time to add money again.\n"
-"\n"
-"Please note that the disbursement may fail for various reasons. If you get an error message like “The attempt to distribute all the money in your wallet failed: XX.XX remains.”, then the problem is probably on the recipient side, for example someone who hasn’t filled the identity form or a team that hasn’t defined how the income should be split between the members.\n"
-"\n"
-"The other option is to get your money back, if possible through a refund, otherwise by withdrawing it to your bank account.\n"
-"\n"
-"If you receive donations on Liberapay, you may want to wait a week before withdrawing your income in order to give your patrons a chance to transfer the remaining of their donations from their wallets to yours.\n"
-"\n"
-"We’ll inform you as soon as the integration of a new payment processor is complete, and tell you if there’s anything you need to do to start receiving donations on Liberapay again.\n"
-"\n"
-"If you’re a member of a team, you should make sure that your take is set and up-to-date. You can do that from {link2_start}your “Receiving” page{link_end}.\n"
-"\n"
-"You can find more information in {link3_start}this blog post{link_end}, and as always you can reply to this email if you need help.\n"
-msgstr ""
-"Náš platobný systém (Mangopay) prestáva mať s nami spoluprácu. Doporučujeme vám {link1_start} presunúť vaše peniaze z vášho účtu {link_end} pred 26. júlom.\n"
-"\n"
-"Kliknutím na odkaz vyššie sa dostanete na novú stránku s názvom \"Vyprázdnenie vašej peňaženky\" a budete mať na výber 2 možnosti.\n"
-"\n"
-"Ak používate Liberapay ako darca prvá možnosť je vám odporúčaná, obvzlášť v tedy ak chcete pokračovať v používaní Liberapay. Prvá možnosť rozdá peniaze luďom ktorý by to dostali normálne len s časovým posunom. Prijímatelia budú schopný vidieť tento nárast zárobku ako viac týždenný dar.\n"
-"\n"
-"Napríklad, ak zaplatíte $1 za týždeň pre 2 ludí, a máte $40 vo vašej peňaženke, každý z nich dostane $20 a za 20 týždňov dostanete email, ktorý vás upozorní, že je treba peniaze znova dodať.\n"
-"\n"
-"Môže nastať ale chyba na strane prijímateľa a peniaze sa neodošlú, napríklad, keď si tím nenastaví rozposielanie medzi ich luďmi.\n"
-"\n"
-"Ďalšia možnosť je dostať peniaze späť, ak je to možné cez vrátenie, inak sa to dá aj cez vybratie do vášho bankového účtu.\n"
-"\n"
-"Ak ste dostali dar na Liberapay mali by ste počkať týždeň pred vybratím do bankového účtu, aby ste dali šancu darcom aby vám rozposielali ich dary.\n"
-"\n"
-"Budeme vás informovať hneď ako bude zavedený nový platobný systém.\n"
-"\n"
-"Ak ste členom tímu, mali by ste si skontrolovať aby všetky vaše informácie sedeli. Môžete to spraviť na {link2_start}vašej prijímacej stránke{link_end}\n"
-"\n"
-"Viac informácií môžete nájsť na {link3_start}tomto linku{link_end} a taktiež môžete odpovedať na tento email ak potrebujete pomoc. (v angličtine).\n"
 
 msgid "The password of your Liberapay account is weak"
 msgstr "Vaše heslo od Liberapay konta je slabé"
@@ -497,11 +390,11 @@ msgstr "Váš bankový účet bude účtovaný"
 
 #, python-brace-format
 msgid "A direct debit of {money_amount} from your bank account ({partial_account_number}) has been initiated in order to fund your donation to {recipient}."
-msgstr ""
+msgstr "Bolo zahájené inkaso vo výške {money_amount} z vášho bankového účtu ({partial_account_number}) za účelom financovania vašeho príspevku pre {recipient}."
 
 #, python-brace-format
 msgid "A direct debit of {money_amount} from your bank account ({partial_account_number}) has been initiated in order to fund your donations to {recipients}."
-msgstr ""
+msgstr "Bolo zahájené inkaso vo výške {money_amount} z vášho bankového účtu ({partial_account_number}) za účelom financovania vašeho príspevku pre {recipients}."
 
 #, python-brace-format
 msgid "We have initiated a direct debit of {money_amount} from your {bank_name} account ({partial_account_number})."
@@ -677,6 +570,16 @@ msgstr "Sme radi že vás môžme informovať, že {user_name} sa prihlásil na 
 msgid "Donate to {0}"
 msgstr "Prispieť {0}"
 
+msgid "Your Liberapay profile is incomplete"
+msgstr "Váš profil na Liberapay je neúplný"
+
+#, python-brace-format
+msgid "Your {link_start}public profile page{link_end} is missing a description. Without this information, we may be unable to confirm that your use of our platform is legitimate, and consequently your account may be marked as fraudulent and disabled. An incomplete profile is also less likely to attract donations, so we strongly recommend that you fill yours."
+msgstr "Na vašej {link_start}verejnej stránke profilu{link_end} chýba popis. Bez týchto informácii nemusíme byť schopný potvrdiť, že je vaše používanie našej platformy legitímne a váš účet môže byť následne označený ako podvodný a deaktivovaný. Neúplný profil taktiež s menšou pravdepodobnosťou priláka darcov, preto dôrazne odporúčame, aby ste svoj profil vyplnili."
+
+msgid "Edit your profile"
+msgstr "Upraviť profil"
+
 msgid "Liberapay donation renewal: payment aborted"
 msgstr "Obnovenie príspevku Liberapay: platba zrušená"
 
@@ -747,18 +650,18 @@ msgstr[2] "Obnovenie príspevku Liberapay: nadchádzajúce faktúry v hodnote {m
 
 #, python-brace-format
 msgid "This message is a reminder that {amount} is going to be debited from your default payment instrument on {debit_date} in order to renew your donation to {recipient}."
-msgstr "Táto správa je upomienka že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja dňa {debit_date} aby sa obnovil váš príspevok pre {recipient}."
+msgstr "Táto správa je upomienka, že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja dňa {debit_date} aby sa obnovil váš príspevok pre {recipient}."
 
 #, python-brace-format
 msgid "This message is a reminder that {amount} is going to be debited from your default payment instrument on {debit_date} in order to renew your donations to {recipients}."
-msgstr "Táto správa je upomienka že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja dňa {debit_date} aby sa obnovili vaše príspevky pre {recipients}."
+msgstr "Táto správa je upomienka, že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja dňa {debit_date} aby sa obnovili vaše príspevky pre {recipients}."
 
 #, python-brace-format
 msgid "<unused singular (hash=db074c4f088215860f599fe497c6aa39)>"
 msgid_plural "This message is a reminder that a total of {amount} is going to be debited from your default payment instrument within the next {n} days in order to renew your donations."
 msgstr[0] "<unused singular (hash=db074c4f088215860f599fe497c6aa39)>"
-msgstr[1] "Táto správa je upomienka že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja v nasledujúcich {n} dňoch aby sa obnovili vaše príspevky."
-msgstr[2] "Táto správa je upomienka že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja v nasledujúcich {n} dňoch aby sa obnovili vaše príspevky."
+msgstr[1] "Táto správa je upomienka, že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja v nasledujúcich {n} dňoch aby sa obnovili vaše príspevky."
+msgstr[2] "Táto správa je upomienka, že hodnota {amount} bude faktúrovaná z vášho predvoleného platobného nástroja v nasledujúcich {n} dňoch aby sa obnovili vaše príspevky."
 
 #, python-brace-format
 msgid "If you wish to modify your donations, click on the following link: {link_start}manage my donations{link_end}."
@@ -791,20 +694,6 @@ msgstr "Vaše Liberapay konto bolo upravené"
 #, python-brace-format
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Niekto sa snaží priradiť emailovú adresu {0} na Liberapay účet ktoré momentálne adresa je {1}. Ak ste nevykonali túto operáciu, tak by ste mali kliknúť odkaz nižšie a vymazať túto adresu z vášho účtu."
-
-msgid "Withdrawal initiated"
-msgstr "Výber zahájený"
-
-#, python-brace-format
-msgid "We have initiated a transfer of {0} from your Liberapay wallet to your bank account. Please note that it can take several business days for the transaction to complete."
-msgstr "Začali sme prevod {0} z peňaženky Liberapay na váš bankový účet. Vezmite prosím na vedomie, že transakcia môže trvať niekoľko pracovných dní."
-
-msgid "Withdrawal failure"
-msgstr "Výber zlyhal"
-
-#, python-brace-format
-msgid "We tried to transfer {0} from your Liberapay wallet to your bank account, but the transfer failed with this message:"
-msgstr "Snažili sme sa previesť {0} z peňaženky Liberapay na váš bankový účet, ale prevod sa nepodaril s nasledujúcou správou:"
 
 msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
 msgstr "Vyzerá to tak, že ste našli chybu! Ospravedlňujeme sa za nepríjemnosti, budeme sa snažiť to opraviť čo najskôr!"
@@ -889,11 +778,11 @@ msgstr "Kreditná/debetná Karta"
 msgid "Direct Debit"
 msgstr "Príkaz z inkasa"
 
-msgid "Hide total giving from others."
-msgstr "Skryť hodnotu príspevkov pred ostatnými."
+msgid "Do not publish the amounts of money I send."
+msgstr "Nezverejňovať čiastky, ktoré posielam."
 
-msgid "Hide total receiving from others."
-msgstr "Skryť koľko dostávate pred ostatnými."
+msgid "Do not publish the amounts of money I receive."
+msgstr "Nezverejňovať čiastky, ktoré dostávam."
 
 msgid "Hide this profile from search results on Liberapay."
 msgstr "Skryť tento profil vo výsledkoch vyhladávanie na Liberapay."
@@ -1112,9 +1001,6 @@ msgstr "Hodnota {money_amount} nie je v očakávanej mene ({expected_currency}).
 msgid "It seems you're trying to delete something that doesn't exist."
 msgstr "Zdá sa, že sa snažíte odstrániť niečo, čo neexistuje."
 
-msgid "There isn't enough money in your wallet."
-msgstr "Vo vašej peňaženke nie je dostatok peňazí."
-
 #, python-brace-format
 msgid "You can't withdraw more than {0} at this time."
 msgstr "V tomto okamžiku nejde vybrať viac než {0}."
@@ -1142,10 +1028,6 @@ msgstr "Komunita \"{0}\" už existuje."
 msgid "\"{0}\" is not a valid community name."
 msgstr "\"{0}\" nie je platný názov pre komunitu."
 
-#, python-brace-format
-msgid "Transferring the money failed, sorry. Please contact support@liberapay.com if the problem persists. Error message: {0}"
-msgstr "Ospravelňujem sa, ale prevod peňazí zlyhal. Pokiaľ obtiaže pretrvávajú, prosím obráťte sa na support@liberapay.com. Správa o chybe: {0}"
-
 msgid "You are not allowed to do this because your account is currently suspended."
 msgstr "Túto operáciu nesmiete previesť, pretože je váš účet pozastavený."
 
@@ -1164,10 +1046,6 @@ msgstr "Poslednú dobu bolo príliš veľa pokusov na vykonanie tejto akcie, pro
 
 msgid "You're sending requests at an unusually fast pace. Please retry in a few seconds, and contact support@liberapay.com if the problem persists."
 msgstr "Odosielate požiadavky nezvyčajne rýchlo. Prosím vyskúšajte to za pár sekúnd alebo kontaktujte support@liberapay.com ak problém pretrváva."
-
-#, python-brace-format
-msgid "The attempt to distribute all the money in your wallet failed: {money_amount} remains."
-msgstr "Pokus na distribúciu všetkých peňazí z vašej peňaženky zlyhal: {money_amount} ostáva."
 
 #, python-brace-format
 msgid "The attempt to send an email to {email_address} failed. Please check that the address is valid and retry. If the problem persists, please contact support@liberapay.com."
@@ -1477,17 +1355,14 @@ msgstr "Platobný kalendár"
 msgid "Receiving"
 msgstr "Dostávate"
 
+msgid "Patrons"
+msgstr "Patróni"
+
 msgid "Payment Processors"
 msgstr "Platobné Systémy"
 
 msgid "Ledger"
 msgstr "Účtovná kniha"
-
-msgid "Wallet"
-msgstr "Peňaženka"
-
-msgid "Emptying your wallet"
-msgstr "Vyprázdnite vašu peňaženku"
 
 msgid "Identity"
 msgstr "Identita"
@@ -1748,9 +1623,6 @@ msgstr "Prostriedky"
 msgid "Schedule"
 msgstr "Harmonogram"
 
-msgid "Statement"
-msgstr "Prehlásenie"
-
 msgid "Members"
 msgstr "Členovia"
 
@@ -1811,9 +1683,6 @@ msgstr "Poštové smerovacie číslo"
 
 msgid "Address within the city"
 msgstr "Adresa vo vnútri mesta"
-
-msgid "Patrons"
-msgstr "Patróni"
 
 msgid "Income"
 msgstr "Príjem"
@@ -1981,127 +1850,51 @@ msgstr "Manuálna obnova"
 msgid "A reminder to renew your donation will be sent to you via email."
 msgstr "Cez email vám bude odoslaná pripomienka k obnoveniu príspevku."
 
+#, python-brace-format
+msgid "{username} has chosen not to see who their patrons are, so your donation will be secret."
+msgstr "{username} sa rozhodol nezobrazovať svojich patrónov, takže váš príspevok bude tajomstvo."
+
+#, python-brace-format
+msgid "This donation won't be secret, you will appear in {username}'s private list of patrons."
+msgstr "Tento príspevok nebude tajný, objavíte sa v súkromnom zozname patrónov užívateľa {username}."
+
+#, python-brace-format
+msgid "{username} discloses who their patrons are, your donation will be public."
+msgstr "{username} zverejní, kto sú jeho patróni, váš príspevok bude verejný."
+
+msgid "Please select a privacy level for this donation:"
+msgstr "Vyberte úroveň ochrany osobných údajov pre tento príspevok:"
+
+msgid "Secret donation"
+msgstr "Tajný príspevok"
+
+#, python-brace-format
+msgid "Only you will know that you donate to {username}."
+msgstr "Iba vy budete vidieť, že ste prispeli {username}."
+
+msgid "Private donation"
+msgstr "Súkromný príspevok"
+
+#, python-brace-format
+msgid "You will appear in {username}'s private list of patrons."
+msgstr "Objavíte sa v súkromnom zozname patrónov {username}."
+
+msgid "Public donation"
+msgstr "Verejný príspevok"
+
+#, python-brace-format
+msgid "Everybody will be able to see that you support {username}."
+msgstr "Všetci uvidia, že podporujete {username}."
+
+#, python-brace-format
+msgid "{username} hasn't yet specified whether they want to see who their patrons are, so your donation will be secret."
+msgstr "{username} zatiaľ neuviedol, či chce vidieť, kto sú jeho patróni, takže váš príspevok bude tajný."
+
 msgid "Discontinue the donation"
 msgstr "Zastaviť príspevok"
 
 msgid "Cancel the pledge"
 msgstr "Zrušiť prísľub"
-
-#, python-brace-format
-msgid "You have uploaded {n} document of this type:"
-msgid_plural "You have uploaded {n} documents of this type:"
-msgstr[0] "Nahrali ste {n} dokument tohto typu:"
-msgstr[1] "Nahrali ste {n} dokumentov tohto typu:"
-msgstr[2] "Nahrali ste {n} dokumenty tohto typu:"
-
-#, python-brace-format
-msgid "Document #{id} is awaiting validation."
-msgstr "Dokument #{id} čaká na validáciu."
-
-#, python-brace-format
-msgid "Document #{id} has been validated."
-msgstr "Dokument #{id} bol overený."
-
-#, python-brace-format
-msgid "Document #{id} has been rejected: {refused_reason_type} - {refused_reason_message}."
-msgstr "Dokument #{id} bol zamietnutý: {refused_reason_type} - {refused_reason_message}."
-
-msgid "If you need assistance, you can send an email to support@liberapay.com."
-msgstr "Pokiaľ potrebujete pomoc, môžete poslať email na support@liberapay.com."
-
-msgid "Income Range"
-msgstr "Príjem"
-
-#, python-brace-format
-msgid "Less than {0}"
-msgstr "Menej než {0}"
-
-#, python-brace-format
-msgid "More than {0}"
-msgstr "Viac než {0}"
-
-#, python-brace-format
-msgid "Between {0} and {1}"
-msgstr "Medzi {0} a {1}"
-
-msgid "How much money you earn per year, approximately."
-msgstr "Koľko peňazí približne zarobíte za rok."
-
-msgid "Identity Proof"
-msgstr "Doklad totožnosti"
-
-msgid "Passport, or ID Card (front and back), or UK driving licence."
-msgstr "Cestovný pas, občiansky preukaz (predná a zadná strana) alebo vodičský preukaz."
-
-msgid "Articles of Association"
-msgstr "Stanovy"
-
-msgid "Certified articles of association (Statute) - formal memorandum stated by the entrepreneurs, in which the following information is mentioned: business name, activity, registered address, shareholding."
-msgstr "Certifikované články spoločnosti, formálne memorandum vydané podnikateľmi v ktorom sa spomína nasledujúca informácia: názov, aktivita, registrovaná adresa, podiel."
-
-msgid "Registration Proof"
-msgstr "Dôkaz registrácie"
-
-msgid "Extract from the Company Register issued within the last three months."
-msgstr "Výpis z obchodného registra vydaný behom posledných troch mesiacov."
-
-msgid "Proof of registration from the official authority."
-msgstr "Doklad o registrácií od úradného orgánu."
-
-msgid "Shareholder Declaration"
-msgstr "Deklarácia akcionára"
-
-#, python-brace-format
-msgid "Please download and fill the {link_start}shareholder declaration form{link_end}."
-msgstr "Prosím stiahnite a vyplnte {link_start}formulár o deklarácii akcionára{link_end}."
-
-msgid "Legal Representative Information"
-msgstr "Informácie o právnom zástupcovi"
-
-msgid "The following fields are about the organization's legal representative (you, probably)."
-msgstr "Nasledujúce pole je o zákonnom zástupcovy (pravdepodobne o vás)."
-
-#, python-brace-format
-msgid "The following file formats are supported: {0}."
-msgstr "Sú podporované nasledovné formáty súborov: {0}."
-
-#, python-brace-format
-msgid "The maximum size of each file is {0}MB."
-msgstr "Maximálna velkosť každého súboru je {0} MB."
-
-msgid "We need to know who you are in order to comply with financial regulations. Only authorized personnel will be able to see this information, we will not show it to other users or anyone else unless required by law."
-msgstr "Musíme vedieť kto ste aby sme vyhoveli finančným nariadeniam. Iba autorizovaný personál bude schopný vidieť túto informáciu, neukážeme to nikomu pokiaľ to nebude vyžadovať zákon."
-
-msgid "Given Name"
-msgstr "Krstné meno"
-
-msgid "Family Name"
-msgstr "Priezvisko"
-
-msgid "Country (nationality)"
-msgstr "Občianstvo"
-
-msgid "Organization Type"
-msgstr "Druh organizácie"
-
-msgid "Business"
-msgstr "Firma"
-
-#, python-brace-format
-msgid "I agree to {0}MangoPay's Terms of Service{1}"
-msgstr "Súhlasím s {0}podmienkami služby MangoPay{1}"
-
-msgid "Address"
-msgstr "Adresa"
-
-msgid "Address (second line)"
-msgstr "Adresa (druhý riadok)"
-
-msgid "Region"
-msgstr "Lokalita"
-
-msgid "Postal Code"
-msgstr "Poštové smerovacie číslo"
 
 msgid "People who contribute to the commons need you to support their work. Building free software, spreading free knowledge, these things take time and cost money, not only to do the initial work, but also to maintain it over time."
 msgstr "Ľudia, ktorí prispievajú spoločnosti, potrebujú podporu pre svoju prácu. Činnosti ako sú tvorba slobodného software, alebo bezplatné rozširovanie znalostí, zaberajú čas a stoja peniaze. Nie len ich tvorba, ale aj ich údržba v priebehu času."
@@ -2556,6 +2349,21 @@ msgstr "Liberapay teraz podporuje automatické obnovovanie, chcete to použiť n
 msgid "Yes, activate automatic renewals"
 msgstr "Áno, aktivovať automatické obnovovanie"
 
+msgid "Liberapay now supports non-anonymous donations, do you want to modify the visibility of all your donations at once?"
+msgstr "Liberapay teraz podporuje neanonymné príspevky, chcete zmeniť viditeľnosť všetkých svojich darov naraz?"
+
+msgid "Reveal my donations to everyone"
+msgstr "Zverejnite moje príspevky všetkým"
+
+msgid "Reveal my donations to the beneficiaries only"
+msgstr "Zverejnite moje príspevky iba príjemcom"
+
+msgid "Keep my donations as they are"
+msgstr "Ponechajte moje príspevky tak ako sú"
+
+msgid "Since you've chosen to make a public donation, we recommend that you complete your public profile."
+msgstr "Vzhľadom k tomu, že ste sa rozhodli poskytnúť verejný príspevok, odporúčame, aby ste vyplnili svoj verejný profil."
+
 msgid "You have enabled automatic renewals for some or all of your donations, but you don't have any valid payment instrument that would allow us to initiate the automatic payments when the time comes."
 msgstr "Nastavili ste automatické obnovovanie na niektoré alebo na všetky vaše príspevky, ale nemáte žiadny funkčný platobný nástroj ktorý by dovoloval používanie automatický platieb."
 
@@ -2565,10 +2373,6 @@ msgid_plural "You have {n} donations awaiting payment."
 msgstr[0] "Máte {n} príspevok očakávajúci platbu."
 msgstr[1] "Máte {n} príspevky očakávajúce platbu."
 msgstr[2] "Máte {n} príspevkov očakávajúcich platbu."
-
-#, python-brace-format
-msgid "{money_amount}{small}/week{end_small}"
-msgstr "{money_amount}{small}/týždenne{end_small}"
 
 #, python-brace-format
 msgid "{money_amount}{small}/month{end_small}"
@@ -2699,8 +2503,8 @@ msgstr "Nepodporuje {currency}"
 msgid "Doesn't support automatic renewal"
 msgstr "Nepodporuje automatickú obnovu"
 
-msgid "Not anonymous"
-msgstr "Nie anonymné"
+msgid "Reveals your name and email address to the recipient"
+msgstr "Prezradí príjemcovi vaše meno a emailovú adresu"
 
 msgid "Pay with PayPal"
 msgstr "Zaplatiť PayPal"
@@ -2754,8 +2558,8 @@ msgstr "Liberapay neukladá vaše peniaze, celá čiastka vašej platby pôjde o
 msgid "Liberapay does not store money, the entire amount of your payment will go immediately to the {payment_provider} account of {recipient_name}."
 msgstr "Liberapay neukladá vaše peniaze, celá čiastka vašej platby pôjde ihneď {payment_provider} účet {recipient_name}."
 
-msgid "PayPal payments are currently not anonymous, the recipient will see your name and email address."
-msgstr "PayPal platby nie sú momentálne anonymné, prijímateľ vidí vaše meno a emailovú adresu."
+msgid "PayPal reveals your name and email address to the recipient."
+msgstr "PayPal prezradí príjemcovi vaše meno a emailovú adresu."
 
 msgid "Initiate the payment"
 msgstr "Začnite platbu"
@@ -2804,6 +2608,9 @@ msgstr "Dáta budú posielané priamo do platobného systému {name} cez zašifr
 msgid "Remember the card number for next time"
 msgstr "Zapamätajte si číslo karty na neskôr"
 
+msgid "Use this payment instrument by default for future payments"
+msgstr "Použiť tento platobný nástroj ako predvoľbu pre budúce platby"
+
 msgid "Please input your name and your IBAN (International Bank Account Number):"
 msgstr "Prosím zadajte vaše meno a IBAN (číslo medzinárodného bankového účtu):"
 
@@ -2813,6 +2620,9 @@ msgstr "Poskytnutím Vášho IBAN a potvrdením tejto platby povoľujete {platfo
 
 msgid "Remember the bank account number for future payments"
 msgstr "Zapamätať si číslo bankového účtu pre budúce platby"
+
+msgid "Please input your postal address:"
+msgstr "Zadajte svoju poštovú adresu:"
 
 #, python-brace-format
 msgid "'{0}' is not an acceptable amount (min={1}, max={2})"
@@ -2872,17 +2682,8 @@ msgstr[2] "Máte {n} naplánovaných platieb:"
 msgid "You currently don't have any scheduled payment."
 msgstr "Momentálne nemáte žiadne naplánované platby."
 
-msgid "Are you sure you want to change the type of your account? For legal reasons we will have to create a new account for you in our payment partner's system, and transfer the money from your old account."
-msgstr "Ste si istý že chcete zmeniť typ vášho účtu? Kvôli právnym dôvodom vytvoríme nový účet u platobného partnera a pošleme peniaze z vášho starého účtu na nový."
-
-msgid "We can't change the type of your account during payday, please try again in a few minutes."
-msgstr "V deň výplaty nemôžete zmeniť typ vášho účtu, prosím skúste to znova za pár minút."
-
-msgid "Are you sure you want to change your identity information? If you do, you may have to go through the identity verification process again."
-msgstr "Ste si istý, že chcete zmeniť svoju identitu? Pokiaľ áno, je možné, že budete musieť zona prejsť procesor verifikácie."
-
-msgid "You haven't filled all the required fields."
-msgstr "Nevyplnili ste všetky vyžadované polia."
+msgid "The provided postal address is incomplete."
+msgstr "Daná poštová adresa nie je kompletná."
 
 msgid "Invalid date of birth."
 msgstr "Chybný dátum narodenia."
@@ -2890,27 +2691,8 @@ msgstr "Chybný dátum narodenia."
 msgid "Your identity information has been updated."
 msgstr "Vaše informácie o indentite boli aktualizované."
 
-msgid "Your identity information has been registered."
-msgstr "Vaše informácie o indentite boli registrované."
-
-msgid "You have to agree to MangoPay's Terms of Service."
-msgstr "Musíte súhlasiť s podmienkami MangoPay."
-
 msgid "JavaScript is required"
 msgstr "Je potrebné mať povolený JavaScript"
-
-msgid "Level 2"
-msgstr "Úroveň 2"
-
-msgid "You have completed the identity verification process, the amount of money you can give and receive per year is no longer limited."
-msgstr "Dokončili ste proces verifikácie identity, počet peňazí, ktoré môžte dať a dostať za rok už nie je limitovaný."
-
-#, python-brace-format
-msgid "If you give more than {0} in a year, or receive more than {1} in a year, or if your account shows signs of suspicious activity, then you will have to provide additional information:"
-msgstr "Pokiaľ dávate viac než {0} za rok, alebo dostávate {1} za rok, alebo sa aktivita vášho účtu javí ako podozrivá, budeme od Vás potrebovať viac informácií:"
-
-msgid "The provided postal address is incomplete."
-msgstr "Daná poštová adresa nie je kompletná."
 
 msgid "This page allows you to view and modify the identity information attached to your account. Only authorized personnel can access this information, we do not show it to other users or anyone else unless required by law or if you instruct us to."
 msgstr "Na tejto stránke môžete zobraziť a upravovať vaše osobné informácie pripojené k tomuto účtu. Iba autorizovaný pracovníci majú prístup k týmto informáciám, neposkytujeme ich iným užívateľom ani žiadnej tretej strane pokiaľ to nevyžaduje zákon alebo nám neudelíte povolenie."
@@ -2955,6 +2737,9 @@ msgstr "Tento profil je dostupný len v {language}"
 msgid "Edit"
 msgstr "Upraviť"
 
+msgid "Statement"
+msgstr "Prehlásenie"
+
 #, python-brace-format
 msgid "{0} owns the following accounts on other platforms:"
 msgstr "{0} vlastní na iných platformách nasledovné účty:"
@@ -2972,6 +2757,41 @@ msgid_plural "with {n} others"
 msgstr[0] "s {n} ďalším"
 msgstr[1] "s {n} ďalšími"
 msgstr[2] "s {n} ďalšími"
+
+msgid "Export as CSV"
+msgstr "Exportovať ako CSV"
+
+#, python-brace-format
+msgid "{username} has {n} public patron."
+msgid_plural "{username} has {n} public patrons."
+msgstr[0] "{username} má {n} verejného prispievateľa."
+msgstr[1] "{username} má {n} verejných prispievateľov."
+msgstr[2] "{username} má {n} verejných prispievateľov."
+
+#, python-brace-format
+msgid "<unused singular (hash=d1c03a1d2b2a562ad40ed9bfab1b56e5)>"
+msgid_plural "The top {n} patrons are:"
+msgstr[0] "<unused singular (hash=d1c03a1d2b2a562ad40ed9bfab1b56e5)>"
+msgstr[1] "Najlepší {n} prispievatelia sú:"
+msgstr[2] "Najlepší {n} prispievatelia sú:"
+
+#, python-brace-format
+msgid "{username} doesn't publish how much they give."
+msgstr "{username} nezverejňuje koľko dáva."
+
+msgid "Donees"
+msgstr "Darcovia"
+
+#, python-brace-format
+msgid "{username} donates publicly to {n} creator."
+msgid_plural "{username} donates publicly to {n} creators."
+msgstr[0] "{username} verejne prispieva {n} tvorcovi."
+msgstr[1] "{username} verejne prispieva {n} tvorcom."
+msgstr[2] "{username} verejne prispieva {n} tvorcom."
+
+#, python-brace-format
+msgid "{username} does not disclose how much they receive through Liberapay."
+msgstr "{username} nezverejňuje koľko dostáva cez Liberapay."
 
 msgid "History"
 msgstr "História"
@@ -2996,10 +2816,6 @@ msgstr "Príjem za týždeň (v {currency})"
 
 msgid "Number of Patrons Per Week"
 msgstr "Počet patrónov týždenne"
-
-#, python-brace-format
-msgid "{username} does not disclose how much they receive through Liberapay."
-msgstr "{username} nezverejňuje koľko dostáva cez Liberapay."
 
 msgid "Invoice documents are private."
 msgstr "Faktúry sú súkromné."
@@ -3059,6 +2875,9 @@ msgstr "Odoslať"
 
 msgid "Accept and Pay"
 msgstr "Prijať a zaplatiť"
+
+msgid "Mark as paid"
+msgstr ""
 
 #, python-brace-format
 msgid "Message: {0}"
@@ -3160,6 +2979,10 @@ msgid "Total money received: {0}"
 msgstr "Celkovo prijatých peňazí: {0}"
 
 #, python-brace-format
+msgid "{0}: {1}"
+msgstr "{0}: {1}"
+
+#, python-brace-format
 msgid "Total money sent: {0}"
 msgstr "Celkom sa poslalo peňazí: {0}"
 
@@ -3179,20 +3002,55 @@ msgstr "účtovať"
 msgid "error message: {0}"
 msgstr "chybová správa: {0}"
 
-msgid "anonymous donation"
-msgstr "anonymné prispievanie"
+msgid "hidden"
+msgstr "skryté"
 
 #, python-brace-format
-msgid "anonymous donation for your role in the {0} team"
-msgstr "anonymný príspevok za vašu rolu v tíme {0}"
+msgid "public donation from {donor_name}"
+msgstr "verejný príspevok od {donor_name}"
 
 #, python-brace-format
-msgid "donation to {0}"
-msgstr "príspevok na {0}"
+msgid "private donation from {donor_name}"
+msgstr "súkromný príspevok od {donor_name}"
+
+msgid "secret donation"
+msgstr "tajný príspevok"
 
 #, python-brace-format
-msgid "donation to {0} for their role in the {1} team"
-msgstr "Príspevok pre {0} vďaka roli v tíme {1}"
+msgid "public donation from {donor_name} for your role in the {team_name} team"
+msgstr "verejný príspevok od {donor_name} za vašu rolu v tíme {team_name}"
+
+#, python-brace-format
+msgid "private donation from {donor_name} for your role in the {team_name} team"
+msgstr "súkromný príspevok od {donor_name} za vašu rolu v tíme {team_name}"
+
+#, python-brace-format
+msgid "secret donation for your role in the {team_name} team"
+msgstr "tajný príspevok za vašu rolu v tíme {team_name}"
+
+#, python-brace-format
+msgid "public donation to {recipient_name}"
+msgstr "verejný príspevok pre {recipient_name}"
+
+#, python-brace-format
+msgid "private donation to {recipient_name}"
+msgstr "súkromný príspevok pre {recipient_name}"
+
+#, python-brace-format
+msgid "secret donation to {recipient_name}"
+msgstr "tajný príspevok pre {recipient_name}"
+
+#, python-brace-format
+msgid "public donation to {recipient_name} for their role in the {team_name} team"
+msgstr "verejný príspevok pre {recipient_name} za jeho rolu v tíme {team_name}"
+
+#, python-brace-format
+msgid "private donation to {recipient_name} for their role in the {team_name} team"
+msgstr "súkromný príspevok pre {recipient_name} za jeho rolu v tíme {team_name}"
+
+#, python-brace-format
+msgid "secret donation to {recipient_name} for their role in the {team_name} team"
+msgstr "tajný príspevok pre {recipient_name} za jeho rolu v tíme {team_name}"
 
 #, python-brace-format
 msgid "This payment must be manually approved by the recipient through {provider}'s website."
@@ -3291,6 +3149,54 @@ msgid "Next Page →"
 msgstr "Ďalšia stránka →"
 
 #, python-brace-format
+msgid "You have {n} active patron giving you {money_amount} per week."
+msgid_plural "You have {n} active patrons giving you a total of {money_amount} per week."
+msgstr[0] "Máte {n} aktívneho prispievateľa, ktorý vám dáva {money_amount} týždenne."
+msgstr[1] "Máte {n} aktívnych prispievateľov, ktorý vám dávajú {money_amount} týždenne."
+msgstr[2] "Máte {n} aktívnych prispievateľov, ktorý vám dávajú {money_amount} týždenne."
+
+msgid "You don't have any active patrons."
+msgstr "Nemáte žiadnych aktívnych prispievateľov."
+
+#, python-brace-format
+msgid "{username} doesn't have any active patrons."
+msgstr "{username} nemá žiadnych aktívnych prispievateľov."
+
+msgid "Liberapay now supports non-anonymous donations, do you want to know who your patrons are?"
+msgstr "Po novom Liberapay podporuje aj neanonymné príspevky, chcete vidieť, kto je vašim prispievateľom?"
+
+msgid "Enable non-anonymous donations"
+msgstr "Povoliť neanonymné príspevky"
+
+#, python-brace-format
+msgid "You have opted-in to see who your patrons are. If you change your mind, then {link_start}click here to disable non-anonymous donations{link_end}."
+msgstr "Prihlásili ste sa, aby ste videli, kto je vašim prispievateľom. Ak si to rozmyslíte, tak {link_start}kliknite sem a neanonymné príspevky vypnite{link_end}."
+
+#, python-brace-format
+msgid "You've chosen not to see who your patrons are. If you change your mind, then {link_start}click here to enable non-anonymous donations{link_end}."
+msgstr "Rozhodli ste sa nevidieť, kto je vašim prispievateľom. Pokiaľ si to rozmyslíte, {link_start}kliknite sem a povoľte neanonymné príspevky{link_end}."
+
+msgid "Data export"
+msgstr "Export dát"
+
+msgid "Download the list of currently active patrons"
+msgstr "Stiahnite si zoznam aktuálne aktívnych prispievateľov"
+
+msgid "Download the record of all patrons in the last ten years"
+msgstr "Stiahnite si zaznám všetkých prispievateľov za posledných desať rokov"
+
+#, python-brace-format
+msgid "View the patrons of {username}"
+msgstr "Zobraziť prispievateľov používateľa {username}"
+
+msgid "You are not a member of any team."
+msgstr "Nieste členom žiadneho tímu."
+
+#, python-brace-format
+msgid "{username} isn't a member of any team."
+msgstr "{username} nie je členom žiadneho tímu."
+
+#, python-brace-format
 msgid "You have to {link_open}fill your profile{link_close} before you can start to receive donations."
 msgstr "Musíte {link_open}vyplniť profil{link_close} predtým ako začnete prijímať dary."
 
@@ -3348,56 +3254,6 @@ msgstr "PayPal dovoľuje prijímanie peňazí vo viac krajinách ako Stripe, ale
 msgid "liberapay_receipt_{number}"
 msgstr "liberapay_potvrdenka_{number}"
 
-msgid "Receipt"
-msgstr "Potvrdenka"
-
-#, python-brace-format
-msgid "We confirm the receipt of a transfer initiated by {payer} on {date}."
-msgstr "Potvrďujeme prijatie prevodu od {payer} dňa {date}."
-
-#, python-brace-format
-msgid "Of the {0} that were sent, {1} went into the account of {owner_name} ({link}), and {2} were paid in transaction fees."
-msgstr "Z odoslaných {0}, {1} odišlo do účtu {owner_name} ({link}) a {2} sa minuli na transakčné poplatky."
-
-msgid "Beneficiaries"
-msgstr "Príjemcovia"
-
-#, python-brace-format
-msgid "The money will fund the donations of {name} on Liberapay. The table below shows the donations as they were when the payment was initiated ({datetime}, UTC)."
-msgstr "Peniaze zaplatia príspevky pre {name} na Liberapay. Tabuľka nižšie zobrazuje príspevky predtým ako bola platba zahájená ({datetime}, UTC)."
-
-msgid "Recipient"
-msgstr "Príjemca"
-
-msgid "Amount per week"
-msgstr "Čiastka za týždeň"
-
-msgid "Payment Details"
-msgstr "Podrobnosti platby"
-
-#, python-brace-format
-msgid "Payment method: {0}"
-msgstr "Spôsob platby: {0}"
-
-#, python-brace-format
-msgid "Debited card: {number} ({brand}, {country})"
-msgstr "Debetná karta: {number} ({brand}, {country})"
-
-#, python-brace-format
-msgid "Debited account: {0}"
-msgstr "Debetované konto: {0}"
-
-#, python-brace-format
-msgid "Execution date: {0}"
-msgstr "Dátum prevedenia: {0}"
-
-#, python-brace-format
-msgid "Transaction ID: {0}"
-msgstr "ID transakcie: {0}"
-
-msgid "This document is not an invoice."
-msgstr "Tento dokument nie je faktúra."
-
 msgid "Payment receipt"
 msgstr "Platobný účet"
 
@@ -3421,11 +3277,17 @@ msgstr "{0} bolo zaplatené v poplatoch za spracovanie a {1} bolo rozdelené tak
 msgid "However, {x_percent} of the payment ({refund_amount}) was refunded on {refund_date}."
 msgstr "Avšak {x_percent} platby ({refund_amount}) bolo vrátených dňa {refund_date}."
 
+msgid "Beneficiaries"
+msgstr "Príjemcovia"
+
 msgid "The money has been donated to the following recipient:"
 msgid_plural "The money has been donated to the following recipients:"
 msgstr[0] "Peniaze boli darované nasledovnému príjemncovi:"
 msgstr[1] "Peniaze boli darované nasledovným príjemcom:"
 msgstr[2] "Peniaze boli darované nasledovným príjemcom:"
+
+msgid "Recipient"
+msgstr "Príjemca"
 
 #, python-brace-format
 msgid "{recipient}, member of the {team_name} team"
@@ -3462,8 +3324,19 @@ msgid "Payment method: direct debit of bank account {partial_account_number}"
 msgstr "Platobná metóda: inkasom z bankového účtu {partial_account_number}"
 
 #, python-brace-format
+msgid "Payment method: {0}"
+msgstr "Spôsob platby: {0}"
+
+#, python-brace-format
 msgid "Settlement date: {0}"
 msgstr "Dátum vysporiadania: {0}"
+
+#, python-brace-format
+msgid "Transaction ID: {0}"
+msgstr "ID transakcie: {0}"
+
+msgid "This document is not an invoice."
+msgstr "Tento dokument nie je faktúra."
 
 msgid "You can't receive new donations until you've configured payment processing."
 msgstr "Nemôžete prijímať nové príspevky, kým nenakonfigurujete spracovanie platieb."
@@ -3471,9 +3344,6 @@ msgstr "Nemôžete prijímať nové príspevky, kým nenakonfigurujete spracovan
 #, python-brace-format
 msgid "Donations through teams make up {income_percent} of your income ({team_income} of {total_income}) and {patrons_percent} of your donors ({nteampatrons} of {npatrons})."
 msgstr "Darovanie prostredníctvom tímov tvorí {income_percent} vášho príjmu ({team_income} z {total_income}) a{patrons_percent} vašich darcov ({nteampatrons} z {npatrons})."
-
-msgid "You are not a member of any team."
-msgstr "Nieste členom žiadneho tímu."
 
 msgid "Details of Donations"
 msgstr "Podrobnosti príspevku"
@@ -3558,9 +3428,6 @@ msgstr "Poskytnutím vášho čísla IBAN autorizujete {platform} a {provider}, 
 msgid "Forget this bank account number after one payment."
 msgstr "Zabudnúť číslo účtu po jednej platbe."
 
-msgid "The BIC you provided appears to be invalid."
-msgstr "Zadané BIC sa zdá byť neplatné."
-
 #, python-brace-format
 msgid "You have {n} connected payment instrument."
 msgid_plural "You have {n} connected payment instruments."
@@ -3611,34 +3478,8 @@ msgstr "Pridať kartu"
 msgid "Add a bank account"
 msgstr "Pridať bankový účet"
 
-msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
-msgstr "Stále máte na tomto Liberapay účte peniaze, prosím zvoľte nižšie spôsob vyplatenia alebo sa obráťte na podporu."
-
 msgid "Close Account"
 msgstr "Zrušiť účet"
-
-#, python-brace-format
-msgid "You have {0} in your wallet. What should we do with it?"
-msgstr "V peňaženke máte {0}. Čo s tým máme urobiť?"
-
-#, python-brace-format
-msgid "Give it to the {0}people I donate to{1}"
-msgstr "Dajte to ľuďom, {0}ktorým prispievam{1}"
-
-msgid "Donate it to Liberapay"
-msgstr "Darovať Liberapay"
-
-msgid "This option is recommended for small amounts."
-msgstr "Táto možnosť sa odporúča pre malé sumy."
-
-msgid "Withdraw it to my bank account"
-msgstr "Vybrať to do môjho bankového účtu"
-
-msgid "If neither option works for you, please contact support@liberapay.com."
-msgstr "Pokiaľ sa vám ani jedna z možností nepáči, prosíme obráťte sa na support@liberapay.com."
-
-msgid "You have a pending transfer to your bank account. If it fails, the money will reappear in your wallet and your account will be automatically reopened."
-msgstr "Máte čakajúci prevod na Váš bankový účet. Pokiaľ sa to neporadí, peniaze sa znova zobrazia vo Vašej peňaženke a Váš účet bude automaticky znova otvorený."
 
 msgid "Data retention"
 msgstr "Uchovávanie údajov"
@@ -3660,9 +3501,6 @@ msgstr "Pripravený?"
 
 msgid "Yes, close my Liberapay account"
 msgstr "Áno, zrušte môj účet Liberapay"
-
-msgid "Incorrect password"
-msgstr "Chýbné heslo"
 
 msgid "Your password has been changed."
 msgstr "Vaše heslo bolo zmenené."
@@ -3714,23 +3552,14 @@ msgstr "Toto darovanie neexistuje alebo už bolo zastavené."
 msgid "Your donation to {0} has been stopped."
 msgstr "Váš dar pre {0} bol zastavený."
 
-msgid "Your wallet is empty."
-msgstr "Vaša peňaženka je prázdna."
+msgid "This is no longer possible."
+msgstr ""
 
 msgid "Export History"
 msgstr "Exportovať históriu"
 
-#, python-brace-format
-msgid "You have approximately {converted_amount} in your account (exactly: {exact_amounts})."
-msgstr "Na Vašom účte je približne {converted_amount} (presne: {exact_amounts})."
-
-#, python-brace-format
-msgid "You have {money_amount} in your account."
-msgstr "Na Vašom účte máte {money_amount}."
-
-#, python-brace-format
-msgid "Their balance is {0}."
-msgstr "Ich zostatok je {0}."
+msgid "Wallet"
+msgstr "Peňaženka"
 
 #, python-brace-format
 msgid "This page only shows transactions processed by Mangopay, to view other payments {link_start}go to the Ledger page{link_end}."
@@ -3745,9 +3574,6 @@ msgid_plural "{money_amount} in donations to {n} people"
 msgstr[0] "{money_amount} v daroch pre {n} osobu"
 msgstr[1] "{money_amount} v daroch pre {n} osoby"
 msgstr[2] "{money_amount} v daroch pre {n} osôb"
-
-msgid "Export as CSV"
-msgstr "Exportovať ako CSV"
 
 #, python-brace-format
 msgid "{money_amount} in expense reimbursements to {n} person"
@@ -3799,6 +3625,10 @@ msgstr "vracanie neúspešného výberu (došlo k chybe: {0})"
 msgid "canceled"
 msgstr "anulované"
 
+#, python-brace-format
+msgid "anonymous donation for your role in the {0} team"
+msgstr "anonymný príspevok za vašu rolu v tíme {0}"
+
 msgid "in arrears"
 msgstr "v predĺžení"
 
@@ -3808,6 +3638,9 @@ msgstr "vracanie daru"
 #, python-brace-format
 msgid "reimbursement of {link_open}expense #{invoice_id}{link_close} from {payer}"
 msgstr "Náhrada {link_open}výdavku #{invoice_id}{link_close} od {payer}"
+
+msgid "anonymous donation"
+msgstr "anonymné prispievanie"
 
 msgid "one-off donation from someone closing their account"
 msgstr "jednorázový príspevok od niekoho rušiaceho svoj účet"
@@ -3828,6 +3661,10 @@ msgstr "vrátenie poplatku"
 msgid "final gift to {0}"
 msgstr "posledný dar pre {0}"
 
+#, python-brace-format
+msgid "donation to {0} for their role in the {1} team"
+msgstr "Príspevok pre {0} vďaka roli v tíme {1}"
+
 msgid "refund of anonymous donation"
 msgstr "náhrada anonymného príspevku"
 
@@ -3835,113 +3672,9 @@ msgstr "náhrada anonymného príspevku"
 msgid "payment of {link_open}expense #{invoice_id}{link_close} to {payee}"
 msgstr "platba {link_open}náklady #{invoice_id}{link_close} pre {payee}"
 
-msgid "The amount cannot be zero."
-msgstr "Čiastka nemôže byť nulová."
-
 #, python-brace-format
-msgid "The transaction fee would be high: {0}% ({1}/{2}). Proceed anyway?"
-msgstr "Poplatok transakcie by bol vysoký: {0}% ({1} / {2}). Chcete pokračovať?"
-
-msgid "Withdrawing Money"
-msgstr "Vybrať peniaze"
-
-#, python-brace-format
-msgid "{0} have been taken from your Liberapay wallet. If the transfer is successful, {1} will land in your bank account, and {2} will be paid in fees."
-msgstr "{0} bolo prevedené z peňaženky Liberapay. Pokiaľ bude prevod úspešný, dostanete {1} na Váš bankový účet a {2} zaplatíte na poplatkoch."
-
-#, python-brace-format
-msgid "The attempt to send {0} to your bank account has failed. Error message: {1}"
-msgstr "Zaslanie {0} na Váš bankový účet sa nepodarilo. Chybová správa: {1}"
-
-#, python-brace-format
-msgid "You have {0} in your Liberapay wallet."
-msgstr "V peňaženke Liberapay máte {0}."
-
-msgid "Which currency do you want to withdraw?"
-msgstr "Akú menu chcete vybrať?"
-
-#, python-brace-format
-msgid "Withdrawing euros is free. Withdrawing US dollars costs {0} per transfer regardless of the destination country."
-msgstr "Výber peňazí v eurách je zdarma. Výber peňazí v Amerických dolároch stojí {0} za transakciu nezávisle od destinácie výberu."
-
-msgid "There are no fees when withdrawing euros to your bank account."
-msgstr "Za výber eura na Váš bankový účet nie sú žiadne poplatky."
-
-#, python-brace-format
-msgid "Withdrawing US dollars costs {0} per transfer, whatever the destination country is."
-msgstr "Vyberanie Amerických dolárov stojí {0} za transakciu, nezávisle od toho kde sa nachádzate."
-
-msgid "Bank account"
-msgstr "Bankový účet"
-
-msgid "IBAN"
-msgstr "IBAN"
-
-msgid "Routing Number"
-msgstr "Smerovacie číslo"
-
-msgid "Account Number"
-msgstr "Číslo účtu"
-
-msgid "Bank Account Type"
-msgstr "Typ bankového účtu"
-
-msgid "Bank Name"
-msgstr "Názov banky"
-
-msgid "Institution Number"
-msgstr "Číslo inštitúcie"
-
-msgid "Branch Code"
-msgstr "Kód pobočky"
-
-msgid "Sort Code"
-msgstr "Triediaci kód"
-
-msgid "BIC (Bank Identifier Code)"
-msgstr "BIC (Bank Identifier Code)"
-
-msgid "SEPA / IBAN"
-msgstr "SEPA / IBAN"
-
-msgid "USA"
-msgstr "Spojené Štáty Americké"
-
-msgid "Canada"
-msgstr "Kanada"
-
-msgid "UK"
-msgstr "Spojené Kráľovstvo"
-
-msgid "Other"
-msgstr "Ostatné"
-
-msgid "IBAN (International Bank Account Number)"
-msgstr "IBAN (International Bank Account Number)"
-
-msgid "This IBAN is invalid."
-msgstr "Tento kód IBAN je neplatný."
-
-msgid "checking"
-msgstr "kontrolujem"
-
-msgid "savings"
-msgstr "úspory"
-
-msgid "SWIFT codes are 8 or 11 characters long. The first 6 characters are letters, the rest can be letters or digits. Example: CMBRFR2BCME"
-msgstr "Kód SWIFT je 8 alebo 11 znakov dlhhý. Prvých 6 znakov sú písmená, ostatné sú písmená alebo číslo. Napríklad: CMBRFR2BCME"
-
-msgid "only letters (a-z) and digits (0-9) are allowed"
-msgstr "sú povolené písmená (a-z) a číslice (0-9)"
-
-msgid "This account number is invalid."
-msgstr "Toto číslo účtu je neplatné."
-
-msgid "The following fields are about the legal owner of the bank account."
-msgstr "Nasledujúce údaje sú o zákonnom vlastníkový bankového účtu."
-
-msgid "The bank account must belong to you, sending money to third parties is not allowed."
-msgstr "Bankový účet musí patriť vám, posielanie peňazí tretím stranám nie je dovolené."
+msgid "donation to {0}"
+msgstr "príspevok na {0}"
 
 #, python-brace-format
 msgid "Account number: {0}"
@@ -4212,8 +3945,8 @@ msgid "Liberapay is a way to donate money recurrently to people whose work you a
 msgstr "Liberapay je spôsob, ako opakovane prispievať peniaze ľuďom, ktorých prácu si ceníte."
 
 #, python-brace-format
-msgid "Payments come with no strings attached. You don't know exactly who is giving to you, and donations are capped at {0} per week per donor to dampen undue influence."
-msgstr "Platby prichádzajú bez akýchkoľvek záväzkov. Neviete, kto presne vám poslal príspevok a príspevky sú obmedzené na {0} týždenne na jedného darcu, aby sa zabránilo nevhodnému ovplyvňovaniu."
+msgid "Payments come with no strings attached. By default, recipients don't know who their patrons are, and donations are capped at {0} per week per donor to dampen undue influence."
+msgstr "Platby sú bez akýchkoľvek záväzkov. Predvolene, príjemcovia nevedia kto je ich prispievateľom a príspevky sú obmedzené na {0} týždenne na jedného darcu, aby sme obmedzili nepatričný vplyv."
 
 msgid "By default, the total amount you give and the total amount you receive are public (you can opt out of sharing this info)."
 msgstr "Predvolene, čiastka ktorú darujete, a čiastka ktorú dostávate je verejná (môžete obmedziť zobrazenie tejto informácie)."
@@ -4257,10 +3990,6 @@ msgstr "Podmienky služby"
 
 msgid "Privacy Policy"
 msgstr "Zásady ochrany osobných údajov"
-
-#, python-brace-format
-msgid "{0} was Liberapay's initial payment partner, but they quit on us in 2018. Below are copies of the contract you had to accept in order to send or receive money through Liberapay prior to August 2018: "
-msgstr "{0} bol pôvodným Liberapay partnerom, ale ukončili s nami spoluprácu v roku 2018. Nižšie sú kópie zmluvy, ktorú ste museli prijať, aby ste mohli odoslať alebo dostať peniaze cez Liberapay pred augustom 2018. "
 
 msgid "This page contains links to and information about the Liberapay logo. We hope you'll find it especially useful if you're writing an article about Liberapay or if you want to add custom links to your Liberapay profile in your website."
 msgstr "Táto stránka obsahuje odkazy a informácie o logu Liberapay. Dúfame že vám pomôžu pri tvorbe článkov o Liberapay alebo ak chcete na vašu stránku pridať vlastné odkazy na váš Liberapay profil."
@@ -4418,25 +4147,6 @@ msgid "Thanks to {link_open}everyone who has sent us a report through HackerOne{
 msgstr "Ďakujeme {link_open} všetkým, ktorí nám prostredníctvom služby HackerOne {link_close} poslali hlásenie."
 
 #, python-brace-format
-msgid "{0} is escrowed within Liberapay."
-msgstr "Na Liberapay je uložených {0}."
-
-msgid "Deposits (€)"
-msgstr "Vklady (€)"
-
-msgid "Money moved into Liberapay"
-msgstr "Peniaze vložené na Liberapay"
-
-msgid "weeks"
-msgstr "týždne"
-
-msgid "Withdrawals (€)"
-msgstr "Výbery (€)"
-
-msgid "Money moved out of Liberapay"
-msgstr "Peniaze vybrané z Liberapay"
-
-#, python-brace-format
 msgid "Liberapay was launched {timespan_ago} and has {n} user."
 msgid_plural "Liberapay was launched {timespan_ago} and has {n} users."
 msgstr[0] "Liberapay bol spustený {timespan_ago} a má {n} užívateľa."
@@ -4484,6 +4194,9 @@ msgstr "Otvorené účty"
 msgid "Number of open individual and organization accounts on Liberapay"
 msgstr "Počet otvorených účtov organizácii a jednotlivcov na Liberapay"
 
+msgid "weeks"
+msgstr "týždne"
+
 msgid "Active Users"
 msgstr "Aktívny užívatelia"
 
@@ -4505,7 +4218,7 @@ msgid "The sum of charges processed during each week, expressed in {currency}."
 msgstr "Suma všetkých platieb spracovaných každý týždeň vyjadrená v mene {currency}."
 
 msgid "You're not allowed to do this because your account has been flagged. Please contact support@liberapay.com if you want to know why and request that your account be unflagged."
-msgstr ""
+msgstr "Toto nemôžete urobiť, pretože váš účet bol označený. Pokiaľ chcete vedieť prečo, kontaktujte prosím support@liberapay.com a požiadajte o zrušenie označenia vášho účtu."
 
 msgid "A Liberapay team coordinates donations from multiple donors to multiple donees. The donors choose how much they want to give, the team members specify how they want to share the money, and Liberapay attempts to distribute the funds accordingly."
 msgstr "Tím Liberapay koordinuje dary od viacerých darcov pre viac obdarovaných. Darcovia si vyberú, koľko chcú prispieť, členovia tímu určia, ako si peniaze rozdelia, a Liberapay sa snaží zodpovedajúcim spôsobom rozdeliť prostriedky."
@@ -5019,6 +4732,10 @@ msgstr[2] "Aktuálne má platforma {n} sponzorov, táto sekcia je naša cesta pr
 msgid "The list below is rotated pseudorandomly."
 msgstr "Nižšie uvedený zoznam je otočený pseudonáhodne."
 
+#, python-brace-format
+msgid "{money_amount}{small}/week{end_small}"
+msgstr "{money_amount}{small}/týždenne{end_small}"
+
 msgid "Thanks"
 msgstr "Poďakovanie"
 
@@ -5179,9 +4896,6 @@ msgstr "Účet {elsewhere_platform} s menom \"{account_name}\" nemohol byť prip
 #, python-brace-format
 msgid "The {elsewhere_platform} account \"{account_name}\" could not be linked to your Liberapay profile because it was already linked to another account."
 msgstr "Účet {elsewhere_platform} s menom \"{account_name}\" nemohol byť pripojený k vášmu Liberapay účtu pretože už bol pripojený k inému Liberapay účtu."
-
-msgid "Edit your profile"
-msgstr "Upraviť profil"
 
 msgid "Manage this team"
 msgstr "Spravovať tento tím"

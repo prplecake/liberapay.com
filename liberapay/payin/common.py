@@ -17,7 +17,7 @@ from ..utils import group_by
 
 ProtoTransfer = namedtuple(
     'ProtoTransfer',
-    'amount recipient destination context unit_amount period team',
+    'amount recipient destination context unit_amount period team visibility',
 )
 
 
@@ -63,7 +63,7 @@ def prepare_payin(db, payer, amount, route, proto_transfers, off_session=False):
         for t in proto_transfers:
             payin_transfers.append(prepare_payin_transfer(
                 cursor, payin, t.recipient, t.destination, t.context, t.amount,
-                t.unit_amount, t.period, t.team,
+                t.visibility, t.unit_amount, t.period, t.team,
             ))
 
     return payin, payin_transfers
@@ -240,8 +240,8 @@ def adjust_payin_transfers(db, payin, net_amount):
                         unit_amount = (d.amount / n_periods).round(allow_zero=False)
                         prepare_payin_transfer(
                             db, payin, d.recipient, d.destination, 'team-donation',
-                            d.amount, unit_amount, tip.period,
-                            team=team.id
+                            d.amount, tip.visibility, unit_amount, tip.period,
+                            team=team.id,
                         )
             else:
                 pt = transfers[0]
@@ -303,7 +303,7 @@ def resolve_tip(
         )
         return [ProtoTransfer(
             payment_amount, tippee, destination, 'personal-donation',
-            tip.periodic_amount, tip.period, None,
+            tip.periodic_amount, tip.period, None, tip.visibility,
         )]
 
 
@@ -450,6 +450,7 @@ def resolve_team_donation(
                         (t.resolved_amount / n_periods).round(allow_zero=False),
                         tip.period,
                         team.id,
+                        tip.visibility,
                     )
                     for t in selected_takes if t.resolved_amount != 0
                 ]
@@ -460,7 +461,7 @@ def resolve_team_donation(
     account = payment_accounts[member.id]
     return [ProtoTransfer(
         payment_amount, member, account, 'team-donation',
-        tip.periodic_amount, tip.period, team.id,
+        tip.periodic_amount, tip.period, team.id, tip.visibility,
     )]
 
 
@@ -495,7 +496,10 @@ def resolve_take_amounts(payment_amount, takes):
         t.resolved_amount = tr_amounts.get(t.member, payment_amount.zero())
 
 
-def resolve_amounts(available_amount, base_amounts, convergence_amounts=None, payday_id=1):
+def resolve_amounts(
+    available_amount, base_amounts, convergence_amounts=None, maximum_amounts=None,
+    payday_id=1,
+):
     """Compute transfer amounts.
 
     Args:
@@ -505,6 +509,8 @@ def resolve_amounts(available_amount, base_amounts, convergence_amounts=None, pa
             a map of IDs to raw transfer amounts
         convergence_amounts (Dict[Any, Money]):
             an optional map of IDs to ideal additional amounts
+        maximum_amounts (Dict[Any, Money]):
+            an optional map of IDs to maximum amounts
         payday_id (int):
             the ID of the current or next payday, used to rotate who receives
             the remainder when there is a tie
@@ -517,6 +523,13 @@ def resolve_amounts(available_amount, base_amounts, convergence_amounts=None, pa
 
     # Attempt to converge
     if convergence_amounts:
+        if maximum_amounts:
+            # Make sure the convergence amounts aren't higher than the maximums
+            inf = Money('inf', amount_left.currency)
+            convergence_amounts = {
+                k: min(v, inf if maximum_amounts.get(k) is None else maximum_amounts[k])
+                for k, v in convergence_amounts.items()
+            }
         convergence_sum = Money.sum(convergence_amounts.values(), amount_left.currency)
         if convergence_sum != 0:
             convergence_amounts = {k: v for k, v in convergence_amounts.items() if v != 0}
@@ -534,18 +547,43 @@ def resolve_amounts(available_amount, base_amounts, convergence_amounts=None, pa
                 base_amounts = convergence_amounts
 
     # Compute the prorated amounts
+    base_amounts = {k: v for k, v in base_amounts.items() if v != 0}
     base_sum = Money.sum(base_amounts.values(), amount_left.currency)
     base_ratio = 0 if base_sum == 0 else amount_left / base_sum
+    maxed_out = False
     for key, base_amount in sorted(base_amounts.items()):
-        if base_amount == 0:
-            continue
-        assert amount_left >= min_transfer_amount
-        amount = min((base_amount * base_ratio).round_down(), amount_left)
-        r[key] = amount + r.get(key, 0)
-        amount_left -= amount
+        prev_amount = r.get(key, 0)
+        amount = min((base_amount * base_ratio).round_down(), amount_left) + prev_amount
+        if maximum_amounts:
+            max_amount = maximum_amounts.get(key)
+            if max_amount is not None and amount >= max_amount:
+                amount = max_amount
+                maxed_out = True
+                base_amounts.pop(key)
+                base_sum -= base_amount
+        r[key] = amount
+        amount_left -= (amount - prev_amount)
 
-    # Deal with rounding errors
-    if amount_left > 0:
+    # Deal with the leftover caused by the maximums
+    if maxed_out and amount_left > 0:
+        while base_amounts and amount_left > 0:
+            prev_amount_left = amount_left
+            base_ratio = 0 if base_sum == 0 else amount_left / base_sum
+            for key, base_amount in sorted(base_amounts.items()):
+                prev_amount = r.get(key, 0)
+                amount = min((base_amount * base_ratio).round_down(), amount_left) + prev_amount
+                max_amount = maximum_amounts.get(key)
+                if max_amount is not None and amount >= max_amount:
+                    amount = max_amount
+                    base_amounts.pop(key)
+                    base_sum -= base_amount
+                r[key] = amount
+                amount_left -= (amount - prev_amount)
+            if amount_left == prev_amount_left:
+                break
+
+    # Deal with the leftover caused by rounding down
+    if amount_left > 0 and base_amounts:
         # Try to distribute in a way that doesn't skew the percentages much.
         # If there's a tie, use the payday ID to rotate the winner every week.
         i = itertools.count(1)
@@ -559,20 +597,22 @@ def resolve_amounts(available_amount, base_amounts, convergence_amounts=None, pa
                 (next(i) - payday_id) % n
             )
 
-        for key, amount in sorted(r.items(), key=compute_priority):
+        items = [(k, v) for k, v in r.items() if k in base_amounts]
+        for key, amount in sorted(items, key=compute_priority):
             r[key] += min_transfer_amount
             amount_left -= min_transfer_amount
             if amount_left == 0:
                 break
 
     # Final check and return
-    assert amount_left == 0, '%r != 0' % amount_left
+    if base_amounts:
+        assert amount_left == 0, '%r != 0' % amount_left
     return r
 
 
 def prepare_payin_transfer(
-    db, payin, recipient, destination, context, amount,
-    unit_amount=None, period=None, team=None
+    db, payin, recipient, destination, context, amount, visibility,
+    unit_amount=None, period=None, team=None,
 ):
     """Prepare the allocation of funds from a payin.
 
@@ -581,6 +621,7 @@ def prepare_payin_transfer(
         recipient (Participant): the user who will receive the money
         destination (Record): a row from the `payment_accounts` table
         amount (Money): the amount of money that will be received
+        visibility (int): a copy of `tip.visibility`
         unit_amount (Money): the `periodic_amount` of a recurrent donation
         period (str): the period of a recurrent payment
         team (int): the ID of the project this payment is tied to
@@ -601,14 +642,14 @@ def prepare_payin_transfer(
     return db.one("""
         INSERT INTO payin_transfers
                (payin, payer, recipient, destination, context, amount,
-                unit_amount, n_units, period, team,
+                unit_amount, n_units, period, team, visibility,
                 status, ctime)
         VALUES (%s, %s, %s, %s, %s, %s,
-                %s, %s, %s, %s,
+                %s, %s, %s, %s, %s,
                 'pre', clock_timestamp())
      RETURNING *
     """, (payin.id, payin.payer, recipient.id, destination.pk, context, amount,
-          unit_amount, n_units, period, team))
+          unit_amount, n_units, period, team, visibility))
 
 
 def update_payin_transfer(

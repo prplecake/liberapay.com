@@ -11,7 +11,7 @@ msgstr ""
 
 #, python-brace-format
 msgid "The {language} translation of this page is not yet complete."
-msgstr "Den {language} översättningen av denna sida är inte färdig ännu."
+msgstr "Den {language}a översättningen av denna sida är inte färdig ännu."
 
 msgid "Your Liberapay account has been disabled"
 msgstr "Ditt Liberapay-konto har blivit inaktiverat"
@@ -105,7 +105,7 @@ msgid "Your email address is temporarily blacklisted"
 msgstr "Din e-postadress är temporärt svartlistad"
 
 msgid "Your email address has been blacklisted"
-msgstr "Din e-mail adress har blivit svartlistad"
+msgstr "Din e-postadress har blivit svartlistad"
 
 #, python-brace-format
 msgid "We are suspending sending notifications to your address {email_address} until {date}, because a recent attempt to email you has failed."
@@ -124,50 +124,6 @@ msgstr "Felmeddelandet från e-postsystemet var:"
 
 msgid "Manage your email addresses"
 msgstr "Hantera dina e-postadresser"
-
-#, python-brace-format
-msgid "You have received approximately {0} this week"
-msgstr "Du har mottagit ungefär {0} denna vecka"
-
-#, python-brace-format
-msgid "You have received {0} this week"
-msgstr "Du har mottagit {0} denna vecka"
-
-#, python-brace-format
-msgid "{0} was given to you personally."
-msgstr "{0} donerades till dig personligen."
-
-msgid "You are not a member of any team, so you haven't received any money for participation in teams."
-msgstr "Du är inte medlem i någon grupp, så du har inte mottagit några pengar för deltagande i grupper."
-
-#, python-brace-format
-msgid "No money was given to you for your role in the {0} team."
-msgid_plural "No money was given to you for your roles in the {n} teams you are a member of."
-msgstr[0] "Inga pengar gavs till dig för din roll i gruppen {0}."
-msgstr[1] "Inga pengar gavs till dig för din roll i de {n} grupper som du är medlem av."
-
-#, python-brace-format
-msgid "{0} was given to you for your role in the {1} team."
-msgstr "{0} gavs till dig för din roll i gruppen {1}."
-
-#, python-brace-format
-msgid "{0} was given to you for your roles in the following teams:"
-msgstr "{0} gavs till dig för dina roller i följande grupper:"
-
-#, python-brace-format
-msgid "{0}: {1}"
-msgstr "{0}: {1}"
-
-#, python-brace-format
-msgid "You now have {0} in your wallet."
-msgstr "Du har nu {0} i din plånbok."
-
-msgid "See your account's transaction logs"
-msgstr "Översikt av dina överföringar"
-
-#, python-brace-format
-msgid "- {0}: {1}"
-msgstr "- {0}: {1}"
 
 #, python-brace-format
 msgid "Your Liberapay income is approximately {money_amount} this week"
@@ -202,23 +158,12 @@ msgid "NB: Donations through Liberapay are now paid in advance instead of being 
 msgstr "NB: Donationer genom Liberapay betalas nu i förskott istället för att överföras veckovis. Numrena ovanför motsvarar vad du hade mottagit denna vecka med det gamla systemet."
 
 #, python-brace-format
-msgid "You have {money_amount} in your Mangopay wallet."
-msgstr "Du har {money_amount} i din Mangopay-plånbok."
-
-msgid "Withdraw money"
-msgstr "Ta ut pengar"
-
-#, python-brace-format
 msgid "Your invoice to {0} has been accepted - Liberapay"
 msgstr "Din faktura till {0} har godkänts - Liberapay"
 
 #, python-brace-format
 msgid "Your request for a payment of {amount} from {addressee_name} has been accepted."
 msgstr "Din begäran om betalning av {amount} från {addressee_name} har godkänts."
-
-#, python-brace-format
-msgid "Unfortunately the wallet of {0} does not contain enough money to pay you right now, but as soon as it does you will be paid automatically."
-msgstr "Tyvärr har inte plånboken till {0} tillräckligt med pengar för att betala dig just nu, men så snart som den har det kommer du bli betald automatiskt."
 
 msgid "View the invoice"
 msgstr "Se fakturan"
@@ -228,14 +173,8 @@ msgid "Your invoice to {0} has been accepted and paid - Liberapay"
 msgstr "Din faktura till {0} har blivit godkänd och betalad - Liberapay"
 
 #, python-brace-format
-msgid "Your request for a payment of {amount} from {addressee_name} has been accepted, and the money has been transferred to your wallet."
-msgstr "Din begäran om betalning av {amount} från {addressee_name} har blivit godkänd, och pengarna har blivit överförda till din plånbok."
-
-msgid "Withdraw the money"
-msgstr "Ta ut pengarna"
-
-msgid "However you cannot withdraw the money yet as it is still in quarantine."
-msgstr "Men du kan inte ta ut pengarna än eftersom de fortfarande är i karantän."
+msgid "Your invoice of {amount} to {addressee_name} has been paid."
+msgstr ""
 
 #, python-brace-format
 msgid "Your invoice to {0} has been rejected - Liberapay"
@@ -311,51 +250,6 @@ msgstr "Beskrivning: {0}"
 
 msgid "Unsubscribe"
 msgstr "Avsluta prenumerationen"
-
-msgid "Liberapay is in trouble"
-msgstr "Liberapay är i svårigheter"
-
-#, python-brace-format
-msgid ""
-"Our payment processor (Mangopay) is throwing us out, so we recommend that you {link1_start}evacuate the money from your account{link_end} before July 26th.\n"
-"\n"
-"Clicking on the link above will bring you to a new page titled “Emptying your wallet” and ask you to choose between two options.\n"
-"\n"
-"If you use Liberapay as a donor the first choice is recommended, especially if you wish to continue using Liberapay. This first option distributes all the money from your wallet to the people who would have normally received it over time. The recipients will be able to see that this sudden burst of income corresponds to multiple weeks of donations.\n"
-"\n"
-"For example, if you’re donating $1 per week to 2 creators, and you have $40 in your wallet, then each creator will receive $20, and 20 weeks from now you’ll receive our usual email reminding you that it’s time to add money again.\n"
-"\n"
-"Please note that the disbursement may fail for various reasons. If you get an error message like “The attempt to distribute all the money in your wallet failed: XX.XX remains.”, then the problem is probably on the recipient side, for example someone who hasn’t filled the identity form or a team that hasn’t defined how the income should be split between the members.\n"
-"\n"
-"The other option is to get your money back, if possible through a refund, otherwise by withdrawing it to your bank account.\n"
-"\n"
-"If you receive donations on Liberapay, you may want to wait a week before withdrawing your income in order to give your patrons a chance to transfer the remaining of their donations from their wallets to yours.\n"
-"\n"
-"We’ll inform you as soon as the integration of a new payment processor is complete, and tell you if there’s anything you need to do to start receiving donations on Liberapay again.\n"
-"\n"
-"If you’re a member of a team, you should make sure that your take is set and up-to-date. You can do that from {link2_start}your “Receiving” page{link_end}.\n"
-"\n"
-"You can find more information in {link3_start}this blog post{link_end}, and as always you can reply to this email if you need help.\n"
-msgstr ""
-"Vår betalningsprocessor (Mangopay) kastar ut oss, så vi rekommenderar att du {link1_start}tar ut pengar från ditt konto{link_end} senast den 26:e Juli.\n"
-"\n"
-"Genom att klicka på länken ovan hamnar du på en ny sida \"Emptying your wallet\" som ber dig att välja mellan två alternativ.\n"
-"\n"
-"Om du använder Liberapay som donator rekommenderas det första alternativet, speciellt om du vill fortsätta använda Liberapay. Det första alternativet distruberar alla pengar från din plånbok till personer som normalt sett skulle tagit emot de över tid. Dina mottagare ser att denna plötsliga ökning av inkomst korrelerar med flera veckor av donationer.\n"
-"\n"
-"T.ex. om du donerar 1 USD per vecka till 2 individer, och du har 40 USD i din plånbok, så kommer varje individ erhålla 20 USD, och 20 veckor från nu kommer du motta vår vanliga e-postpåminnelse att det är dags att lägga in pengar igen.\n"
-"\n"
-"Observera att utbetalningen kan misslyckas av olika anledningar. Om du får ett felmeddelande likt \"The attempt to distribute all the money in your wallet failed: XX.XX remains.\" så är problemet troligen på mottagarsidan, t.ex. någon som inte fyllt i sitt identifikationsformulär eller en grupp som inte definerat hur dess inkomster ska bli uppdelade mellan dess medlemmar.\n"
-"\n"
-"Det andra alternativet är att ta tillbaka dina pengar, om det är möjligt genom en återbetalning, annars genom att dra tillbaka till ditt bankkonto.\n"
-"\n"
-"Om du tar emot donationer på Liberapay så bör du vänta några veckor innan du tar ut din inkomst för att ge dina mecenater en chans att överföra återstoden av deras donationer från deras plånbok till ditt.\n"
-"\n"
-"Vi kommer informera dig så snart integrationen av en ny betalningsprocessor är färdig, och vi berättar för dig om det är något annat du behöver göra för att börja ta emot donationer på Liberapay igen.\n"
-"\n"
-"Om du är en gruppmedlem så bör du se till att det är definerat hur stor din del ska vara samt att uppdelningen är korrekt. Du kan göra det på {link2_start}din \"Mottagande\" sida{link_end}.\n"
-"\n"
-"Du hittar mer information i {link3_start}detta blogginlägg{link_end}, och som vanligt kan du svara på detta mail om du behöver hjälp.\n"
 
 msgid "The password of your Liberapay account is weak"
 msgstr "Lösenordet för ditt Liberapaykonto är svagt"
@@ -668,6 +562,16 @@ msgstr "Vi är stolta att informera dig om att {user_name} har gått med Liberap
 msgid "Donate to {0}"
 msgstr "Donera till {0}"
 
+msgid "Your Liberapay profile is incomplete"
+msgstr ""
+
+#, python-brace-format
+msgid "Your {link_start}public profile page{link_end} is missing a description. Without this information, we may be unable to confirm that your use of our platform is legitimate, and consequently your account may be marked as fraudulent and disabled. An incomplete profile is also less likely to attract donations, so we strongly recommend that you fill yours."
+msgstr ""
+
+msgid "Edit your profile"
+msgstr "Redigera din profil"
+
 msgid "Liberapay donation renewal: payment aborted"
 msgstr "Liberapay donationsförnyelse: betalning avbruten"
 
@@ -779,21 +683,7 @@ msgstr "Ditt Liberapay konto ändras"
 
 #, python-brace-format
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
-msgstr "Någon försöker associera e-postaddressen {0} med det Liberapay konto vars nuvarande address är {1}. Om du inte påbörjade denna process så bör du klicka på länken nedan och ta bort den felaktiga addressen från ditt konto."
-
-msgid "Withdrawal initiated"
-msgstr "Uttag påbörjad"
-
-#, python-brace-format
-msgid "We have initiated a transfer of {0} from your Liberapay wallet to your bank account. Please note that it can take several business days for the transaction to complete."
-msgstr "Vi har påbörjat en överföring av {0} från din Liberapay-plånbok till ditt bankkonto. Lägg märke till att det kan ta flera bankdagar för överföringen att genomföras."
-
-msgid "Withdrawal failure"
-msgstr "Fel vid uttag"
-
-#, python-brace-format
-msgid "We tried to transfer {0} from your Liberapay wallet to your bank account, but the transfer failed with this message:"
-msgstr "Vi försökte överföra {0} från din Liberapay-plånbok till ditt bankkonto, men överföringen misslyckades med följande felmeddelande:"
+msgstr "Någon försöker associera e-postadressen {0} med det Liberapay-konto vars nuvarande adress är {1}. Om du inte påbörjade denna process så bör du klicka på länken nedan och ta bort den felaktiga adressen från ditt konto."
 
 msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
 msgstr "Det ser ut som att du har hittat ett programfel! Vi beklagar besväret, vi kommer fixa det så snart som möjligt!"
@@ -878,11 +768,11 @@ msgstr "Kredit- eller debitkort"
 msgid "Direct Debit"
 msgstr "Direktbetalning"
 
-msgid "Hide total giving from others."
-msgstr "Dölj mina totala donationer för andra."
+msgid "Do not publish the amounts of money I send."
+msgstr ""
 
-msgid "Hide total receiving from others."
-msgstr "Dölj mina sammanlagda mottagna donationer för andra."
+msgid "Do not publish the amounts of money I receive."
+msgstr ""
 
 msgid "Hide this profile from search results on Liberapay."
 msgstr "Dölj denna profil från sökresultat på Liberapay."
@@ -991,7 +881,7 @@ msgid "The email address '{0}' is not verified."
 msgstr "E-postadressen '{0}' är inte verifierad."
 
 msgid "You've reached the maximum number of email addresses we allow."
-msgstr "Du har nått det maximala antalet e-postadressen vi tillåter."
+msgstr "Du har nått det maximala antalet e-postadresser vi tillåter."
 
 #, python-brace-format
 msgid "'{0}' is not a valid email address."
@@ -1101,9 +991,6 @@ msgstr "Beloppet {money_amount} är inte i den valuta som förväntades ({expect
 msgid "It seems you're trying to delete something that doesn't exist."
 msgstr "Det verkar som att du försöker ta bort något som inte finns."
 
-msgid "There isn't enough money in your wallet."
-msgstr "Det finns inte tillräckligt med pengar i din plånbok."
-
 #, python-brace-format
 msgid "You can't withdraw more than {0} at this time."
 msgstr "Du kan inte ta ut mer än {0} just nu."
@@ -1131,10 +1018,6 @@ msgstr "Nätverket “{0}” existerar redan."
 msgid "\"{0}\" is not a valid community name."
 msgstr "“{0}” är inte ett giltigt nätverksnamn."
 
-#, python-brace-format
-msgid "Transferring the money failed, sorry. Please contact support@liberapay.com if the problem persists. Error message: {0}"
-msgstr "Överföringen av pengarna misslyckades tyvärr. Vänligen kontakta support@liberapay.com om problemet kvarstår. Felmeddelande: {0}"
-
 msgid "You are not allowed to do this because your account is currently suspended."
 msgstr "Du har inte tillstånd att göra detta eftersom ditt konto just nu är avstängt."
 
@@ -1153,10 +1036,6 @@ msgstr "För många försöka att utföra denna åtgärd har gjorts, försök ig
 
 msgid "You're sending requests at an unusually fast pace. Please retry in a few seconds, and contact support@liberapay.com if the problem persists."
 msgstr "Du skickar förfrågningar i ett ovanligt högt tempo. Vänligen försök igen om några sekunder, och kontakta support@liberapay.com om problemet kvarstår."
-
-#, python-brace-format
-msgid "The attempt to distribute all the money in your wallet failed: {money_amount} remains."
-msgstr "Försöket att distribuera alla pengarna i din plånbok misslyckades: {money_amount} är kvar."
 
 #, python-brace-format
 msgid "The attempt to send an email to {email_address} failed. Please check that the address is valid and retry. If the problem persists, please contact support@liberapay.com."
@@ -1258,7 +1137,7 @@ msgid "\"{0}\" is not a valid email address."
 msgstr "“{0}” är inte en giltig e-postadress."
 
 msgid "Your email address is now verified."
-msgstr "Din e-mail adress är nu verifierad."
+msgstr "Din e-postadress är nu verifierad."
 
 #, python-brace-format
 msgid "A security check has failed. Please make sure your browser is configured to allow cookies for {domain}, then try again."
@@ -1378,10 +1257,10 @@ msgid "Log in to reopen your account."
 msgstr "Logga in för att återöppna ditt konto."
 
 msgid "Did you mistype your email address? Fix it and try again, or try a different address."
-msgstr "Matade du in din e-mejladress fel? Rätta till det och testa igen, eller testa en annan adress."
+msgstr "Matade du in din e-postadress fel? Rätta till det och testa igen, eller testa en annan adress."
 
 msgid "If you're sure that the email address you input is valid, then you can bypass this error. However, if we're unable to deliver messages to this address, then it will be blacklisted."
-msgstr "Om du är säker på att e-mejladressen du angav är korrekt så kan du kringgå det här felet. Dock så kommer den angivna adressen bli svartlistad om vi inte kan leverera meddelanden till den."
+msgstr "Om du är säker på att e-postadressen du angav är korrekt så kan du kringgå det här felet. Dock så kommer den angivna adressen bli svartlistad om vi inte kan leverera meddelanden till den."
 
 msgid "Ignore the error and proceed"
 msgstr "Ignorera det här felet och fortsätt"
@@ -1394,7 +1273,7 @@ msgid "Bypass the blacklist and retry"
 msgstr "Gå förbi svartlistan och försök igen"
 
 msgid "Alternatively, you can try a different email address:"
-msgstr "Alternativt, testa en annan e-mejladress:"
+msgstr "Alternativt, testa en annan e-postadress:"
 
 msgid "Proceed"
 msgstr "Fortsätt"
@@ -1463,17 +1342,14 @@ msgstr "Betalningsschema"
 msgid "Receiving"
 msgstr "Mottagande"
 
+msgid "Patrons"
+msgstr "Bidragsgivare"
+
 msgid "Payment Processors"
 msgstr "Betalningsförmedlare"
 
 msgid "Ledger"
 msgstr "Huvudbok"
-
-msgid "Wallet"
-msgstr "Plånbok"
-
-msgid "Emptying your wallet"
-msgstr "Tömning av din plånbok"
 
 msgid "Identity"
 msgstr "Identitet"
@@ -1618,7 +1494,7 @@ msgid "Ok"
 msgstr "Ok"
 
 msgid "Personal Information"
-msgstr "Personliginformation"
+msgstr "Personlig information"
 
 msgid "Full Name"
 msgstr "Fullständigt namn"
@@ -1732,9 +1608,6 @@ msgstr "Medel"
 msgid "Schedule"
 msgstr "Schema"
 
-msgid "Statement"
-msgstr "Uttalande"
-
 msgid "Members"
 msgstr "Medlemmar"
 
@@ -1785,7 +1658,7 @@ msgid "Region (state, province, island…)"
 msgstr "Region (stat, provins, ö...)"
 
 msgid "You can leave this field empty if your country does not use regions in postal addresses."
-msgstr "Du kan lämna detta fält blankt om ditt land inte använder regioner i postaddresser."
+msgstr "Du kan lämna detta fält blankt om ditt land inte använder regioner i postadresser."
 
 msgid "City"
 msgstr "Stad"
@@ -1794,10 +1667,7 @@ msgid "Postal code"
 msgstr "Postkod"
 
 msgid "Address within the city"
-msgstr "Address inom staden"
-
-msgid "Patrons"
-msgstr "Bidragsgivare"
+msgstr "Adress inom staden"
 
 msgid "Income"
 msgstr "Inkomst"
@@ -1963,126 +1833,51 @@ msgstr "Manuell förnyelse"
 msgid "A reminder to renew your donation will be sent to you via email."
 msgstr "En påminnelse om att förnya din donation kommer att skickas till dig via e-post."
 
+#, python-brace-format
+msgid "{username} has chosen not to see who their patrons are, so your donation will be secret."
+msgstr ""
+
+#, python-brace-format
+msgid "This donation won't be secret, you will appear in {username}'s private list of patrons."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} discloses who their patrons are, your donation will be public."
+msgstr ""
+
+msgid "Please select a privacy level for this donation:"
+msgstr ""
+
+msgid "Secret donation"
+msgstr ""
+
+#, python-brace-format
+msgid "Only you will know that you donate to {username}."
+msgstr ""
+
+msgid "Private donation"
+msgstr ""
+
+#, python-brace-format
+msgid "You will appear in {username}'s private list of patrons."
+msgstr ""
+
+msgid "Public donation"
+msgstr ""
+
+#, python-brace-format
+msgid "Everybody will be able to see that you support {username}."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} hasn't yet specified whether they want to see who their patrons are, so your donation will be secret."
+msgstr ""
+
 msgid "Discontinue the donation"
 msgstr "Sluta donera"
 
 msgid "Cancel the pledge"
 msgstr "Avbryt utfästelsen"
-
-#, python-brace-format
-msgid "You have uploaded {n} document of this type:"
-msgid_plural "You have uploaded {n} documents of this type:"
-msgstr[0] "Du har laddat upp {n} dokument av denna typ:"
-msgstr[1] "Du har laddat upp {n} dokument av denna typ:"
-
-#, python-brace-format
-msgid "Document #{id} is awaiting validation."
-msgstr "Dokument #{id} väntar validering."
-
-#, python-brace-format
-msgid "Document #{id} has been validated."
-msgstr "Dokument #{id} har blivit validerat."
-
-#, python-brace-format
-msgid "Document #{id} has been rejected: {refused_reason_type} - {refused_reason_message}."
-msgstr "Dokument #{id} har blivit avvisat: {refused_reason_type} - {refused_reason_message}."
-
-msgid "If you need assistance, you can send an email to support@liberapay.com."
-msgstr "Om du behöver hjälp kan du skicka ett e-mail till support@liberapay.com."
-
-msgid "Income Range"
-msgstr "Inkomstintervall"
-
-#, python-brace-format
-msgid "Less than {0}"
-msgstr "Mindre än {0}"
-
-#, python-brace-format
-msgid "More than {0}"
-msgstr "Mer än {0}"
-
-#, python-brace-format
-msgid "Between {0} and {1}"
-msgstr "Mellan {0} och {1}"
-
-msgid "How much money you earn per year, approximately."
-msgstr "Hur mycket pengar du tjänar på ett år, ungefär."
-
-msgid "Identity Proof"
-msgstr "Identitensbevis"
-
-msgid "Passport, or ID Card (front and back), or UK driving licence."
-msgstr "Pass, eller ID kort (fram och bak), eller UK körkort."
-
-msgid "Articles of Association"
-msgstr "Bolagsordning"
-
-msgid "Certified articles of association (Statute) - formal memorandum stated by the entrepreneurs, in which the following information is mentioned: business name, activity, registered address, shareholding."
-msgstr "Certifierad bolagsordning (Stadgar) - formellt memorandum från företagarna, där de följande uppgifter namns: företagsnamn, verksamhet, registrerad adress, aktieinnehav."
-
-msgid "Registration Proof"
-msgstr "Registreringsbevis"
-
-msgid "Extract from the Company Register issued within the last three months."
-msgstr "Utdrag ur bolagsregistret utfärdat under de senaste tre månaderna."
-
-msgid "Proof of registration from the official authority."
-msgstr "Bevis på registrering från den officiella myndigheten."
-
-msgid "Shareholder Declaration"
-msgstr "Aktieägardeklaration"
-
-#, python-brace-format
-msgid "Please download and fill the {link_start}shareholder declaration form{link_end}."
-msgstr "Var god ladda ner och fyll i {link_start}aktieägardeklarations formuläret{link_end}."
-
-msgid "Legal Representative Information"
-msgstr "Juridisk Representantsinformation"
-
-msgid "The following fields are about the organization's legal representative (you, probably)."
-msgstr "De följande fälten är om organisationens juridiska representant (du, antagligen)."
-
-#, python-brace-format
-msgid "The following file formats are supported: {0}."
-msgstr "De följande filformaten stöds: {0}."
-
-#, python-brace-format
-msgid "The maximum size of each file is {0}MB."
-msgstr "Maximal storlek per fil är {0}MB."
-
-msgid "We need to know who you are in order to comply with financial regulations. Only authorized personnel will be able to see this information, we will not show it to other users or anyone else unless required by law."
-msgstr "Vi måste veta vem du är för att kunna följa finansiella förordningar. Endast auktoriserad personal kommer att kunna se denna information, vi lämnar inte ut den till några andra användare eller någon annan såvida inte det krävs enligt lag."
-
-msgid "Given Name"
-msgstr "Förnamn"
-
-msgid "Family Name"
-msgstr "Efternamn"
-
-msgid "Country (nationality)"
-msgstr "Land (nationalitet)"
-
-msgid "Organization Type"
-msgstr "Organisationstyp"
-
-msgid "Business"
-msgstr "Företag"
-
-#, python-brace-format
-msgid "I agree to {0}MangoPay's Terms of Service{1}"
-msgstr "Jag accepterar {0}MangoPay's Användarvillkor{1}"
-
-msgid "Address"
-msgstr "Adress"
-
-msgid "Address (second line)"
-msgstr "Adress (andra raden)"
-
-msgid "Region"
-msgstr "Region"
-
-msgid "Postal Code"
-msgstr "Postnummer"
 
 msgid "People who contribute to the commons need you to support their work. Building free software, spreading free knowledge, these things take time and cost money, not only to do the initial work, but also to maintain it over time."
 msgstr "Personer som bidrar till allmänningarna behöver din hjälp för att stödja sitt arbete. Att bygga fri programwara, sprida gratis kunskap, dessa saker tar tid och kostar pengar, inte bara det initiala arbetet, utan också att underhålla det över tiden."
@@ -2394,7 +2189,7 @@ msgid ""
 "\n"
 "Are you sure you want to change your username?"
 msgstr ""
-"När du ändrar ditt användarnamn så ändras adressen till din profil på motsvarande sätt. En omdirigering från den gamla URLen till den nya läggs på, men vilken användare som helst kan ta bort denne genom att göra anspråk på ditt gamla användarnamn. Därför bör du uppdatera alla länkar till din profil som du lagt på andra hemsidor, om det inte är så att länkarna innehåller ditt oföränderliga konto ID ({account_id}) istället för ditt användarnamn.\n"
+"När du ändrar ditt användarnamn så ändras adressen till din profil på motsvarande sätt. En omdirigering från den gamla URLen till den nya läggs på, men vilken användare som helst kan ta bort denne genom att göra anspråk på ditt gamla användarnamn. Därför bör du uppdatera alla länkar till din profil som du lagt på andra hemsidor, om det inte är så att länkarna innehåller ditt oföränderliga konto-ID ({account_id}) istället för ditt användarnamn.\n"
 "\n"
 "Är du säker på att du vill ändra ditt användarnamn?"
 
@@ -2427,13 +2222,13 @@ msgid "Already Verified"
 msgstr "Redan verifierad"
 
 msgid "This email address has already been verified."
-msgstr "Denna e-mail adress är redan verifierad."
+msgstr "Denna e-postadress är redan verifierad."
 
 msgid "Address Taken"
 msgstr "Adress tagen"
 
 msgid "This email address is already connected to a different Liberapay account."
-msgstr "Denna e-mail adress är redan ansluten till ett annat Liberapay konto."
+msgstr "Denna e-postadress är redan ansluten till ett annat Liberapay-konto."
 
 msgid "Failure"
 msgstr "Fel"
@@ -2442,25 +2237,25 @@ msgid "Please check that the link you clicked on or copy-pasted hasn't been trun
 msgstr "Var god kontrollera att länken du klickade på eller kopierade inte har blivit avkortad eller ändrad på något sätt."
 
 msgid "Your email address is now blacklisted."
-msgstr "Din e-postaddress är nu svartlistad."
+msgstr "Din e-postadress är nu svartlistad."
 
 msgid "Your email address is no longer blacklisted."
-msgstr "Din e-postaddress är inte längre svartlistad."
+msgstr "Din e-postadress är inte längre svartlistad."
 
 msgid "Remove my email address from the blacklist"
-msgstr "Ta bort min e-postaddress från svartlistan"
+msgstr "Ta bort min e-postadress från svartlistan"
 
 msgid "Add my email address to the blacklist"
-msgstr "Lägg till min e-postaddress till svartlistan"
+msgstr "Lägg till min e-postadress till svartlistan"
 
 msgid "You have successfully disavowed having connected your email address to this Liberapay account."
 msgstr "Du har förnekat att ha anslutit din e-postadress till detta Liberapay-konto."
 
 msgid "Would you like to block any future attempt to connect your email address to a Liberapay account, by adding it to our blacklist?"
-msgstr "Skulle du vilja blockera framtida försök att ansluta din e-postaddress till ett Liberapay konto genom att lägga till det i vår svartlista?"
+msgstr "Skulle du vilja blockera framtida försök att ansluta din e-postadress till ett Liberapay-konto genom att lägga till det i vår svartlista?"
 
 msgid "You have already added and verified this address."
-msgstr "Du har redan lagt till och verifierat denna e-mail adress."
+msgstr "Du har redan lagt till och verifierat denna e-postadress."
 
 #, python-brace-format
 msgid "A verification email has been sent to {0}."
@@ -2474,8 +2269,8 @@ msgstr "E-mail inställningar"
 
 msgid "Email Address (Private)"
 msgid_plural "Email Addresses (Private)"
-msgstr[0] "E-mail adress (Privat)"
-msgstr[1] "E-mail adresser (Privat)"
+msgstr[0] "E-postadress (Privat)"
+msgstr[1] "E-postadresser (Privat)"
 
 msgid "Blacklisted"
 msgstr "Svartlistad"
@@ -2533,6 +2328,21 @@ msgstr "Liberapay stöder nu automatiska förnyelser, vill du aktivera det för 
 msgid "Yes, activate automatic renewals"
 msgstr "Ja, aktivera automatiska förnyelser"
 
+msgid "Liberapay now supports non-anonymous donations, do you want to modify the visibility of all your donations at once?"
+msgstr ""
+
+msgid "Reveal my donations to everyone"
+msgstr ""
+
+msgid "Reveal my donations to the beneficiaries only"
+msgstr ""
+
+msgid "Keep my donations as they are"
+msgstr ""
+
+msgid "Since you've chosen to make a public donation, we recommend that you complete your public profile."
+msgstr ""
+
 msgid "You have enabled automatic renewals for some or all of your donations, but you don't have any valid payment instrument that would allow us to initiate the automatic payments when the time comes."
 msgstr "Du har aktiverat automatiska förnyelser för några eller alla dina donationer, men du har inte något giltigt betalningsmedel som skulle låta oss påbörja automatiska betalningar när det är dags."
 
@@ -2541,10 +2351,6 @@ msgid "You have {n} donation awaiting payment."
 msgid_plural "You have {n} donations awaiting payment."
 msgstr[0] "Du har {n} donation som väntar på betalning."
 msgstr[1] "Du har {n} donationer som väntar på betalning."
-
-#, python-brace-format
-msgid "{money_amount}{small}/week{end_small}"
-msgstr "{money_amount}{small}/vecka{end_small}"
 
 #, python-brace-format
 msgid "{money_amount}{small}/month{end_small}"
@@ -2676,8 +2482,8 @@ msgstr "Stödjer inte {currency}"
 msgid "Doesn't support automatic renewal"
 msgstr "Stöder inte automatisk förnyelse"
 
-msgid "Not anonymous"
-msgstr "Inte anonym"
+msgid "Reveals your name and email address to the recipient"
+msgstr "Avslöjar ditt namn och e-postadress för mottagaren"
 
 msgid "Pay with PayPal"
 msgstr "Betala med PayPal"
@@ -2730,8 +2536,8 @@ msgstr "Liberapay lagrar inga pengar, utan hela betalningsbeloppet kommer att g�
 msgid "Liberapay does not store money, the entire amount of your payment will go immediately to the {payment_provider} account of {recipient_name}."
 msgstr "Liberapay lagrar inga pengar, utan hela betalningsbeloppet kommer att gå omedelbart till det konto hos {payment_provider} som tillhör {recipient_name}."
 
-msgid "PayPal payments are currently not anonymous, the recipient will see your name and email address."
-msgstr "PayPal betalningar är inte längre anonyma, mottagaren ser ditt namn och e-postaddress."
+msgid "PayPal reveals your name and email address to the recipient."
+msgstr ""
 
 msgid "Initiate the payment"
 msgstr "Påbörja betalningen"
@@ -2780,6 +2586,9 @@ msgstr "Denna data kommer skickas direkt till betalningsförmedlaren {name} via 
 msgid "Remember the card number for next time"
 msgstr "Kom ihåg kortnummret inför nästa gång"
 
+msgid "Use this payment instrument by default for future payments"
+msgstr ""
+
 msgid "Please input your name and your IBAN (International Bank Account Number):"
 msgstr "Vänligen ange ditt namn och IBAN (International Bank Account Number):"
 
@@ -2789,6 +2598,9 @@ msgstr "Genom att ange ditt IBAN och bekräfta denna betalning så tillåter du 
 
 msgid "Remember the bank account number for future payments"
 msgstr "Kom ihåg bankkontonummret för framtida betalningar"
+
+msgid "Please input your postal address:"
+msgstr ""
 
 #, python-brace-format
 msgid "'{0}' is not an acceptable amount (min={1}, max={2})"
@@ -2846,17 +2658,8 @@ msgstr[1] "Du har {n} schemalagda betalningar:"
 msgid "You currently don't have any scheduled payment."
 msgstr "Du har för nuvarande ingen schemalagd betalning."
 
-msgid "Are you sure you want to change the type of your account? For legal reasons we will have to create a new account for you in our payment partner's system, and transfer the money from your old account."
-msgstr "Är du säker på att du vill ändra kontotyp? På grund av lagkrav måste vi skapa ett nytt konto till dig hos vår betaltjänst och föra över pengarna från ditt gamla konto till det nya."
-
-msgid "We can't change the type of your account during payday, please try again in a few minutes."
-msgstr "Vi kan inte ändra din kontotyp under utbetalningsdagen, var god försök igen om några minuter."
-
-msgid "Are you sure you want to change your identity information? If you do, you may have to go through the identity verification process again."
-msgstr "Är du säker på att du vill ändra din identitetsinformation? Om du gör det kan du behöva gå igenom identitetverifieringsprocessen igen."
-
-msgid "You haven't filled all the required fields."
-msgstr "Du har inte fyllt i alla obligatoriska fält."
+msgid "The provided postal address is incomplete."
+msgstr "Postadressen som du har skaffat är ofullständig."
 
 msgid "Invalid date of birth."
 msgstr "Ogiltigt födelsedatum."
@@ -2864,27 +2667,8 @@ msgstr "Ogiltigt födelsedatum."
 msgid "Your identity information has been updated."
 msgstr "Din identitetsinformation har uppdaterats."
 
-msgid "Your identity information has been registered."
-msgstr "Din identitetsinformation har registrerats."
-
-msgid "You have to agree to MangoPay's Terms of Service."
-msgstr "Du måste godkänna MangoPays användarvillkor."
-
 msgid "JavaScript is required"
 msgstr "JavaScript krävs"
-
-msgid "Level 2"
-msgstr "Level 2"
-
-msgid "You have completed the identity verification process, the amount of money you can give and receive per year is no longer limited."
-msgstr "Du har slutfört identitetverifieringsprocessen, det totala beloppet pengar du kan ge och ta emot per år är inte längre begränsat."
-
-#, python-brace-format
-msgid "If you give more than {0} in a year, or receive more than {1} in a year, or if your account shows signs of suspicious activity, then you will have to provide additional information:"
-msgstr "Du måste tillhandahålla ytterligare information om du donerar mer än {0} per år, om du tar emot mer än {1} per år, eller om det finns tecken på misstänkt aktivitet på ditt konto:"
-
-msgid "The provided postal address is incomplete."
-msgstr "Postadressen som du har skaffat är ofullständig."
 
 msgid "This page allows you to view and modify the identity information attached to your account. Only authorized personnel can access this information, we do not show it to other users or anyone else unless required by law or if you instruct us to."
 msgstr "Denna sida tillåter dig att se och ändra den identitetsinformation accossierad med ditt konto. Endast behörig personal kan se denna information, vi visar inte detta för andra användare eller någon annan så vida det inte krävs enligt gällande lag eller om du instruerat oss."
@@ -2928,6 +2712,9 @@ msgstr "Denna profil är endast tillgänglig på {language}"
 msgid "Edit"
 msgstr "Redigera"
 
+msgid "Statement"
+msgstr "Uttalande"
+
 #, python-brace-format
 msgid "{0} owns the following accounts on other platforms:"
 msgstr "{0} äger följande konton på andra platformar:"
@@ -2943,6 +2730,38 @@ msgid "with {n} other"
 msgid_plural "with {n} others"
 msgstr[0] "med {n} annan"
 msgstr[1] "med {n} andra"
+
+msgid "Export as CSV"
+msgstr "Exportera som CSV"
+
+#, python-brace-format
+msgid "{username} has {n} public patron."
+msgid_plural "{username} has {n} public patrons."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "<unused singular (hash=d1c03a1d2b2a562ad40ed9bfab1b56e5)>"
+msgid_plural "The top {n} patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "{username} doesn't publish how much they give."
+msgstr "{username} publicerar inte hur mycket de ger."
+
+msgid "Donees"
+msgstr ""
+
+#, python-brace-format
+msgid "{username} donates publicly to {n} creator."
+msgid_plural "{username} donates publicly to {n} creators."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "{username} does not disclose how much they receive through Liberapay."
+msgstr "{username} avslöjar inte hur mycket de tar emot genom Liberapay."
 
 msgid "History"
 msgstr "Historik"
@@ -2967,10 +2786,6 @@ msgstr "Inkomst per vecka (i {currency})"
 
 msgid "Number of Patrons Per Week"
 msgstr "Antal Bidragsgivare Per Vecka"
-
-#, python-brace-format
-msgid "{username} does not disclose how much they receive through Liberapay."
-msgstr "{username} avslöjar inte hur mycket de tar emot genom Liberapay."
 
 msgid "Invoice documents are private."
 msgstr "Fakturedokument är privata."
@@ -3030,6 +2845,9 @@ msgstr "Skicka"
 
 msgid "Accept and Pay"
 msgstr "Acceptera och Betala"
+
+msgid "Mark as paid"
+msgstr ""
 
 #, python-brace-format
 msgid "Message: {0}"
@@ -3131,6 +2949,10 @@ msgid "Total money received: {0}"
 msgstr "Totalt antal pengar mottaget: {0}"
 
 #, python-brace-format
+msgid "{0}: {1}"
+msgstr "{0}: {1}"
+
+#, python-brace-format
 msgid "Total money sent: {0}"
 msgstr "Totalt antal pengar skickat: {0}"
 
@@ -3150,20 +2972,55 @@ msgstr "kostnad"
 msgid "error message: {0}"
 msgstr "felmeddelande: {0}"
 
-msgid "anonymous donation"
-msgstr "anonym donering"
+msgid "hidden"
+msgstr ""
 
 #, python-brace-format
-msgid "anonymous donation for your role in the {0} team"
-msgstr "anonym donation för din roll i {0} gruppen"
+msgid "public donation from {donor_name}"
+msgstr ""
 
 #, python-brace-format
-msgid "donation to {0}"
-msgstr "donation till {0}"
+msgid "private donation from {donor_name}"
+msgstr ""
+
+msgid "secret donation"
+msgstr ""
 
 #, python-brace-format
-msgid "donation to {0} for their role in the {1} team"
-msgstr "donation till {0} för deras roll i {1} gruppen"
+msgid "public donation from {donor_name} for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation from {donor_name} for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation for your role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "public donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation to {recipient_name}"
+msgstr ""
+
+#, python-brace-format
+msgid "public donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "private donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
+
+#, python-brace-format
+msgid "secret donation to {recipient_name} for their role in the {team_name} team"
+msgstr ""
 
 #, python-brace-format
 msgid "This payment must be manually approved by the recipient through {provider}'s website."
@@ -3262,6 +3119,53 @@ msgid "Next Page →"
 msgstr "Nästa Sida →"
 
 #, python-brace-format
+msgid "You have {n} active patron giving you {money_amount} per week."
+msgid_plural "You have {n} active patrons giving you a total of {money_amount} per week."
+msgstr[0] ""
+msgstr[1] ""
+
+msgid "You don't have any active patrons."
+msgstr ""
+
+#, python-brace-format
+msgid "{username} doesn't have any active patrons."
+msgstr ""
+
+msgid "Liberapay now supports non-anonymous donations, do you want to know who your patrons are?"
+msgstr ""
+
+msgid "Enable non-anonymous donations"
+msgstr ""
+
+#, python-brace-format
+msgid "You have opted-in to see who your patrons are. If you change your mind, then {link_start}click here to disable non-anonymous donations{link_end}."
+msgstr ""
+
+#, python-brace-format
+msgid "You've chosen not to see who your patrons are. If you change your mind, then {link_start}click here to enable non-anonymous donations{link_end}."
+msgstr ""
+
+msgid "Data export"
+msgstr ""
+
+msgid "Download the list of currently active patrons"
+msgstr ""
+
+msgid "Download the record of all patrons in the last ten years"
+msgstr ""
+
+#, python-brace-format
+msgid "View the patrons of {username}"
+msgstr ""
+
+msgid "You are not a member of any team."
+msgstr "Du är inte medlem i någon grupp."
+
+#, python-brace-format
+msgid "{username} isn't a member of any team."
+msgstr ""
+
+#, python-brace-format
 msgid "You have to {link_open}fill your profile{link_close} before you can start to receive donations."
 msgstr "Du måste {link_open}fylla i din profil{link_close} innan du kan börja ta emot donationer."
 
@@ -3319,56 +3223,6 @@ msgstr "PayPal tillåter dig att ta emot pengar i fler länder än Stripe, men d
 msgid "liberapay_receipt_{number}"
 msgstr "liberapay_kvitto_{number}"
 
-msgid "Receipt"
-msgstr "Kvitto"
-
-#, python-brace-format
-msgid "We confirm the receipt of a transfer initiated by {payer} on {date}."
-msgstr "Vi bekräftar mottagningen av en överföring från {payer} {date}."
-
-#, python-brace-format
-msgid "Of the {0} that were sent, {1} went into the account of {owner_name} ({link}), and {2} were paid in transaction fees."
-msgstr "Bland de {0} som skickades gick {1} till {owner_name}s konto ({link}) och {2} till transaktionsavgifter."
-
-msgid "Beneficiaries"
-msgstr "Mottagare"
-
-#, python-brace-format
-msgid "The money will fund the donations of {name} on Liberapay. The table below shows the donations as they were when the payment was initiated ({datetime}, UTC)."
-msgstr "Pengarna kommer att finansiera {name}s donationer på Liberapay. Tabellen nedan visar donationerna som de var när överföringen startades ({datetime}), UTC)."
-
-msgid "Recipient"
-msgstr "Mottagare"
-
-msgid "Amount per week"
-msgstr "Belopp per vecka"
-
-msgid "Payment Details"
-msgstr "Betalningsdetaljer"
-
-#, python-brace-format
-msgid "Payment method: {0}"
-msgstr "Betalningsmetod: {0}"
-
-#, python-brace-format
-msgid "Debited card: {number} ({brand}, {country})"
-msgstr "Debaterat kort: {number} ({brand}, {country})"
-
-#, python-brace-format
-msgid "Debited account: {0}"
-msgstr "Debiterat konto: {0}"
-
-#, python-brace-format
-msgid "Execution date: {0}"
-msgstr "Överföringsdatum: {0}"
-
-#, python-brace-format
-msgid "Transaction ID: {0}"
-msgstr "Transaktionsid: {0}"
-
-msgid "This document is not an invoice."
-msgstr "Detta dokument är inte en faktura."
-
 msgid "Payment receipt"
 msgstr "Kvitto för betalning"
 
@@ -3392,10 +3246,16 @@ msgstr "{0} var betald i hanteringsavgifter och {1} distruberades som specifiera
 msgid "However, {x_percent} of the payment ({refund_amount}) was refunded on {refund_date}."
 msgstr "Hur som, {x_percent} av betalningen ({refund_amount}) var återbetald {refund_date}."
 
+msgid "Beneficiaries"
+msgstr "Mottagare"
+
 msgid "The money has been donated to the following recipient:"
 msgid_plural "The money has been donated to the following recipients:"
 msgstr[0] "Pengarna har blivit donerade till denna mottagare:"
 msgstr[1] "Pengarna har blivit donerade till följande mottagare:"
+
+msgid "Recipient"
+msgstr "Mottagare"
 
 #, python-brace-format
 msgid "{recipient}, member of the {team_name} team"
@@ -3432,8 +3292,19 @@ msgid "Payment method: direct debit of bank account {partial_account_number}"
 msgstr "Betalningsmetod: direktbetalning från bankkonto {partial_account_number}"
 
 #, python-brace-format
+msgid "Payment method: {0}"
+msgstr "Betalningsmetod: {0}"
+
+#, python-brace-format
 msgid "Settlement date: {0}"
 msgstr "Förfallodag: {0}"
+
+#, python-brace-format
+msgid "Transaction ID: {0}"
+msgstr "Transaktionsid: {0}"
+
+msgid "This document is not an invoice."
+msgstr "Detta dokument är inte en faktura."
 
 msgid "You can't receive new donations until you've configured payment processing."
 msgstr "Du kan inte ta emot nya donationer tills du konfigurerat en betalningsförmedlare."
@@ -3441,9 +3312,6 @@ msgstr "Du kan inte ta emot nya donationer tills du konfigurerat en betalningsf�
 #, python-brace-format
 msgid "Donations through teams make up {income_percent} of your income ({team_income} of {total_income}) and {patrons_percent} of your donors ({nteampatrons} of {npatrons})."
 msgstr "Donationer genom grupper utgör {income_percent} av din inkomst ({team_income} av {total_income}) och {patrons_percent} av dina donatorer ({nteampatrons} av {npatrons})."
-
-msgid "You are not a member of any team."
-msgstr "Du är inte medlem i någon grupp."
 
 msgid "Details of Donations"
 msgstr "Donationsdetaljer"
@@ -3527,9 +3395,6 @@ msgstr "Genom att ange ditt IBAN, tillåter du {platform} och {provider}, vår l
 msgid "Forget this bank account number after one payment."
 msgstr "Glöm det här bankkontonumret efter en betalning."
 
-msgid "The BIC you provided appears to be invalid."
-msgstr "BIC-koden du angav verkar vara ogiltig."
-
 #, python-brace-format
 msgid "You have {n} connected payment instrument."
 msgid_plural "You have {n} connected payment instruments."
@@ -3579,34 +3444,8 @@ msgstr "Lägg till ett kort"
 msgid "Add a bank account"
 msgstr "Lägg till ett bankkonto"
 
-msgid "You still have money in this Liberapay account, please choose a disbursement method below or contact support."
-msgstr "Du har fortfarande pengar i detta Liberapay konto, var god välj en utbetalningsmetod nedan eller kontakta support."
-
 msgid "Close Account"
 msgstr "Stäng Konto"
-
-#, python-brace-format
-msgid "You have {0} in your wallet. What should we do with it?"
-msgstr "Du har {0} i din plånbok. Vad ska vi göra med dem?"
-
-#, python-brace-format
-msgid "Give it to the {0}people I donate to{1}"
-msgstr "Ge dem till {0}personerna jag donerar till{1}"
-
-msgid "Donate it to Liberapay"
-msgstr "Donera till Liberapay"
-
-msgid "This option is recommended for small amounts."
-msgstr "Denna möjlighet rekommenderas endast för små belopp."
-
-msgid "Withdraw it to my bank account"
-msgstr "Debitera det från mitt bankkonto"
-
-msgid "If neither option works for you, please contact support@liberapay.com."
-msgstr "Om inget alternativ fungerar för dig, var god kontakta support@liberapay.com."
-
-msgid "You have a pending transfer to your bank account. If it fails, the money will reappear in your wallet and your account will be automatically reopened."
-msgstr "Du har en pågående överföring till ditt bankkonto. Om det misslyckas kommer pengarna att återgå till din plånbok och ditt konto kommer automatiskt att öppnas igen."
 
 msgid "Data retention"
 msgstr "Datalagring"
@@ -3628,9 +3467,6 @@ msgstr "Redo?"
 
 msgid "Yes, close my Liberapay account"
 msgstr "Ja, stäng mitt Liberapay konto"
-
-msgid "Incorrect password"
-msgstr "Ogiltigt lösenord"
 
 msgid "Your password has been changed."
 msgstr "Ditt lösenord har ändrats."
@@ -3682,23 +3518,14 @@ msgstr "Denna donation existerar inte eller har redan stoppats."
 msgid "Your donation to {0} has been stopped."
 msgstr "Din givning till {0} har stoppats."
 
-msgid "Your wallet is empty."
-msgstr "Din plånbok är tom."
+msgid "This is no longer possible."
+msgstr ""
 
 msgid "Export History"
 msgstr "Exportera Historik"
 
-#, python-brace-format
-msgid "You have approximately {converted_amount} in your account (exactly: {exact_amounts})."
-msgstr "Du har ungefär {converted_amount} på ditt konto (exakt: {exact_amounts}."
-
-#, python-brace-format
-msgid "You have {money_amount} in your account."
-msgstr "Du har {money_amount} på ditt konto."
-
-#, python-brace-format
-msgid "Their balance is {0}."
-msgstr "Deras balans är {0}."
+msgid "Wallet"
+msgstr "Plånbok"
 
 #, python-brace-format
 msgid "This page only shows transactions processed by Mangopay, to view other payments {link_start}go to the Ledger page{link_end}."
@@ -3712,9 +3539,6 @@ msgid "{money_amount} in donations to {n} person"
 msgid_plural "{money_amount} in donations to {n} people"
 msgstr[0] "{money_amount} i donationer till {n} person"
 msgstr[1] "{money_amount} i donationer till {n} personer"
-
-msgid "Export as CSV"
-msgstr "Exportera som CSV"
 
 #, python-brace-format
 msgid "{money_amount} in expense reimbursements to {n} person"
@@ -3763,6 +3587,10 @@ msgstr "återbetalning av misslyckat uttag (felmeddelande: {0})"
 msgid "canceled"
 msgstr "avbruten"
 
+#, python-brace-format
+msgid "anonymous donation for your role in the {0} team"
+msgstr "anonym donation för din roll i {0} gruppen"
+
 msgid "in arrears"
 msgstr "i efterskott"
 
@@ -3772,6 +3600,9 @@ msgstr "donationsåterbetalning"
 #, python-brace-format
 msgid "reimbursement of {link_open}expense #{invoice_id}{link_close} from {payer}"
 msgstr "ersätning av {link_open}utgift #{invoice_id}{link_close} från {payer}"
+
+msgid "anonymous donation"
+msgstr "anonym donering"
 
 msgid "one-off donation from someone closing their account"
 msgstr "engångsdonation från någon som stänger sitt konto"
@@ -3792,6 +3623,10 @@ msgstr "avgiftsåterbetalning"
 msgid "final gift to {0}"
 msgstr "sista gåvan till {0}"
 
+#, python-brace-format
+msgid "donation to {0} for their role in the {1} team"
+msgstr "donation till {0} för deras roll i {1} gruppen"
+
 msgid "refund of anonymous donation"
 msgstr "återbetalning av anonym donation"
 
@@ -3799,113 +3634,9 @@ msgstr "återbetalning av anonym donation"
 msgid "payment of {link_open}expense #{invoice_id}{link_close} to {payee}"
 msgstr "betalning av {link_open}utgift #{invoice_id}{link_close} till {payee}"
 
-msgid "The amount cannot be zero."
-msgstr "Beloppet kan inte vara noll."
-
 #, python-brace-format
-msgid "The transaction fee would be high: {0}% ({1}/{2}). Proceed anyway?"
-msgstr "Transaktionsavgiften skulle vara hög: {0} % ({1} / {2}). Vill du fortsätta ändå?"
-
-msgid "Withdrawing Money"
-msgstr "Uttag av pengar"
-
-#, python-brace-format
-msgid "{0} have been taken from your Liberapay wallet. If the transfer is successful, {1} will land in your bank account, and {2} will be paid in fees."
-msgstr "{0} har tagits från din Liberapayplånbok. Om överföringen lyckas kommer {1} att landa på ditt bankkonto och {2} att betalas i avgifter."
-
-#, python-brace-format
-msgid "The attempt to send {0} to your bank account has failed. Error message: {1}"
-msgstr "Försöket att skicka {0} till ditt bankkonto har misslyckats. Felmeddelande: {1}"
-
-#, python-brace-format
-msgid "You have {0} in your Liberapay wallet."
-msgstr "Du har {0} i din Liberapay-plånbok."
-
-msgid "Which currency do you want to withdraw?"
-msgstr "Villken valuta vill du ta ut?"
-
-#, python-brace-format
-msgid "Withdrawing euros is free. Withdrawing US dollars costs {0} per transfer regardless of the destination country."
-msgstr "Uttag av euro är gratis. Uttag av US dollar kostar {0} per överföring oavsett destinationsland."
-
-msgid "There are no fees when withdrawing euros to your bank account."
-msgstr "Det är inga transaktionsavgifter vid uttag av euro till ditt bankkonto."
-
-#, python-brace-format
-msgid "Withdrawing US dollars costs {0} per transfer, whatever the destination country is."
-msgstr "Uttag av US dollar kostar {0} per överföring, oavsett destinationsland."
-
-msgid "Bank account"
-msgstr "Bankkonto"
-
-msgid "IBAN"
-msgstr "IBAN"
-
-msgid "Routing Number"
-msgstr "Clearingnummer"
-
-msgid "Account Number"
-msgstr "Kontonummer"
-
-msgid "Bank Account Type"
-msgstr "Bonkkontotyp"
-
-msgid "Bank Name"
-msgstr "Banknamn"
-
-msgid "Institution Number"
-msgstr "Institutions nummer"
-
-msgid "Branch Code"
-msgstr "Grenkod"
-
-msgid "Sort Code"
-msgstr "Clearing nummer"
-
-msgid "BIC (Bank Identifier Code)"
-msgstr "BIC (Bank Identifier Code)"
-
-msgid "SEPA / IBAN"
-msgstr "SEPA/IBAN"
-
-msgid "USA"
-msgstr "USA"
-
-msgid "Canada"
-msgstr "Kanada"
-
-msgid "UK"
-msgstr "Storbritannien"
-
-msgid "Other"
-msgstr "Annat"
-
-msgid "IBAN (International Bank Account Number)"
-msgstr "IBAN (International Bank Account Number)"
-
-msgid "This IBAN is invalid."
-msgstr "Detta IBAN är ogiltigt."
-
-msgid "checking"
-msgstr "check"
-
-msgid "savings"
-msgstr "sparande"
-
-msgid "SWIFT codes are 8 or 11 characters long. The first 6 characters are letters, the rest can be letters or digits. Example: CMBRFR2BCME"
-msgstr "SWIFT koder är 8 eller 11 karaktärer långa. De första 6 karaktärerna är bokstäver, resten kan vara bokstäver eller siffror. Exempel: CMBRFR2BCME"
-
-msgid "only letters (a-z) and digits (0-9) are allowed"
-msgstr "bara bokstäver (a-z) och siffror (0-9) är tillåtna"
-
-msgid "This account number is invalid."
-msgstr "Detta kontonummer är ogiltigt."
-
-msgid "The following fields are about the legal owner of the bank account."
-msgstr "Följande fält handlar om ägaren till bankkontot."
-
-msgid "The bank account must belong to you, sending money to third parties is not allowed."
-msgstr "Bankkontot måste tillhöra dig, att skicka pengar till tredjepart är inte tillåtet."
+msgid "donation to {0}"
+msgstr "donation till {0}"
 
 #, python-brace-format
 msgid "Account number: {0}"
@@ -4175,8 +3906,8 @@ msgid "Liberapay is a way to donate money recurrently to people whose work you a
 msgstr "Liberapay är ett sätt att skänka pengar återkommande till människor vars arbete du uppskattar."
 
 #, python-brace-format
-msgid "Payments come with no strings attached. You don't know exactly who is giving to you, and donations are capped at {0} per week per donor to dampen undue influence."
-msgstr "Betalningar kommer utan förbehåll. Du vet inte exakt vem som ger till dig, och donationerna begränsas till {0} per vecka per givare för att dämpa otillbörligt inflytande."
+msgid "Payments come with no strings attached. By default, recipients don't know who their patrons are, and donations are capped at {0} per week per donor to dampen undue influence."
+msgstr ""
 
 msgid "By default, the total amount you give and the total amount you receive are public (you can opt out of sharing this info)."
 msgstr "Som standard är de totala beloppet du ger och det totala beloppet du får offentligt (du kan välja att inte dela denna information)."
@@ -4220,10 +3951,6 @@ msgstr "Användarvillkor"
 
 msgid "Privacy Policy"
 msgstr "Integritetspolicy"
-
-#, python-brace-format
-msgid "{0} was Liberapay's initial payment partner, but they quit on us in 2018. Below are copies of the contract you had to accept in order to send or receive money through Liberapay prior to August 2018: "
-msgstr "{0} var Liberapays ursprungliga betalningspartner, men de avslutade partnerskapet med oss 2018. Nedan finns kopior av kontraktet du behövde acceptera för att skicka eller ta emot pengar via Liberapay före augusti 2018: "
 
 msgid "This page contains links to and information about the Liberapay logo. We hope you'll find it especially useful if you're writing an article about Liberapay or if you want to add custom links to your Liberapay profile in your website."
 msgstr "Den här sidan innehåller länkar till och information om Liberapay logotypen. Vi hoppas att du tycker att de är särskilt användbara om du skriver en artikel med Liberapay eller om du vill skapa anpassade länkar till din Liberapay profil på din webbplats."
@@ -4340,7 +4067,7 @@ msgstr "Betalningsförmedlare"
 
 #, python-brace-format
 msgid "The intermediaries involved in payment processing collect information for anti-fraud purposes, for example the name and IP address of the payer. Please read these documents if you want more information: {links_to_policies}."
-msgstr "De mellanhänder som är involverade i betalningsförmedlningen samlar information för att motverka bedrägerier, t.ex. betalarens namn och IP-adress. För mer information, läs följande dokument: {links_to_policies}."
+msgstr "De mellanhänder som är involverade i betalningsförmedlingen samlar information för att motverka bedrägerier, t.ex. betalarens namn och IP-adress. För mer information, läs följande dokument: {links_to_policies}."
 
 #, python-brace-format
 msgid "{platform_name}'s privacy policy"
@@ -4378,25 +4105,6 @@ msgstr "Vår säkerhetspolicys detaljer (omfattning, belöningar ...) finns till
 #, python-brace-format
 msgid "Thanks to {link_open}everyone who has sent us a report through HackerOne{link_close}."
 msgstr "Tack till {link_open}alla som har skickat oss en rapport via HackerOne{link_close}."
-
-#, python-brace-format
-msgid "{0} is escrowed within Liberapay."
-msgstr "{0} lagras hos Liberapay."
-
-msgid "Deposits (€)"
-msgstr "Insättningar (€)"
-
-msgid "Money moved into Liberapay"
-msgstr "Pengar flyttade till Liberapay"
-
-msgid "weeks"
-msgstr "veckor"
-
-msgid "Withdrawals (€)"
-msgstr "Uttag (€)"
-
-msgid "Money moved out of Liberapay"
-msgstr "Pengar flyttade ur Liberapay"
 
 #, python-brace-format
 msgid "Liberapay was launched {timespan_ago} and has {n} user."
@@ -4439,6 +4147,9 @@ msgstr "Öppna konton"
 
 msgid "Number of open individual and organization accounts on Liberapay"
 msgstr "Antal öppna individuella konton och organisationskonton på Liberapay"
+
+msgid "weeks"
+msgstr "veckor"
 
 msgid "Active Users"
 msgstr "Aktiva användare"
@@ -4960,6 +4671,10 @@ msgstr[1] "Det finns för närvarande {n} sponsorer på plattformen, denna sekti
 msgid "The list below is rotated pseudorandomly."
 msgstr "Listan nedan roteras pseudoslumpmässigt."
 
+#, python-brace-format
+msgid "{money_amount}{small}/week{end_small}"
+msgstr "{money_amount}{small}/vecka{end_small}"
+
 msgid "Thanks"
 msgstr "Tack"
 
@@ -5115,9 +4830,6 @@ msgstr "{elsewhere_platform} kontot \"{account_name}\" kunde inte länkas till d
 msgid "The {elsewhere_platform} account \"{account_name}\" could not be linked to your Liberapay profile because it was already linked to another account."
 msgstr "{elsewhere_platform} kontot \"{account_name}\" kunde inte länkas till din Liberapay profil då det redan var länkat till ett annat konto."
 
-msgid "Edit your profile"
-msgstr "Redigera din profil"
-
 msgid "Manage this team"
 msgstr "Administrera denna grupp"
 
@@ -5144,11 +4856,11 @@ msgstr "E-postadresser"
 
 #, python-brace-format
 msgid "The email address {0} has been linked to your Liberapay account."
-msgstr "E-postadressen {0} har länkats till ditt Liberapay konto."
+msgstr "E-postadressen {0} har länkats till ditt Liberapay-konto."
 
 #, python-brace-format
 msgid "The email address {0} has been linked to your Liberapay account, however it still needs to be verified."
-msgstr "E-postadressen {0} har länkats till ditt Liberapay konto, dock behöver det fortfarande verifieras."
+msgstr "E-postadressen {0} har länkats till ditt Liberapay-konto, dock behöver den fortfarande verifieras."
 
 #, python-brace-format
 msgid "The email address {0} was already linked to your account."
@@ -5156,7 +4868,7 @@ msgstr "E-postadressen {0} var redan länkad till ditt konto."
 
 #, python-brace-format
 msgid "The email address {0} could not be linked to your account because it was already connected to another account."
-msgstr "E-postadressen {0} kunde inte länkas till ditt konto då det redan var länkat till ett annat konto."
+msgstr "E-postadressen {0} kunde inte länkas till ditt konto då den redan var länkad till ett annat konto."
 
 #, python-brace-format
 msgid ""
@@ -5276,7 +4988,7 @@ msgstr[0] "Du följer {n} konto på {platform}."
 msgstr[1] "Du följer {n} konton på {platform}."
 
 msgid "The address you provided is not valid: it doesn't contain any “@” symbol."
-msgstr "Adressen du angav är inte giltig: den innehåller inte någon \"@\" symbol."
+msgstr "Adressen du angav är inte giltig: den innehåller inte någon \"@\"-symbol."
 
 msgid "Which account?"
 msgstr "Vilket konto?"
@@ -5328,13 +5040,13 @@ msgid "Connecting a {platform} account"
 msgstr "Ansluter till ett {platform} konto"
 
 msgid "Please input the email address and country of the PayPal account you want to connect:"
-msgstr "Vänligen ange e-postadressen och landet för PayPal kontot som du vill ansluta:"
+msgstr "Vänligen ange e-postadressen och landet för PayPal-kontot som du vill ansluta:"
 
 msgid "A confirmation code will be sent to this email address, unless it's already linked to your Liberapay account."
-msgstr "En bekräftelsekod skickas till denna e-postadressen, såvida den inte redan är länkad till ditt Liberapay konto."
+msgstr "En bekräftelsekod skickas till denna e-postadress, såvida den inte redan är länkad till ditt Liberapay-konto."
 
 msgid "PayPal payments are currently not anonymous, donors will see your email address, and you will see theirs."
-msgstr "PayPal betalningar är förnärvarande inte anonyma, givare kommer se din e-postadress och du kommer se deras."
+msgstr "PayPal-betalningar är för närvarande inte anonyma, givare kommer se din e-postadress och du kommer se deras."
 
 msgid "Sorry, we didn't find anything matching your query."
 msgstr "Förlåt, vi hittade inget som matchade din förfrågan."

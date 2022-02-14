@@ -3031,3 +3031,89 @@ ALTER TABLE repositories DROP COLUMN extra_info;
 
 -- migration #149
 UPDATE redirections SET from_prefix = substring(from_prefix for length(from_prefix) - 1) WHERE right(from_prefix, 1) = '%';
+
+-- migration #150
+ALTER TABLE tips ADD COLUMN visibility int CHECK (visibility >= -3 AND visibility <> 0 AND visibility <= 3);
+ALTER TABLE payin_transfers ADD COLUMN visibility int DEFAULT 1 CHECK (visibility >= 1 AND visibility <= 3);
+UPDATE tips SET visibility = -1 WHERE hidden AND visibility IS NULL;
+CREATE OR REPLACE VIEW current_tips AS
+    SELECT DISTINCT ON (tipper, tippee) *
+      FROM tips
+  ORDER BY tipper, tippee, mtime DESC;
+CREATE TABLE recipient_settings
+( participant           bigint   PRIMARY KEY REFERENCES participants
+, patron_visibilities   int      NOT NULL CHECK (patron_visibilities > 0)
+);
+UPDATE tips SET visibility = -1 WHERE hidden AND visibility = 1;
+UPDATE tips SET visibility = 1 WHERE visibility IS NULL;
+DROP FUNCTION compute_arrears(current_tips);
+DROP CAST (current_tips AS tips);
+DROP VIEW current_tips;
+ALTER TABLE tips
+    DROP COLUMN hidden,
+    ALTER COLUMN visibility DROP DEFAULT,
+    ALTER COLUMN visibility SET NOT NULL;
+CREATE OR REPLACE VIEW current_tips AS
+    SELECT DISTINCT ON (tipper, tippee) *
+      FROM tips
+  ORDER BY tipper, tippee, mtime DESC;
+CREATE CAST (current_tips AS tips) WITH INOUT;
+CREATE FUNCTION compute_arrears(tip current_tips) RETURNS currency_amount AS $$
+    SELECT compute_arrears(tip::tips);
+$$ LANGUAGE sql;
+ALTER TABLE payin_transfers
+    ALTER COLUMN visibility DROP DEFAULT,
+    ALTER COLUMN visibility SET NOT NULL;
+
+-- migration #151
+ALTER TYPE route_status ADD VALUE IF NOT EXISTS 'expired';
+UPDATE exchange_routes
+   SET status = 'expired'
+ WHERE id IN (
+           SELECT DISTINCT ON (pi.route) pi.route
+             FROM payins pi
+            WHERE pi.error = 'Your card has expired. (code expired_card)'
+         ORDER BY pi.route, pi.ctime DESC
+       );
+
+-- migration #152
+CREATE INDEX transfers_team_idx ON transfers (team) WHERE team IS NOT NULL;
+
+-- migration #153
+UPDATE exchange_routes AS r
+   SET is_default = null
+ WHERE is_default
+   AND NOT EXISTS (
+           SELECT 1
+             FROM events e
+            WHERE e.participant = r.participant
+              AND e.type = 'set_default_route'
+              AND e.payload = jsonb_build_object(
+                      'id', r.id,
+                      'network', r.network
+                  )
+       );
+
+-- migration #154
+DELETE FROM notifications WHERE event IN (
+    'income',
+    'once/mangopay-exodus',
+    'withdrawal_created',
+    'withdrawal_failed'
+);
+DELETE FROM app_conf WHERE key LIKE 'mangopay_%';
+DROP TABLE cash_bundles;
+DROP TRIGGER upsert_mangopay_user_id ON participants;
+DROP FUNCTION upsert_mangopay_user_id();
+DROP TABLE mangopay_users;
+CREATE OR REPLACE FUNCTION initialize_amounts() RETURNS trigger AS $$
+        BEGIN
+            NEW.giving = coalesce_currency_amount(NEW.giving, NEW.main_currency);
+            NEW.receiving = coalesce_currency_amount(NEW.receiving, NEW.main_currency);
+            NEW.taking = coalesce_currency_amount(NEW.taking, NEW.main_currency);
+            RETURN NEW;
+        END;
+    $$ LANGUAGE plpgsql;
+ALTER TABLE participants DROP CONSTRAINT mangopay_chk;
+ALTER TABLE participants DROP COLUMN balance;
+ALTER TABLE participants DROP COLUMN mangopay_user_id;
