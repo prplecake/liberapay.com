@@ -11,6 +11,7 @@ def _import():
     from .mastodon import Mastodon  # noqa
     from .openstreetmap import OpenStreetMap  # noqa
     from .pleroma import Pleroma  # noqa
+    from .sourcehut import Sourcehut #noqa
     from .twitch import Twitch  # noqa
     from .twitter import Twitter  # noqa
     from .youtube import Youtube  # noqa
