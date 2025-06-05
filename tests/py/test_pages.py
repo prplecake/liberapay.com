@@ -191,7 +191,7 @@ class TestPages(Harness):
         assert r.code == 403, r.text
         r = self.client.GET('/alice/routes/', auth_as=alice)
         assert r.code == 200, r.text
-        assert "You don&#39;t have any valid payment instrument." in r.text, r.text
+        assert "No valid payment instruments are attached" in r.text, r.text
         r = self.client.GET('/alice/routes/add?type=stripe-card', auth_as=alice)
         assert r.code == 200, r.text
         r = self.client.POST(
@@ -202,7 +202,7 @@ class TestPages(Harness):
         assert r.code == 302, r.text
         r = self.client.GET('/alice/routes/', auth_as=alice)
         assert r.code == 200, r.text
-        assert "You have 1 connected payment instrument." in r.text, r.text
+        assert "1 valid payment instrument is attached" in r.text, r.text
         sepa_debit_pm = stripe.PaymentMethod.create(
             type='sepa_debit',
             billing_details=dict(
@@ -221,7 +221,7 @@ class TestPages(Harness):
         assert r.code == 302, r.text
         r = self.client.GET('/alice/routes/', auth_as=alice)
         assert r.code == 200, r.text
-        assert "You have 2 connected payment instruments." in r.text, r.text
+        assert "2 valid payment instruments are attached" in r.text, r.text
         r = self.client.POST(
             '/alice/routes/',
             {'set_as_default': str(offset + 1)},
