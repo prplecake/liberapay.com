@@ -3,17 +3,22 @@
 % set email = state['log-in.email-sent-to']
 <div class="alert alert-success">
     <p>{{ _(
-        "We've sent you a single-use login link. Check your inbox, open the "
-        "provided link in a new tab, then come back to this page and click on "
-        "the button below to carry on with what you wanted to do."
+        "A single-use authentication link has been emailed to {email_address}.",
+        email_address='<code>%s</code>'|safe % email
     ) }}</p>
-
+    <p>{{ _("Check your inbox, and perhaps your spam folder.") }}</p>
+% if not request.body.parse_boolean('log-in.close-tab', False)
+    <p>{{ _(
+        "Open the authentication link in a new tab, then come back to this page "
+        "and click on the button below to carry on with what you wanted to do."
+    ) }}</p>
     <br>
     <form action="" method="POST">
         % include "templates/form-repost.html"
         <input type="hidden" name="log-in.carry-on" value="{{ email }}" />
         <button class="btn btn-success">{{ _("Carry on") }}</button>
     </form>
+% endif
 </div>
 
 % elif state.get('log-in.carry-on')
