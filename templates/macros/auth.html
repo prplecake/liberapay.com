@@ -22,7 +22,7 @@
         <input name="back_to" type="hidden" value="{{ participant.path('settings/') }}" />
         <input name="email" value="{{ participant.get_email_address() or '' }}"
                aria-hidden="true" class="out-of-sight" tabindex="-1" />
-        % if participant.has_password and user.session_type != 'em'
+        % if participant.has_password and user.session_type not in ('em', 'in')
         <div class="form-group">
         <input type="password" name="cur-password" class="form-control"
                placeholder="{{ _('Current password') }}" />
