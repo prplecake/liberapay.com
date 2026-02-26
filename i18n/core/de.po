@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2026-02-20 08:50+0000\n"
-"Last-Translator: Wuzzy <Wuzzy@disroot.org>\n"
+"PO-Revision-Date: 2026-02-26 00:09+0000\n"
+"Last-Translator: Andotar <jacky_009@gmx.de>\n"
 "Language-Team: German <https://hosted.weblate.org/projects/liberapay/core/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
@@ -1670,7 +1670,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Ok"
-msgstr "OK"
+msgstr "O. k."
 
 msgid "Personal Information"
 msgstr "Persönliche Informationen"
