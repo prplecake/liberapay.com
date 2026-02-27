@@ -1668,7 +1668,7 @@ msgid "Yes"
 msgstr "Ja"
 
 msgid "Ok"
-msgstr "OK"
+msgstr "O. k."
 
 msgid "Personal Information"
 msgstr "Persönliche Informationen"
@@ -2744,7 +2744,6 @@ msgstr "Derzeit nicht verfügbar"
 msgid "Pay by card"
 msgstr "Mit Karte zahlen"
 
-#, fuzzy
 msgid "Only for donations to fully supported countries"
 msgstr "Nur für Spenden an vollständig unterstützte Länder"
 
@@ -3780,15 +3779,15 @@ msgstr "Letzter Tag des Berichtszeitraums"
 msgid "Time zone"
 msgstr "Zeitzone"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{year}Q{quarter}"
 msgstr "{year}Q{quarter}"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "{year}S{semester}"
 msgstr "{year}S{semester}"
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "liberapay_income_report_{period}"
 msgstr "liberapay_income_report_{period}"
 
@@ -3804,7 +3803,6 @@ msgstr "Informationen darüber, wer die Gelder erhalten hat: Name, Postanschrift
 msgid "Income amount"
 msgstr "Einkommenshöhe"
 
-#, fuzzy
 msgid "No income."
 msgstr "Kein Einkommen."
 
@@ -3823,9 +3821,8 @@ msgstr "Berichtszeitraum"
 msgid "Account number"
 msgstr "Kontonummer"
 
-#, fuzzy
 msgid "Account creation time"
-msgstr "Zeitpunkt der Erstellung des Kontos"
+msgstr "Zeitpunkt der Kontoerstellung"
 
 msgid "Transaction record"
 msgstr "Transaktionsdatensatz"
@@ -3975,7 +3972,6 @@ msgstr "Eine Karte hinzufügen"
 msgid "Euro Bank Account"
 msgstr "Euro Bankkonto"
 
-#, fuzzy
 msgid "Only for donations in euros to recipients in fully supported countries"
 msgstr "Nur für Spenden in Euro an Empfänger in vollständig unterstützten Ländern"
 
@@ -4370,9 +4366,9 @@ msgstr "Welche Länder und Währungen werden unterstützt?"
 msgid "See the “{page_name}” page."
 msgstr "Siehe die Seite „{page_name}“."
 
-#, fuzzy, python-brace-format
+#, python-brace-format
 msgid "The available payment methods depend on which payment processors are supported by the recipient. If a payment is processed by Stripe, then most credit and debit cards ({list_of_card_brands}) are accepted, as well as SEPA Direct Debits (only for donations in euros to recipients in {link_start}fully supported countries{link_end}). If a payment is through PayPal, then it's possible to pay in various ways, however the donor needs to have or create a PayPal account."
-msgstr "Die verfügbaren Zahlungsmethoden hängen davon ab, welche Zahlungsabwickler vom Empfänger unterstützt werden. Wenn eine Zahlung über Stripe abgewickelt wird, werden die meisten Kredit- und Debitkarten ({list_of_card_brands}) sowie SEPA-Lastschriften (nur für Spenden in Euro an Empfänger in {link_start}vollständig unterstützten Ländern{link_end}) akzeptiert. Wenn eine Zahlung über PayPal erfolgt, sind verschiedene Zahlungsmethoden möglich, jedoch muss der Spender über ein PayPal-Konto verfügen oder ein solches erstellen."
+msgstr "Die verfügbaren Zahlungsmethoden hängen davon ab, welche Zahlungsabwickler vom Empfänger unterstützt werden. Falls eine Zahlung über Stripe abgewickelt wird, werden die meisten Kredit- und Debitkarten ({list_of_card_brands}) sowie SEPA-Lastschriften (nur für Spenden in Euro an Empfänger in {link_start}vollständig unterstützten Ländern{link_end}) akzeptiert. Falls eine Zahlung über PayPal erfolgt, sind verschiedene Zahlungsmethoden möglich, jedoch muss der Spender über ein PayPal-Konto verfügen oder ein solches erstellen."
 
 msgid "What are the payment processing fees?"
 msgstr "Wie hoch sind die Gebühren zur Bearbeitung einer Zahlung?"
