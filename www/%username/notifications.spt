@@ -91,9 +91,12 @@ participant.render_notifications(state, before=before, limit=limit)
                 <p><i>{{ _("An error occurred while rendering this notification.") }}</i></p>
                 % if notif.sentry_ident
                     <p><i>{{ _(
-                        "The details of this error have been recorded. If you decide to contact us, "
-                        "please include the following error identification code in your message: {0}.",
-                        '<code>%s</code>'|safe % notif.sentry_ident
+                        "The details of this error have been recorded. If you decide to "
+                        "{link_start}contact us{link_end}, please include the following "
+                        "error identification code in your message: {0}.",
+                        '<code>%s</code>'|safe % notif.sentry_ident,
+                        link_start='<a href="/about/contact" target="_blank">'|safe,
+                        link_end='</a>'|safe,
                     ) }}</i></p>
                 % endif
             % endif
