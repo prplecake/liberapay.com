@@ -812,27 +812,22 @@ msgstr "Contul dumneavoastră Liberapay a fost modificat"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Cineva încearcă să asocieze adresa de email {0} la contul Liberarpay a cărui adresă curentă este {1}. Dacă nu ați inițiat această operație, ar trebui să apăsați pe legătura de mai jos și să eliminați adresa necorespunzătoare de la contul dumneavoastră."
 
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "Se pare că ați găsit o defecțiune! Ne cerem scuze pentru inconveniență, o vom repara cât de repede posibil!"
+msgid "The requested page couldn't be found."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Pagina solicitată nu a putut fi găsită. Vă rugăm să {link_start}ne contactați{link_end} dacă aveți nevoie de asistență."
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Cererea dvs. a fost respinsă de software-ul nostru. Vă rugăm să {link_start}ne contactați{link_end} dacă aveți nevoie de asistență."
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
-msgid "Error message:"
-msgstr "Mesajul erorii:"
+#, python-brace-format
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "Detaliile acestei erori au fost înregistrate. Dacă decideți să ne contactați includeți următorul cod de identificare a erorii în mesajul dumneavoastră: {0}."
-
-#, fuzzy
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "Dacă decideți să ne contactați, vă rugăm să includeți următoarele informații de depanare în mesajul dumneavoastră:"
+#, python-brace-format
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 msgid "Every week as long as I am receiving donations"
 msgstr "Săptămânal atât timp cât primesc donații"
@@ -1678,8 +1673,15 @@ msgstr "Donează"
 msgid "Switch to a different account"
 msgstr "Comută la un cont diferit"
 
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "V-am trimis o legătură de autentificare valabilă doar o dată. Verificați-vă e-mailul, deschideți legătura oferită într-un nou tab, apoi reveniți la această pagină și apăsați pe butonul de mai jos pentru a continua acțiunea dorită."
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1732,6 +1734,10 @@ msgstr "Parolă nedefinită"
 #, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "Lungimea maximă este {0}."
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 #, fuzzy
 msgid "2FA"
@@ -1984,6 +1990,9 @@ msgstr "Adresa în interiorul orașului"
 
 msgid "Income"
 msgstr "Venit"
+
+msgid "undisclosed"
+msgstr ""
 
 msgid "per week"
 msgstr "pe săptămână"
@@ -4228,14 +4237,27 @@ msgstr "Uitați acest număr de cont bancar după o singură plată."
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "Deoarece adresa poștală a plătitorului este uneori necesară pentru a procesa cu succes o plată, vă recomandăm să o introduceți pe a dumneavoastră mai jos. Aceasta va fi stocată în mod criptat în baza noastră de date și va fi trimisă procesatorului de plăți ({processor_name})."
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "Configurarea instrumentului de plată a eșuat."
 
-#, fuzzy, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
-msgstr[0] "Aveți instrumentul de plată {n} conectat."
+#, python-brace-format
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
 msgstr[1] ""
 msgstr[2] ""
 
@@ -4309,9 +4331,11 @@ msgstr "Utilizați acest instrument în mod implicit pentru plăți în {currenc
 msgid "Set as default for {currency}"
 msgstr "Setat ca implicit pentru {currency}"
 
-#, fuzzy
-msgid "You don't have any valid payment instrument."
-msgstr "Nu aveți niciun instrument de plată valabil."
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 #, fuzzy
 msgid "Add a payment instrument:"
@@ -4628,21 +4652,21 @@ msgstr "Acreditările trimise nu sunt valide."
 msgid "You can try again:"
 msgstr "Poți încerca din nou:"
 
-#, fuzzy
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "Nu ne contactați dacă încercați să contactați unul dintre utilizatorii noștri. Noi nu transmitem mesaje și nu putem dezvălui identitatea sau detaliile de contact ale utilizatorilor noștri decât dacă aveți un ordin judecătoresc valabil."
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-#, fuzzy
-msgid "To contact the Liberapay team privately:"
-msgstr "Pentru a contacta echipa Liberapay în privat:"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 #, fuzzy
 msgid "Send an email to Liberapay"
 msgstr "Trimite un e-mail la Liberapay"
 
-#, fuzzy
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "Dacă mesajul dvs. nu este scris în engleză sau franceză, acesta va fi tradus automat de o mașină. Răspunsul nostru va fi tradus în limba dvs. în același mod."
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -5517,6 +5541,34 @@ msgstr "Vă gândiți la cineva?"
 msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "Vă putem ajuta să găsiți oameni sub angajament dacă vă conectați conturile:"
 
+#, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
@@ -5544,6 +5596,9 @@ msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] "Contul Liberapay care a primit cei mai mulți bani este:"
 msgstr[1] ""
 msgstr[2] "Conturile {n} Liberapay care au primit cei mai mulți bani sunt:"
+
+msgid "number of patrons"
+msgstr ""
 
 #, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"

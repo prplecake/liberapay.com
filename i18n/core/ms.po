@@ -767,26 +767,22 @@ msgstr "Akaun Liberapay anda sedang diubah"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Seseorang cuba untuk mengaitkan alamat e-mel {0} ke akaun Liberapay yang ketika ini alamatnya {1}. Jika anda tidak memulakan operasi ini, maka anda patut klik pautan di bawah dan membuang alamat tidak dikenali daripada akaun anda."
 
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "Nampaknya anda telah jumpa pepijat! Maaf atas segala kesulitan, kami akan segera baikinya!"
+msgid "The requested page couldn't be found."
+msgstr ""
+
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
+
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
 #, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Halaman yang diminta tidak dijumpai. Sila {link_start}hubungi kami{link_end} jika anda perlukan bantuan."
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
 #, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Permintaan anda telah ditolak oleh perisian kami. Sila {link_start}hubungi kami{link_end} jika anda perlukan bantuan."
-
-msgid "Error message:"
-msgstr "Mesej ralat:"
-
-#, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "Butiran ralat ini telah direkodkan. Jika anda membuat keputusan untuk menghubungi kami, sila sertakan kod pengenalan ralat berikut di dalam mesej anda: {0}."
-
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "Jika anda membuat keputusan untuk menghubungi kami, sila masukkan maklumat nyahpepijat berikut dalam mesej anda:"
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 msgid "Every week as long as I am receiving donations"
 msgstr "Setiap minggu selagi saya menerima derma"
@@ -1593,8 +1589,15 @@ msgstr "Derma"
 msgid "Switch to a different account"
 msgstr "Tukar ke akaun lain"
 
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "Kami telah menghantar pautan log masuk guna sekali. Periksa peti masuk e-mel anda, buka pautan yang diberi dalam tab baru, kemudian kembali semula ke halaman ini dan klik pada butang di bawah untuk teruskan apa yang anda ingin lakukan."
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1640,6 +1643,10 @@ msgstr "Nyahtetapkan kata laluan"
 #, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "Panjang maksimum ialah {0}."
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 msgid "2FA"
 msgstr "2FA"
@@ -1879,6 +1886,9 @@ msgstr "Alamat dalam bandar"
 
 msgid "Income"
 msgstr "Pendapatan"
+
+msgid "undisclosed"
+msgstr ""
 
 msgid "per week"
 msgstr "setiap minggu"
@@ -3947,15 +3957,26 @@ msgstr "Lupakan nombor akaun bank ini selepas sekali bayar."
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "Memandangkan kadang kala alamat surat itu diperlukan untuk memproses pembayaran dengan jayanya, kami menggalakkan anda mengisi alamat surat anda di bawah. Ia akan disimpan secara tersulit dalam pangkalan data kami dan dihantar ke pemproses pembayaran ({processor_name})."
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "Penyediaan instrumen pembayaran gagal."
 
 #, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
-msgstr[0] "Anda mempunyai {n} alat pembayaran yang terkait."
-msgstr[1] "Anda mempunyai {n} alat pembayaran yang terkait."
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Bank Account"
 msgstr "Akaun Bank"
@@ -4023,8 +4044,11 @@ msgstr "Gunakan instrumen ini secara lalainya bagi pembayaran dalam {currency}."
 msgid "Set as default for {currency}"
 msgstr "Tetapkan sebagai lalai bagi {currency}"
 
-msgid "You don't have any valid payment instrument."
-msgstr "Anda tidak mempunyai sebarang alat pembayaran yang sah."
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 msgid "Add a payment instrument:"
 msgstr "Tambah alat pembayaran:"
@@ -4326,17 +4350,20 @@ msgstr "Bukti kelayakan yang diserahkan tidak sah."
 msgid "You can try again:"
 msgstr "Anda boleh mencuba lagi:"
 
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "Jangan hubungi kami jika anda cuba untuk menghubungi salah seorang pengguna kami. Kami tidak bantu salurkan mesej, dan kami tidak boleh dedahkan butiran identiti atau perhubungan pengguna kami melainkan anda mempunyai perintah mahkamah yang sah."
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-msgid "To contact the Liberapay team privately:"
-msgstr "Untuk hubungi kumpulan Liberapay secara rahsia:"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 msgid "Send an email to Liberapay"
 msgstr "Hantarkan e-mel kepada Liberapay"
 
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "Jika mesej anda tidak ditulis dalam bahasa Inggeris atau Perancis, maka ia akan diterjemah secara automatik menggunakan mesin. Balas daripada kami juga akan diterjemah ke bahasa anda dengan cara yang sama."
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -5127,6 +5154,30 @@ msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "Kami boleh bantu anda mencari orang untuk anda derma jika anda mengaitkan akaun anda:"
 
 #, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
 msgstr[0] "Individu yang menerima wang terbanyak melalui Liberapay ialah:"
@@ -5149,6 +5200,9 @@ msgid "The Liberapay account receiving the most money is:"
 msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] "Akaun Liberapay yang menerima wang terbanyak ialah:"
 msgstr[1] "{n} akaun Liberapay yang menerima wang terbanyak ialah:"
+
+msgid "number of patrons"
+msgstr ""
 
 #, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"

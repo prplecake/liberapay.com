@@ -766,26 +766,22 @@ msgstr "Liberapay-tiliäsi yritetään muuttaa"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Joku on yrittänyt yhdistää sähköpostiosoitteen {0} Liberapay-tiliisi, jonka nykyinen sähköpostiosoite on {1}. Jos et itse ollut toimenpiteen takana, seuraa alla olevaa linkkiä ja poista omituinen osoite tililtäsi."
 
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "Taisit löytää bugin! Pahoittelemme häiriötä. Korjaamme sen mahdollisimman pian!"
+msgid "The requested page couldn't be found."
+msgstr ""
+
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
+
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
 #, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Pyydettyä sivua ei löytynyt. {link_start}Ota yhteyttä{link_end}, jos tarvitset opastusta."
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
 #, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Ohjelmistomme hylkäsi sivupyyntösi. {link_start}Ota yhteyttä{link_end}, jos tarvitset opastusta."
-
-msgid "Error message:"
-msgstr "Virheilmoitus:"
-
-#, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "Virheen yksityiskohdat ovat tallessa. Jos päätät ottaa meihin yhteyttä, sisällytä viestissäsi tämä virhetunniste: {0}."
-
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "Jos päätät ottaa yhteyttä meihin, sisällytä seuraavat debug-tiedot viestissäsi:"
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 msgid "Every week as long as I am receiving donations"
 msgstr "Joka viikko niin kauan kuin vastaanotan lahjoituksia"
@@ -1593,8 +1589,15 @@ msgstr "Lahjoita"
 msgid "Switch to a different account"
 msgstr "Vaihda tiliä"
 
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "Lähetimme sinulle kertakäyttöisen kirjautumislinkin. Tarkista sähköpostilaatikkosi, avaa saamasi linkki uudessa välilehdessä, ja palaa sitten tälle sivulle ja klikkaa alla olevaa nappia, jatkaaksesi mitä olitkin tekemässä."
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1640,6 +1643,10 @@ msgstr "Poista salasana käytöstä"
 #, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "Maksimipituus on {0}."
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 msgid "2FA"
 msgstr "Kaksivaiheinen tunnistautuminen"
@@ -1879,6 +1886,9 @@ msgstr "Katuosoite"
 
 msgid "Income"
 msgstr "Tulot"
+
+msgid "undisclosed"
+msgstr ""
 
 msgid "per week"
 msgstr "viikossa"
@@ -3947,15 +3957,26 @@ msgstr "Unohda tämä tilinumero yhden maksun jälkeen."
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "Joskus maksun käsittelemiseksi tarvitaan maksajan postiosoite. Suosittelemme, että syötät omasi tähän. Se tallennetaan tietokantaamme salattuna ja lähetään maksunkäsittelijällemme ({processor_name})."
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "Maksuvälineen määrittäminen epäonnistui."
 
 #, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
-msgstr[0] "Olet kytkenyt {n} maksuvälineen."
-msgstr[1] "Olet kytkenyt {n} maksuvälinettä."
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
 
 msgid "Bank Account"
 msgstr "Pankkitili"
@@ -4023,8 +4044,11 @@ msgstr "Käytä tätä välinettä oletuksena {currency}-määräisille maksuill
 msgid "Set as default for {currency}"
 msgstr "Valitse oletukseksi {currency}-määräisille maksuille"
 
-msgid "You don't have any valid payment instrument."
-msgstr "Sinulla ei ole toimivaa maksuvälinettä."
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 msgid "Add a payment instrument:"
 msgstr "Lisää maksuväline:"
@@ -4327,17 +4351,20 @@ msgstr "Lähetetyt tunnistetiedot eivät ole kelvollisia."
 msgid "You can try again:"
 msgstr "Voit yrittää uudelleen:"
 
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "Älä ota meihin yhteyttä, mikäli tarkoituksesi on ottaa yhteyttä johonkin käyttäjäämme. Emme välitä viestejä edelleen, emmekä paljasta käyttäjiemme identiteettiä tai yhteystietoja ilman oikeuden määräystä."
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-msgid "To contact the Liberapay team privately:"
-msgstr "Ottaaksesi yhteyttä Liberapay-ryhmään yksityisesti:"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 msgid "Send an email to Liberapay"
 msgstr "Lähetä sähköpostia Liberapaylle"
 
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "Mikäli viestisi ei ole kirjoitettu englanniksi tai ranskaksi, se käännetään automaattisesti konekäännöksenä. Vastauksemme kielellesi käännetään vastaavasti."
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -5140,6 +5167,30 @@ msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "Voimme auttaa lahjoituslupauksien vastaanottajien löytämisessä, jos kytket tilejäsi:"
 
 #, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
 msgstr[0] "Liberapayn kautta eniten rahaa saava henkilö on:"
@@ -5162,6 +5213,9 @@ msgid "The Liberapay account receiving the most money is:"
 msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] "Eniten rahaa saava Liberapay-tili on:"
 msgstr[1] "{n} Liberapay-tiliä, joille on maksettu eniten rahaa:"
+
+msgid "number of patrons"
+msgstr ""
 
 #, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"

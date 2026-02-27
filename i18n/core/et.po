@@ -809,28 +809,22 @@ msgstr "Teie Liberapay kontot muudetakse"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Keegi üritab seostada e-posti aadressi {0} Liberapay kontoga, mille praegune aadress on {1}. Kui te ei ole seda operatsiooni algatanud, siis peaksite klõpsama alloleval lingil ja eemaldama anomaalse aadressi oma kontolt."
 
-#, fuzzy
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "Paistab, et olete leidnud vea! Vabandame ebamugavuste pärast, me parandame selle niipea kui võimalik!"
+msgid "The requested page couldn't be found."
+msgstr ""
+
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
+
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
 #, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Seda lehekülge pole leida. Kui vajad abi {link_start}võta meiega ühendust{link_end}."
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
 #, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Meie tarkvara lükkas sinu päringu tagasi. Kui vajad abi {link_start}võta meiega ühendust{link_end}."
-
-#, fuzzy
-msgid "Error message:"
-msgstr "Veateade:"
-
-#, fuzzy, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "Selle vea üksikasjad on registreeritud. Kui otsustate meiega ühendust võtta, lisage palun oma sõnumisse järgmine veakood: {0}."
-
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "Kui otsustad meiega ühendust võtta, palun kaasa oma kirja järgnev tõrke teave:"
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 #, fuzzy
 msgid "Every week as long as I am receiving donations"
@@ -1753,9 +1747,15 @@ msgstr "Anneta"
 msgid "Switch to a different account"
 msgstr "Üleminek teisele kontole"
 
-#, fuzzy
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "Oleme saatnud teile ühekordselt kasutatava sisselogimise lingi. Vaadake oma postkasti, avage antud link uues vahekaardis, seejärel tulge tagasi sellele lehele ja klõpsake alloleval nupul, et jätkata seda, mida tahtsite teha."
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1812,6 +1812,10 @@ msgstr "Unset parool"
 #, fuzzy, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "Maksimaalne pikkus on {0}."
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 #, fuzzy
 msgid "2FA"
@@ -2117,6 +2121,9 @@ msgstr "Aadress linnas"
 #, fuzzy
 msgid "Income"
 msgstr "Tulu"
+
+msgid "undisclosed"
+msgstr ""
 
 #, fuzzy
 msgid "per week"
@@ -4538,14 +4545,25 @@ msgstr "Unustage see pangakonto number pärast ühte makset."
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "Kuna makse edukaks töötlemiseks on mõnikord vaja maksja postiaadressi, soovitame teil oma aadressi sisestada allpool. See salvestatakse meie andmebaasis krüpteeritult ja saadetakse makseprotsessorile ({processor_name})."
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "Maksevahendi seadistamine ebaõnnestus."
 
-#, fuzzy, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
-msgstr[0] "Teil on {n} ühendatud maksevahend."
+#, python-brace-format
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
 msgstr[1] ""
 
 #, fuzzy
@@ -4620,9 +4638,11 @@ msgstr "Kasutage seda vahendit vaikimisi maksete tegemiseks aadressil {currency}
 msgid "Set as default for {currency}"
 msgstr "Seadistatakse vaikimisi {currency}"
 
-#, fuzzy
-msgid "You don't have any valid payment instrument."
-msgstr "Teil ei ole ühtegi kehtivat maksevahendit."
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 #, fuzzy
 msgid "Add a payment instrument:"
@@ -4971,21 +4991,21 @@ msgstr "Esitatud volitused ei ole kehtivad."
 msgid "You can try again:"
 msgstr "Võite proovida uuesti:"
 
-#, fuzzy
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "Ärge võtke meiega ühendust, kui püüate ühendust võtta mõne meie kasutajaga. Me ei edasta sõnumeid ja me ei saa avaldada meie kasutajate identiteeti ega kontaktandmeid, välja arvatud juhul, kui teil on kehtiv kohtumäärus."
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-#, fuzzy
-msgid "To contact the Liberapay team privately:"
-msgstr "Liberapay meeskonnaga eraviisiliselt ühendust võtta:"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 #, fuzzy
 msgid "Send an email to Liberapay"
 msgstr "Saada e-kiri Liberapayle"
 
-#, fuzzy
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "Kui teie sõnum ei ole kirjutatud inglise või prantsuse keeles, siis tõlgib see masin automaatselt. Meie vastus tõlgitakse teie keelde samamoodi."
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -5916,6 +5936,30 @@ msgstr "Kas teil on keegi meeles?"
 msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "Kui ühendate oma kontod, saame aidata teil leida pandimehi:"
 
+#, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+
 #, fuzzy, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
@@ -5939,6 +5983,9 @@ msgid "The Liberapay account receiving the most money is:"
 msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] "Kõige rohkem raha saanud Liberapay konto on:"
 msgstr[1] "Kõige rohkem raha saavad {n} Liberapay kontod:"
+
+msgid "number of patrons"
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"

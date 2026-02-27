@@ -752,26 +752,22 @@ msgstr "お使いのLiberapayアカウントが変更されています"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "誰かが、{1} を現在のメールアドレスに登録しているLiberapayアカウントに、別のメールアドレス {0} を関連付けようとしています。ご自身ではこの操作を行っていない場合は、以下のリンクをクリックして、不正なメールアドレスをアカウントから削除してください。"
 
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "不具合が発生したようです！ご迷惑をおかけします。早急に解決をいたします！"
+msgid "The requested page couldn't be found."
+msgstr ""
+
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
+
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
 #, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "要求されたページが見つかりませんでした。お手伝いが必要な場合は{link_start}お問い合わせください{link_end}。"
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
 #, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "私たちのソフトウェアはあなたの要求を拒否しました。お手伝いが必要な場合は{link_start}お問い合わせください{link_end}。"
-
-msgid "Error message:"
-msgstr "エラーメッセージ："
-
-#, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "このエラーの詳細が記録されました。お問い合わせの際は、以下のエラー識別コードをメッセージに記載してください：{0}。"
-
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "お問い合わせの際には、以下のデバッグ情報をメッセージに記載してください。"
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 msgid "Every week as long as I am receiving donations"
 msgstr "寄付を受け取っている限り、毎週"
@@ -1568,8 +1564,15 @@ msgstr "寄付"
 msgid "Switch to a different account"
 msgstr "別のアカウントに切り替える"
 
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "1回限り有効のログインリンクを送信しました。受信トレイを確認し、リンクを新しいタブで開いてください。続いて、このページに戻り、下のボタンをクリックすると、目的の操作を続けることができます。"
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1615,6 +1618,10 @@ msgstr "パスワードの設定を取り消す"
 #, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "最大の長さは{0}字です。"
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 msgid "2FA"
 msgstr "2要素認証"
@@ -1851,6 +1858,9 @@ msgstr "市内住所"
 
 msgid "Income"
 msgstr "収入"
+
+msgid "undisclosed"
+msgstr ""
 
 msgid "per week"
 msgstr "1週あたり"
@@ -3888,14 +3898,23 @@ msgstr "この銀行口座番号を次回の支払いのために保存しない
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "支払者の住所が支払いの処理に必要な場合がありますので、以下に入力されることをお勧めします。入力された住所は、暗号化された後で私たちのデータベースに保存され、決済サービス（{processor_name} ）に送信されます。"
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "支払い方法の設定に失敗しました。"
 
 #, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
-msgstr[0] "{n}個の決済手段と連携済みです。"
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
+msgstr[0] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
 
 msgid "Bank Account"
 msgstr "銀行口座"
@@ -3963,8 +3982,11 @@ msgstr "この決済手段を{currency}での支払いにデフォルトで使�
 msgid "Set as default for {currency}"
 msgstr "{currency}のデフォルトに設定"
 
-msgid "You don't have any valid payment instrument."
-msgstr "有効な決済手段がありません。"
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 msgid "Add a payment instrument:"
 msgstr "決済手段を追加："
@@ -4260,17 +4282,20 @@ msgstr "入力された認証情報が正しくありません。"
 msgid "You can try again:"
 msgstr "もう一度お試しください:"
 
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "他のLiberapayユーザーとコンタクトを取るためにチームに連絡しないでください。他のユーザーにメッセージは転送することはありません。有効な裁判所命令が無い限り、他のユーザーの本人情報や連絡先を開示することはできません。"
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-msgid "To contact the Liberapay team privately:"
-msgstr "以下よりLiberapayチームに直接連絡できます。"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 msgid "Send an email to Liberapay"
 msgstr "メールをLiberapayに送信"
 
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "メッセージが英語またはフランス語で書かれていない場合、自動的に機械翻訳されます。同様に、チームからの返信は、送信されたメッセージと同じ言語に機械翻訳されます。"
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -5032,6 +5057,26 @@ msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "お使いのアカウントを連携させると、寄付を約束してくれる相手を探すのに役立ちます。"
 
 #, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+
+#, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
 msgstr[0] "Liberapayを通じて最も多くの金銭を受け取っている{n}人は次のとおりです："
@@ -5050,6 +5095,9 @@ msgstr[0] "Liberapayを通じて最も多くの金銭を受け取っている{n}
 msgid "The Liberapay account receiving the most money is:"
 msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] "最も多くの金銭を受け取っている{n}のLiberapayアカウントは次のとおりです："
+
+msgid "number of patrons"
+msgstr ""
 
 #, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"

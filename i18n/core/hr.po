@@ -855,29 +855,22 @@ msgstr "Vaš Liberapay račun se mijenja"
 msgid "Someone is attempting to associate the email address {0} to the Liberapay account whose current address is {1}. If you didn't initiate this operation, then you should click on the link below and remove the anomalous address from your account."
 msgstr "Netko pokušava povezati adresu e-pošte {0} s Liberapay računom čija je trenutna adresa {1}. Ako niste pokrenuli ovu operaciju, trebali biste kliknuti na donju poveznicu i ukloniti nenormalnu adresu sa svog računa."
 
-#, fuzzy
-msgid "Looks like you've found a bug! Sorry for the inconvenience, we'll get it fixed ASAP!"
-msgstr "Čini se da ste pronašli grešku! Ispričavamo se zbog neugodnosti, riješit ćemo to što prije!"
+msgid "The requested page couldn't be found."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "The requested page could not be found. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Tražena stranica nije pronađena. Molimo {link_start}kontaktirajte nas{link_end} ako trebate pomoć."
+msgid "Looks like you've found a bug! Sorry for the inconvenience. We'll fix this error as soon as possible."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "Your request has been rejected by our software. Please {link_start}contact us{link_end} if you need assistance."
-msgstr "Naš je softver odbio vaš zahtjev. Molimo {link_start}kontaktirajte nas{link_end} ako trebate pomoć."
+msgid "An unspecified error occured. This isn't supposed to happen. Sorry."
+msgstr ""
 
-#, fuzzy
-msgid "Error message:"
-msgstr "Poruka greške:"
+#, python-brace-format
+msgid "The details of this error have been recorded. If you decide to {link_start}contact us{link_end}, please include the following error identification code in your message: {0}."
+msgstr ""
 
-#, fuzzy, python-brace-format
-msgid "The details of this error have been recorded. If you decide to contact us, please include the following error identification code in your message: {0}."
-msgstr "Pojedinosti o ovoj pogrešci su zabilježene. Ako nas odlučite kontaktirati, u svoju poruku uključite sljedeći identifikacijski kod pogreške: {0}."
-
-#, fuzzy
-msgid "If you decide to contact us please include the following debugging information in your message:"
-msgstr "Ako nas odlučite kontaktirati, u svoju poruku uključite sljedeće informacije o otklanjanju pogrešaka:"
+#, python-brace-format
+msgid "If you decide to {link_start}contact us{link_end} about this issue, please include the following debugging information in your message:"
+msgstr ""
 
 #, fuzzy
 msgid "Every week as long as I am receiving donations"
@@ -1834,9 +1827,15 @@ msgstr "Donirajte"
 msgid "Switch to a different account"
 msgstr "Prebacite se na drugi račun"
 
-#, fuzzy
-msgid "We've sent you a single-use login link. Check your inbox, open the provided link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
-msgstr "Poslali smo vam poveznicu za jednokratnu prijavu. Provjerite svoju pristiglu poštu, otvorite ponuđenu poveznicu u novoj kartici, zatim se vratite na ovu stranicu i kliknite na gumb ispod kako biste nastavili s onim što ste željeli učiniti."
+#, python-brace-format
+msgid "A single-use authentication link has been emailed to {email_address}."
+msgstr ""
+
+msgid "Check your inbox, and perhaps your spam folder."
+msgstr ""
+
+msgid "Open the authentication link in a new tab, then come back to this page and click on the button below to carry on with what you wanted to do."
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "You're still not logged in as {0}."
@@ -1893,6 +1892,10 @@ msgstr "Poništi lozinku"
 #, fuzzy, python-brace-format
 msgid "Maximum length is {0}."
 msgstr "Maksimalna duljina je {0}."
+
+#, python-brace-format
+msgid "If you've {bold}lost your current password{bold_end}, you have to log in via email to be able to replace it:"
+msgstr ""
 
 #, fuzzy
 msgid "2FA"
@@ -2201,6 +2204,9 @@ msgstr "Adresa unutar grada"
 #, fuzzy
 msgid "Income"
 msgstr "Prihod"
+
+msgid "undisclosed"
+msgstr ""
 
 #, fuzzy
 msgid "per week"
@@ -4656,16 +4662,29 @@ msgstr "Zaboravite ovaj broj bankovnog računa nakon jedne uplate."
 msgid "As the payer's postal address is sometimes required to successfully process a payment, we recommend that you input yours below. It will be stored encrypted in our database and sent to the payment processor ({processor_name})."
 msgstr "Budući da je poštanska adresa platitelja ponekad potrebna za uspješnu obradu plaćanja, preporučujemo da unesete svoju u nastavku. Bit će pohranjen šifriran u našoj bazi podataka i poslan procesoru plaćanja ({processor_name})."
 
+msgid "Fund your donation"
+msgid_plural "Fund your donations"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy
 msgid "Setting up the payment instrument failed."
 msgstr "Postavljanje instrumenta plaćanja nije uspjelo."
 
-#, fuzzy, python-brace-format
-msgid "You have {n} connected payment instrument."
-msgid_plural "You have {n} connected payment instruments."
+#, python-brace-format
+msgid "{n} payment instrument is attached to this account."
+msgid_plural "{n} payment instruments are attached to this account."
 msgstr[0] ""
 msgstr[1] ""
-msgstr[2] "Imate {n} povezanih instrumenata plaćanja."
+msgstr[2] ""
+
+#, python-brace-format
+msgid "{n} valid payment instrument is attached to this account."
+msgid_plural "{n} valid payment instruments are attached to this account."
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #, fuzzy
 msgid "Bank Account"
@@ -4739,9 +4758,11 @@ msgstr "Koristite ovaj instrument prema zadanim postavkama za plaćanja u {curre
 msgid "Set as default for {currency}"
 msgstr "Postavi kao zadano za {currency}"
 
-#, fuzzy
-msgid "You don't have any valid payment instrument."
-msgstr "Nemate valjani instrument plaćanja."
+msgid "No payment instruments are attached to this account."
+msgstr ""
+
+msgid "No valid payment instruments are attached to this account."
+msgstr ""
 
 #, fuzzy
 msgid "Add a payment instrument:"
@@ -5095,21 +5116,21 @@ msgstr "Poslane vjerodajnice nisu važeće."
 msgid "You can try again:"
 msgstr "Možete pokušati ponovno:"
 
-#, fuzzy
-msgid "Do not contact us if you are trying to reach one of our users. We do not relay messages, and we cannot reveal the identity or contact details of our users unless you have a valid court order."
-msgstr "Nemojte nas kontaktirati ako pokušavate doći do nekog od naših korisnika. Ne prenosimo poruke i ne možemo otkriti identitet ili kontakt podatke naših korisnika osim ako nemate važeći sudski nalog."
+msgid "If you're trying to reach the owner of a Liberapay account, be advised that we generally don't relay messages and can't reveal the identity or contact details of our users."
+msgstr ""
 
-#, fuzzy
-msgid "To contact the Liberapay team privately:"
-msgstr "Za privatni kontakt s Liberapay timom:"
+msgid "To contact a Liberapay maintainer privately:"
+msgstr ""
 
 #, fuzzy
 msgid "Send an email to Liberapay"
 msgstr "Pošaljite e-poruku na Liberapay"
 
-#, fuzzy
-msgid "If your message isn't written in English or French, then it will be translated automatically by a machine. Our reply will be translated to your language the same way."
-msgstr "Ako vaša poruka nije napisana na engleskom ili francuskom, automatski će je prevesti stroj. Naš će odgovor biti preveden na vaš jezik na isti način."
+msgid "We're very busy, so you shouldn't expect a fast response. Some messages may not be answered at all, especially if they're disrespectful, rambling or misdirected."
+msgstr ""
+
+msgid "If your message isn't written in English or French, it will be translated automatically by a machine. Our reply will be translated to your language the same way."
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "If you think you've found a technical vulnerability in our system, please follow the instructions in {link_start}the {page_name} page{link_end} instead of sending us an email."
@@ -6059,6 +6080,34 @@ msgstr "Imaš li nekoga na umu?"
 msgid "We can help you find pledgees if you connect your accounts:"
 msgstr "Možemo vam pomoći pronaći dužnike ako povežete svoje račune:"
 
+#, python-brace-format
+msgid "The individual with the most patrons on Liberapay is:"
+msgid_plural "The {n} individuals with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The organization with the most patrons on Liberapay is:"
+msgid_plural "The {n} organizations with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The team with the most patrons on Liberapay is:"
+msgid_plural "The {n} teams with the most patrons on Liberapay are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#, python-brace-format
+msgid "The Liberapay account with the most patrons is:"
+msgid_plural "The {n} Liberapay accounts with the most patrons are:"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
 #, fuzzy, python-brace-format
 msgid "The individual receiving the most money through Liberapay is:"
 msgid_plural "The {n} individuals receiving the most money through Liberapay are:"
@@ -6086,6 +6135,9 @@ msgid_plural "The {n} Liberapay accounts receiving the most money are:"
 msgstr[0] ""
 msgstr[1] ""
 msgstr[2] "{n} Liberapay računi koji primaju najviše novca su:"
+
+msgid "number of patrons"
+msgstr ""
 
 #, fuzzy, python-brace-format
 msgid "The most popular repository currently linked to a Liberapay account is:"
