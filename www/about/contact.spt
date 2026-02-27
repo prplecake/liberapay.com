@@ -8,18 +8,23 @@ title = _("Contact")
 % block content
 
     <p class="text-warning">{{ icon('warning-sign') }} {{ _(
-        "Do not contact us if you are trying to reach one of our users. We do not "
-        "relay messages, and we cannot reveal the identity or contact details of "
-        "our users unless you have a valid court order."
+        "If you're trying to reach the owner of a Liberapay account, be advised "
+        "that we generally don't relay messages and can't reveal the identity or "
+        "contact details of our users."
     ) }}</p>
 
     <br>
-    <h4>{{ _("To contact the Liberapay team privately:") }}</h4>
+    <h4>{{ _("To contact a Liberapay maintainer privately:") }}</h4>
     <p><a class="btn btn-primary" data-email="support&#64;liberapay.com">{{
         _("Send an email to Liberapay")
     }}</a></p>
     <p>{{ _(
-        "If your message isn't written in English or French, then it will be translated "
+        "We're very busy, so you shouldn't expect a fast response. Some messages "
+        "may not be answered at all, especially if they're disrespectful, "
+        "rambling or misdirected."
+    ) }}</p>
+    <p>{{ _(
+        "If your message isn't written in English or French, it will be translated "
         "automatically by a machine. Our reply will be translated to your language "
         "the same way."
     ) }}</p>

@@ -34,13 +34,15 @@
             <dt>{{ _("Patrons") }}</dt>
             <dd>{{ locale.format_decimal(participant.npatrons + participant.nteampatrons) }}</dd>
         </dl>
-        % if not participant.hide_receiving
         <dl>
             <dt>{{ _("Income") }}</dt>
+            % if participant.hide_receiving
+            <dd><i>{{ _("undisclosed") }}</i></dd>
+            % else
             <dd>{{ locale.format_money(participant.receiving) }}<br>
                 <small>{{ _("per week") }}</small></dd>
+            % endif
         </dl>
-        % endif
         % if nmembers
         <dl>
             <dt>{{ _("Members") }}</dt>

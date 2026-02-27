@@ -5,12 +5,14 @@ if kind == 'all':
     sql_filter = "p.kind IN ('individual', 'organization', 'group')"
 else:
     sql_filter = f"p.kind = '{kind}'"
-sort_by = request.qs.get_choice('sort_by', ('receiving', 'join_time'), default='receiving')
+sort_by = request.qs.get_choice('sort_by', ('join_time', 'npatrons', 'receiving'), default='receiving')
 order = request.qs.get_choice('order', ('asc', 'desc'), default='desc')
+reverse_order = 'asc' if order == 'desc' else 'desc'
 if sort_by == 'receiving':
-    sql_order = f"convert(p.receiving, 'EUR') {order}, p.join_time {order}"
+    sql_filter += " AND p.hide_receiving IS NOT TRUE"
+    sql_order = f"convert(p.receiving, 'EUR') {order}, p.join_time {reverse_order}"
 else:
-    sql_order = f"p.{sort_by} {order}"
+    sql_order = f"p.{sort_by} {order}, p.join_time {reverse_order}"
 per_page = 18
 current_page = request.qs.get_int('page', default=1, minimum=1, maximum=100)
 participants = website.db.all("""
@@ -28,7 +30,6 @@ participants = website.db.all("""
        AND (p.goal > 0 OR p.goal IS NULL)
        AND p.hide_from_lists = 0
        AND p.receiving > 0
-       AND p.hide_receiving IS NOT TRUE
   ORDER BY {}
      LIMIT %(limit)s
     OFFSET %(offset)s
@@ -53,7 +54,26 @@ subhead = _("Recipients")
 % block content
 
 % if participants
-    % if current_page == 1 and sort_by == 'receiving' and order == 'desc'
+    % if current_page == 1 and order == 'desc'
+        % if sort_by == 'npatrons'
+        <p>{{ ngettext(
+            "The individual with the most patrons on Liberapay is:",
+            "The {n} individuals with the most patrons on Liberapay are:",
+            len(participants)
+        ) if kind == 'individual' else ngettext(
+            "The organization with the most patrons on Liberapay is:",
+            "The {n} organizations with the most patrons on Liberapay are:",
+            len(participants)
+        ) if kind == 'organization' else ngettext(
+            "The team with the most patrons on Liberapay is:",
+            "The {n} teams with the most patrons on Liberapay are:",
+            len(teams)
+        ) if kind == 'group' else ngettext(
+            "The Liberapay account with the most patrons is:",
+            "The {n} Liberapay accounts with the most patrons are:",
+            len(participants)
+        ) }}</p>
+        % elif sort_by == 'receiving'
         <p>{{ ngettext(
             "The individual receiving the most money through Liberapay is:",
             "The {n} individuals receiving the most money through Liberapay are:",
@@ -71,6 +91,7 @@ subhead = _("Recipients")
             "The {n} Liberapay accounts receiving the most money are:",
             len(participants)
         ) }}</p>
+        % endif
     % endif
 
     <div class="inline-boxes">
@@ -82,10 +103,14 @@ subhead = _("Recipients")
     {{ simple_pager(current_page, has_more) }}
 
     <form action="" class="flex-row wrap align-items-center row-gap-3 column-gap-2 mb-4" method="GET">
+        % if kind != 'all'
+        <input type="hidden" name="kind" value="{{ kind }}" />
+        % endif
         <label class="m-0" for="sort_by">{{ _("Sort by") }}</label>
         <div>
         <select class="form-control" name="sort_by" id="sort_by">
             <option value="receiving" {{ 'selected' if sort_by == 'receiving' }}>{{ _("income") }}</option>
+            <option value="npatrons" {{ 'selected' if sort_by == 'npatrons' }}>{{ _("number of patrons") }}</option>
             <option value="join_time" {{ 'selected' if sort_by == 'join_time' }}>{{ _("creation date") }}</option>
         </select>
         </div>

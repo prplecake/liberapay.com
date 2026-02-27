@@ -17,12 +17,13 @@
             "the password should be randomly generated and not used anywhere else."
         ) }}</p>
     % endif
+    % set require_current_password = participant.has_password and user.session_type not in ('em', 'in')
     <form action="{{ participant.path('settings/edit') }}" method="POST" class="form-inline buttons">
         <input name="csrf_token" type="hidden" value="{{ csrf_token }}" />
         <input name="back_to" type="hidden" value="{{ participant.path('settings/') }}" />
         <input name="email" value="{{ participant.get_email_address() or '' }}"
                aria-hidden="true" class="out-of-sight" tabindex="-1" />
-        % if participant.has_password and user.session_type != 'em'
+        % if require_current_password
         <div class="form-group">
         <input type="password" name="cur-password" class="form-control"
                placeholder="{{ _('Current password') }}" />
@@ -39,6 +40,19 @@
         % endif
     </form>
     <p class="help-block">{{ _("Maximum length is {0}.", constants.PASSWORD_MAX_SIZE) }}</p>
+    % if require_current_password
+    <form action="" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}" />
+        <input type="hidden" name="log-in.id" value="{{ participant.get_email_address() }}" />
+        <input type="hidden" name="log-in.close-tab" value="yes" />
+        <p>{{ _(
+            "If you've {bold}lost your current password{bold_end}, you have to "
+            "log in via email to be able to replace it:",
+            bold='<strong>'|safe, bold_end='</strong>'|safe,
+        ) }}</p>
+        <button class="btn btn-default">{{ _("Log in via email") }}</button>
+    </form>
+    % endif
 
     <h3>{{ _("2FA") }}</h3>
     <p>{{ _("Liberapay does not yet support two-factor authentication.") }}</p>

@@ -36,6 +36,7 @@ if request.method == 'POST':
         raise response.error(400, "no known action found in request body")
     form_post_success(state)
 
+show_invalid_instruments = user.is_acting_as('admin')
 routes = website.db.all("""
     SELECT r
          , ( SELECT pi
@@ -51,7 +52,7 @@ routes = website.db.all("""
        AND r.network IN ('stripe-card', 'stripe-sdd')
        AND ( r.status IN ('chargeable', 'pending') OR %s )
   ORDER BY r.ctime DESC
-""", (participant.id, user.is_acting_as('admin')))
+""", (participant.id, show_invalid_instruments))
 
 today = utcnow().date()
 
@@ -85,7 +86,7 @@ title = _("Payment Instruments")
             ) }}
             &nbsp;
             <a class="btn btn-primary" href="{{ participant.path('giving/pay') }}">{{
-                ngettext("Renew this donation", "Renew these donations", ntips_awaiting_payment)
+                ngettext("Fund your donation", "Fund your donations", ntips_awaiting_payment)
             }}</a>
             </div>
         % endif
@@ -94,8 +95,12 @@ title = _("Payment Instruments")
     % endif
 
     <p>{{ ngettext(
-        "You have {n} connected payment instrument.",
-        "You have {n} connected payment instruments.",
+        "{n} payment instrument is attached to this account.",
+        "{n} payment instruments are attached to this account.",
+        n=len(routes)
+    ) if show_invalid_instruments else ngettext(
+        "{n} valid payment instrument is attached to this account.",
+        "{n} valid payment instruments are attached to this account.",
         n=len(routes)
     ) }}</p>
     <form action="" method="POST">
@@ -222,7 +227,11 @@ title = _("Payment Instruments")
     % endfor
     </form>
 % else
-    <p>{{ _("You don't have any valid payment instrument.") }}</p>
+    <p>{{ _(
+        "No payment instruments are attached to this account."
+    ) if show_invalid_instruments else _(
+        "No valid payment instruments are attached to this account."
+    ) }}</p>
 % endif
 
 <br>

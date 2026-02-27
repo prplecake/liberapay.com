@@ -244,6 +244,7 @@ p.summary {
         display: flex;
         justify-content: space-around;
         margin: $line-height-computed 0 0;
+        min-height: 66px;
         & > dl {
             margin: 0 10px 0 0;
             & > dt {
@@ -258,6 +259,10 @@ p.summary {
                 & > small {
                     color: $gray-light;
                     font-size: $font-size-small;
+                }
+                & > i {
+                    color: $gray-light;
+                    font-size: $font-size-base;
                 }
             }
         }
